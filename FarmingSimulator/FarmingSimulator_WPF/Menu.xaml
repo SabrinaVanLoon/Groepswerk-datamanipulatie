@@ -1,0 +1,32 @@
+﻿<Window x:Class="FarmingSimulator_WPF.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FarmingSimulator_WPF"
+        mc:Ignorable="d"
+        Title="Menu" Height="450" Width="800">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnVoertuigen" Content="Voertuigen" Margin="10" Click="btnVoertuigen_Click"/>
+            <Button x:Name="btnGereedschap" Content="Gereedschap" Margin="10" Grid.Column="1" Click="btnGereedschap_Click"/>
+            <Button x:Name="btnHuurlijst" Content="Mijn huurlijst" Margin="10" Grid.Row="1" Click="btnHuurlijst_Click"/>
+            <Button x:Name="btnKoperslijst" Content="Mijn kooplijst" Margin="10" Grid.Column="1" Grid.Row="1" Click="btnKoperslijst_Click"/>
+            <Button x:Name="btnDieren" Content="Dieren" Margin="10" Grid.Row="2" Click="btnDieren_Click"/>
+            <Button x:Name="btnOpdrachten" Content="Opdrachten" Margin="10" Grid.Column="1" Grid.Row="2" Click="btnOpdrachten_Click"/>
+            <Button x:Name="btnSpeler" Content="Terug naar speler" Margin="10" Grid.Row="4" Click="btnSpeler_Click"/>
+            <Button x:Name="btnVerlaten" Content="Spel verlaten" Margin="10" Grid.Column="1" Grid.Row="4" Click="btnVerlaten_Click"/>
+        </Grid>
+    </Grid>
+</Window>
