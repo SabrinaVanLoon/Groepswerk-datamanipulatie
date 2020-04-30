@@ -1,6 +1,6 @@
 # Groepswerk-datamanipulatie
 groepswerk WPF-farming
 
-Hierin komt de volledige afgewerkte versie van het programma.
+Hierin komen de versies van alle studenten die nog in ontwikkeling zijn.
 
 Dit programma over farming simulator is gemaakt door Stijn Weyts, Dorien Van Loon en Sabrina Van Loon
