@@ -77,6 +77,9 @@
     <Compile Include="Voertuig.xaml.cs">
       <DependentUpon>Voertuig.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VoorwaardenOpdrachtWindow.xaml.cs">
+      <DependentUpon>VoorwaardenOpdrachtWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="DierenWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Voertuig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VoorwaardenOpdrachtWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
