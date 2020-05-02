@@ -71,10 +71,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HuurlijstWindow.xaml.cs">
+      <DependentUpon>HuurlijstWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Voertuig.xaml.cs">
       <DependentUpon>Voertuig.xaml</DependentUpon>
     </Compile>
     <Page Include="DierenWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HuurlijstWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
