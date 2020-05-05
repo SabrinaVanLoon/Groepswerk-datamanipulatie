@@ -29,8 +29,12 @@
         </Grid.RowDefinitions>
         <DataGrid x:Name="DataGridVoertuig" AutoGenerateColumns="True" Grid.RowSpan="4">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Naam" Width="200"/>
-                <DataGridTextColumn Header="Type" Width="200"/>
+                <DataGridTextColumn Header="Naam" Binding="{Binding naam}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Merk" Binding="{Binding merk}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Type" Binding="{Binding type}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Kostprijs" Binding="{Binding basisprijs}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Huurprijs/uur" Binding="{Binding kost_u_huur}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Huurprijs/dag" Binding="{Binding kost_dag_huur}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <TextBox x:Name="txtZoekOpNaam" Grid.Column="1"

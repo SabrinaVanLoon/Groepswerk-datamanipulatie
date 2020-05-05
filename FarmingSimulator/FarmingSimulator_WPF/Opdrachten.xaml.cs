@@ -41,5 +41,7 @@ namespace FarmingSimulator_WPF
             List<a_Opdracht> lijstVanOpdrachten = DatabaseOperations.OphalenVolledigeLijstOpdrachten();
             DataGridOpdrachten.ItemsSource = lijstVanOpdrachten;
         }
+
+
     }
 }

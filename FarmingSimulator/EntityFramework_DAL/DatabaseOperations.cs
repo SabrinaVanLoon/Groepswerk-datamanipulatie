@@ -34,5 +34,27 @@ namespace EntityFramework_DAL
                 return query.ToList();
             }
         }
+
+        public static List<a_Gereedschap> OphalenGereedschapOpNaam(string naam)
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                var query = entities.a_Gereedschap
+                    .Where(x => x.naam.Contains(naam));
+                return query.ToList();
+            }
+
+        }
+
+        public static List<a_Gereedschap> OphalenGereedschapOpType(string type)
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                var query = entities.a_Gereedschap
+                .Where(x => x.type.Contains(type));
+                return query.ToList();
+            }
+        }
+      
     }
 }
