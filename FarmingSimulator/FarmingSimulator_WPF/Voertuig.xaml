@@ -37,7 +37,7 @@
             materialDesign:HintAssist.Hint="Vul een naam in"
              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  VerticalAlignment="Center" />
-        <TextBox x:Name="txtZoekOpMerk" Grid.Column="1" Grid.Row="1"
+        <TextBox x:Name="txtZoekOpType" Grid.Column="1" Grid.Row="1"
             materialDesign:HintAssist.Hint="Vul een type in"
              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  VerticalAlignment="Center" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityFramework_DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,29 +25,21 @@ namespace FarmingSimulator_WPF
             InitializeComponent();
         }
 
-        private void btnZoekVoertuigOpType_Click(object sender, RoutedEventArgs e)
+      
+        private void btnBekijk_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnZoekVoertuigOpNaam_Click(object sender, RoutedEventArgs e)
+        private void btnTerugNaarMenu_Click_1(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnKopen_Click(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void btnHuren_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnTerugNaarMenu_Click(object sender, RoutedEventArgs e)
-        {
-
+            List<a_Opdracht> lijstVanOpdrachten = DatabaseOperations.OphalenVolledigeLijstOpdrachten();
+            DataGridOpdrachten.ItemsSource = lijstVanOpdrachten;
         }
     }
 }
