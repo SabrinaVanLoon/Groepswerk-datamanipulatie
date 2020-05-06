@@ -24,5 +24,11 @@ namespace FarmingSimulator_WPF
         {
             InitializeComponent();
         }
+
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            Menu menu = new Menu();
+            menu.ShowDialog();
+        }
     }
 }

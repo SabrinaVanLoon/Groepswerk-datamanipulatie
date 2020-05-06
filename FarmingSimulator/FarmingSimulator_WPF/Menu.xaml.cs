@@ -26,17 +26,20 @@ namespace FarmingSimulator_WPF
 
         private void btnVoertuigen_Click(object sender, RoutedEventArgs e)
         {
-
+            Voertuig voertuig = new Voertuig();
+            voertuig.ShowDialog();
         }
 
         private void btnGereedschap_Click(object sender, RoutedEventArgs e)
         {
-
+            GereedschapWindow gereedschap = new GereedschapWindow();
+            gereedschap.ShowDialog();
         }
 
         private void btnHuurlijst_Click(object sender, RoutedEventArgs e)
         {
-
+            HuurlijstWindow huurlijst = new HuurlijstWindow();
+            huurlijst.ShowDialog();
         }
 
         private void btnKoperslijst_Click(object sender, RoutedEventArgs e)
