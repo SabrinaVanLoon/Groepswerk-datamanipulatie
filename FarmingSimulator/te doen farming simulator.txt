@@ -1,0 +1,91 @@
+groepsoverleg datamanipulatie groepswerk farming-simulator
+
+
+*(github)Als ik in feature-gereedschap_klasse of feature-Gereedschap wil
+verder werken omdat wat ik wil doen over gereedschap gaat. Dan
+zie ik dat de nieuwe aanpassingen van andere er nog niet bijstaan.
+Is het dan de bedoeling dat ik dan die branch nog merge met develop?
+dat alles van develop in de branch van feature-gereedschap komt?
+
+
+
+
+
+*Moet er eigenlijk klasses aangemaakt worden voor gereedschap
+ en voorwaardenOpdracht en huurlijst?
+
+*Wat moet er allemaal in staan in de klasses?
+*
+*eqauls, hashcode
+*
+
+
+
+
+Antwoorden en taken
+
+scherm gereedschap:(gereedschapwindow.xaml.cs)
+
+button kopen: het geselecteerde item komt in de lijst van kooplijst,
+bij het drukken op de button komt er een popup vak of je zeker bent of je dit item wil kopen.(list aanmaken + laten tonen in scherm kooplijst(scherm stijn))(messagebox "Ben je zeker?")
+
+
+button huren: het geselecteerde item komt in de lijst van huurlijst, bij het drukken op de button komt er een popup vak of je zeker bent of je dit item wil huren. (list aanmaken)(messagebox "Ben je zeker?")
+
+
+
+klasse gereedschap(models):
+
+*alle property (get en set) (naam, prijs, al die zaken dat in de erd staan)?
+*constructor?
+
+*validatie of er lijn/gereedschap geselecteerd is? (waar komt dit te staan?)
+*messagebox of je zeker wil kopen? in ... scherm gereedschap.cs of klasse?
+*messagebox of je zeker wil huren? in ... scherm gereedschap.cs of klasse?
+
+
+
+
+
+
+
+
+scherm huurlijst:(huurlijstwindow.xaml.cs)
+
+laden pagina: alle items die gehuurd zijn worden in de datagrid gezet.
+(list opvragen en tonen van gereedschap)
+
+button opzeggen: als je hier op klikt wordt het geselecteerde item verwijderd. (messagebox "Wil je doorgaan met het stopzetten van huurcontract?)
+
+button winkel voertuigen:link naar window voertuigen
+
+
+button winkel gereedschappen: link naar window gereedschappen
+
+
+klasse huurlijst(models):
+*validatie of er een lijn/item geselecteerd is
+*
+*
+
+
+
+
+
+scherm voorwaarden opdracht:(voorwaardenopdracht.xaml.cs)
+
+laden pagina: de taakomschrijving( dorien doet dit)
+
+button accepteren: messagebox "je hebt deze opdracht aanvaard, je hebt hier .. dagen voor om deze opdracht te doen slagen."
+
+button terug naar opdrachten: link leggen naar window opdrachten
+
+
+
+klasse voorwaarden opdracht(models):
+*
+*
+*
+
+
+
