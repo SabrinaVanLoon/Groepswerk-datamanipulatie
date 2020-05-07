@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FarmingSimulator_WPF"
         mc:Ignorable="d"
-        Title="HuurlijstWindow" Height="450" Width="800">
+        Title="HuurlijstWindow" Height="450" Width="800" Loaded="Window_Loaded" Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"/>
@@ -18,13 +18,8 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid Margin="10" BorderThickness="1" Grid.RowSpan="5">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Type" Width="100"/>
-                <DataGridTextColumn Header="Naam" Width="200"/>
-                <DataGridTextColumn Header="Prijs" Width="70"/>
-                <DataGridTextColumn Header="Aantal" Width="70"/>
-            </DataGrid.Columns>
+        <DataGrid x:Name="DataGridHuurlijst" AutoGenerateColumns="True" AlternatingRowBackground="LightSteelBlue" Margin="10" BorderThickness="1" Grid.RowSpan="5">
+            
         </DataGrid>
         <Button x:Name="btn_hurenStopzetten" Content="Huurcontract opzeggen" Grid.Column="1" Margin="5" Width="200" HorizontalAlignment="Right" Click="btn_hurenStopzetten_Click"/>
         <Button x:Name="btn_WinkelVoertuigen" Content="Winkel voertuigen" Grid.Column="1" Grid.Row="1" Margin="5" Width="200" HorizontalAlignment="Right" Click="btn_WinkelVoertuigen_Click"/>

@@ -45,5 +45,42 @@
     <Compile Include="FileOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+<<<<<<< Updated upstream
+=======
+  <ItemGroup>
+    <EntityDeploy Include="FarmSimulatorModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FarmSimulatorModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="FarmSimulatorModel.edmx.diagram">
+      <DependentUpon>FarmSimulatorModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FarmSimulatorModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FarmSimulatorModel.Context.cs</LastGenOutput>
+      <DependentUpon>FarmSimulatorModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="FarmSimulatorModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FarmSimulatorModel.edmx</DependentUpon>
+      <LastGenOutput>FarmSimulatorModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FarmingSimulator_MODELS\FarmingSimulator_MODELS.csproj">
+      <Project>{F97DA2FD-FE9D-457E-9395-BCDB850FA834}</Project>
+      <Name>FarmingSimulator_MODELS</Name>
+    </ProjectReference>
+  </ItemGroup>
+>>>>>>> Stashed changes
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
