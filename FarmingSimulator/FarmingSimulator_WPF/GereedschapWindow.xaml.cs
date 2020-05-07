@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FarmingSimulator_MODELS;
+
 
 namespace FarmingSimulator_WPF
 {
@@ -59,20 +61,50 @@ namespace FarmingSimulator_WPF
             }
         }
 
+        // bij het klikken op deze button(gereedschap kopen) wordt er eerst nagekeken of er iets in de datagrid geselecteerd is,
+        // als er iets geselecteerd is en je drukt op de knop, dan komt er een messagebox of je zeker bent dat je dit item wil kopen
+        //wil je dit kopen dan komt deze in een lijst van gekochte items(kooplijst)
+        //is er niets geselecteerd, en je klikt op de button, dan komt er een messagebox dat je eerst iets moet selecteren
         private void btnKopen_Click(object sender, RoutedEventArgs e)
         {
-          
+           
+          MessageBox.Show("Selecteer eerst een gereedschap!","Opgelet", MessageBoxButton.OK, MessageBoxImage.Error);
+           
+
+
+
         }
 
+
+
+        // bij het klikken op deze button(gereedschap huren) wordt er eerst nagekeken of er iets in de datagrid geselecteerd is,
+        // als er iets geselecteerd is en je drukt op de knop, dan komt er een messagebox of je zeker bent dat je dit item wil huren
+        //wil je dit huren dan komt deze in een lijst van gehuurde items(huurlijst)
+        //is er niets geselecteerd, en je klikt op de button, dan komt er een messagebox dat je eerst iets moet selecteren
         private void btnHuren_Click(object sender, RoutedEventArgs e)
         {
+            
 
+          MessageBox.Show("Selecteer eerst een gereedschap!","Opgelet", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+        // //bij het klikken op deze button dan ga je terug naar het scherm menu
         private void btnTerugNaarMenu_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             Menu menu = new Menu();
-            menu.ShowDialog();
+            menu.Show();    
+            
+        }
+
+
+        //deze methode zorgt ervoor dat het window verdwijnt als je deze verlaat(door op button TerugMenu te drukken)
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            this.Hide();
+            Menu menu = new Menu();
+            menu.Show();
+            this.Close();
         }
     }
 }
