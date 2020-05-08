@@ -8,8 +8,7 @@ namespace EntityFramework_DAL
 {
     public static class DatabaseOperations
     {
-<<<<<<< Updated upstream
-=======
+
         public static List<a_Voertuig> OphalenVoertuigenOpNaam(string naam)
         {
             using (MyFarmEntities entities = new MyFarmEntities())
@@ -66,6 +65,6 @@ namespace EntityFramework_DAL
                 return query.ToList();
             }
         }
->>>>>>> Stashed changes
+
     }
 }
