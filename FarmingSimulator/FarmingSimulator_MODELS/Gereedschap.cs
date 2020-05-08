@@ -8,5 +8,6 @@ namespace FarmingSimulator_MODELS
 {
     public class Gereedschap
     {
+
     }
 }

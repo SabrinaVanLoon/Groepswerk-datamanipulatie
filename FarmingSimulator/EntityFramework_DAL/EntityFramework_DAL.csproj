@@ -117,6 +117,7 @@
     <Compile Include="FileOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+
   <ItemGroup>
     <EntityDeploy Include="FarmSimulatorModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -145,5 +146,15 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FarmingSimulator_MODELS\FarmingSimulator_MODELS.csproj">
+      <Project>{F97DA2FD-FE9D-457E-9395-BCDB850FA834}</Project>
+      <Name>FarmingSimulator_MODELS</Name>
+    </ProjectReference>
+  </ItemGroup>
+
+=======
+
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
