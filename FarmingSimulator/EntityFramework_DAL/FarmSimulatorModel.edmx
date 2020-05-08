@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
@@ -577,8 +577,10 @@ warning 6013: The table/view 'DB_r0794089.dbo.job_grades' does not have a primar
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="speler_Id" Type="Int32" Nullable="false" />
           <Property Name="gereedschap_Id" Type="Int32" />
-          <NavigationProperty Name="Gereedschap" Relationship="Self.FK_a_GehuurdGereedschap_a_Gereedschap" FromRole="a_GehuurdGereedschap" ToRole="a_Gereedschap" />
-          <NavigationProperty Name="Speler" Relationship="Self.FK_a_GehuurdGereedschap_a_Speler" FromRole="a_GehuurdGereedschap" ToRole="a_Speler" />
+
+          <NavigationProperty Name="a_Gereedschap" Relationship="Self.FK_a_GehuurdGereedschap_a_Gereedschap" FromRole="a_GehuurdGereedschap" ToRole="a_Gereedschap" />
+          <NavigationProperty Name="a_Speler" Relationship="Self.FK_a_GehuurdGereedschap_a_Speler" FromRole="a_GehuurdGereedschap" ToRole="a_Speler" />
+
         </EntityType>
         <EntityType Name="a_GehuurdVoertuig">
           <Key>
@@ -597,8 +599,10 @@ warning 6013: The table/view 'DB_r0794089.dbo.job_grades' does not have a primar
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="speler_Id" Type="Int32" Nullable="false" />
           <Property Name="gereedschap_Id" Type="Int32" />
-          <NavigationProperty Name="Gereedschap" Relationship="Self.FK_a_GekochtGereedschap_a_Gereedschap" FromRole="a_GekochtGereedschap" ToRole="a_Gereedschap" />
-          <NavigationProperty Name="Speler" Relationship="Self.FK_a_GekochtGereedschap_a_Speler" FromRole="a_GekochtGereedschap" ToRole="a_Speler" />
+
+          <NavigationProperty Name="a_Gereedschap" Relationship="Self.FK_a_GekochtGereedschap_a_Gereedschap" FromRole="a_GekochtGereedschap" ToRole="a_Gereedschap" />
+          <NavigationProperty Name="a_Speler" Relationship="Self.FK_a_GekochtGereedschap_a_Speler" FromRole="a_GekochtGereedschap" ToRole="a_Speler" />
+
         </EntityType>
         <EntityType Name="a_GekochtVoertuig">
           <Key>
@@ -627,10 +631,12 @@ warning 6013: The table/view 'DB_r0794089.dbo.job_grades' does not have a primar
           <Property Name="kost_uur" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="kost_dag" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="merk" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Compatibiliteiten" Relationship="Self.FK_a_Compatibiliteit_a_Compatibiliteit" FromRole="a_Gereedschap" ToRole="a_Compatibiliteit" />
-          <NavigationProperty Name="GehuurdGereedschappen" Relationship="Self.FK_a_GehuurdGereedschap_a_Gereedschap" FromRole="a_Gereedschap" ToRole="a_GehuurdGereedschap" />
-          <NavigationProperty Name="GekochtGereedschappen" Relationship="Self.FK_a_GekochtGereedschap_a_Gereedschap" FromRole="a_Gereedschap" ToRole="a_GekochtGereedschap" />
-          <NavigationProperty Name="Huurlijst" Relationship="Self.FK_a_Huurlijst_a_Gereedschap" FromRole="a_Gereedschap" ToRole="a_Huurlijst" />
+
+          <NavigationProperty Name="a_Compatibiliteiten" Relationship="Self.FK_a_Compatibiliteit_a_Compatibiliteit" FromRole="a_Gereedschap" ToRole="a_Compatibiliteit" />
+          <NavigationProperty Name="a_GehuurdGereedschappen" Relationship="Self.FK_a_GehuurdGereedschap_a_Gereedschap" FromRole="a_Gereedschap" ToRole="a_GehuurdGereedschap" />
+          <NavigationProperty Name="a_GekochtGereedschappen" Relationship="Self.FK_a_GekochtGereedschap_a_Gereedschap" FromRole="a_Gereedschap" ToRole="a_GekochtGereedschap" />
+          <NavigationProperty Name="a_Huurlijsten" Relationship="Self.FK_a_Huurlijst_a_Gereedschap" FromRole="a_Gereedschap" ToRole="a_Huurlijst" />
+
         </EntityType>
         <EntityType Name="a_Graanprijs">
           <Key>
@@ -662,9 +668,11 @@ warning 6013: The table/view 'DB_r0794089.dbo.job_grades' does not have a primar
           <Property Name="speler_Id" Type="Int32" Nullable="false" />
           <Property Name="gereedschap_Id" Type="Int32" Nullable="false" />
           <Property Name="voertuig_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Gereedschappen" Relationship="Self.FK_a_Huurlijst_a_Gereedschap" FromRole="a_Huurlijst" ToRole="a_Gereedschap" />
-          <NavigationProperty Name="Speler" Relationship="Self.FK_a_Huurlijst_a_Speler" FromRole="a_Huurlijst" ToRole="a_Speler" />
-          <NavigationProperty Name="Voertuig" Relationship="Self.FK_a_Huurlijst_a_Voertuig" FromRole="a_Huurlijst" ToRole="a_Voertuig" />
+
+          <NavigationProperty Name="a_Gereedschap" Relationship="Self.FK_a_Huurlijst_a_Gereedschap" FromRole="a_Huurlijst" ToRole="a_Gereedschap" />
+          <NavigationProperty Name="a_Speler" Relationship="Self.FK_a_Huurlijst_a_Speler" FromRole="a_Huurlijst" ToRole="a_Speler" />
+          <NavigationProperty Name="a_Voertuig" Relationship="Self.FK_a_Huurlijst_a_Voertuig" FromRole="a_Huurlijst" ToRole="a_Voertuig" />
+
         </EntityType>
         <EntityType Name="a_Opdracht">
           <Key>
@@ -694,7 +702,9 @@ warning 6013: The table/view 'DB_r0794089.dbo.job_grades' does not have a primar
           <NavigationProperty Name="a_GehuurdVoertuigen" Relationship="Self.FK_a_GehuurdVoertuig_a_Speler" FromRole="a_Speler" ToRole="a_GehuurdVoertuig" />
           <NavigationProperty Name="a_GekochtGereedschappen" Relationship="Self.FK_a_GekochtGereedschap_a_Speler" FromRole="a_Speler" ToRole="a_GekochtGereedschap" />
           <NavigationProperty Name="a_GekochtVoertuigen" Relationship="Self.FK_a_GekochtVoertuig_a_Speler" FromRole="a_Speler" ToRole="a_GekochtVoertuig" />
-          <NavigationProperty Name="a_Huurlijst" Relationship="Self.FK_a_Huurlijst_a_Speler" FromRole="a_Speler" ToRole="a_Huurlijst" />
+
+          <NavigationProperty Name="a_Huurlijsten" Relationship="Self.FK_a_Huurlijst_a_Speler" FromRole="a_Speler" ToRole="a_Huurlijst" />
+
           <NavigationProperty Name="a_Opdrachten" Relationship="Self.FK_a_Opdracht_a_Speler" FromRole="a_Speler" ToRole="a_Opdracht" />
           <NavigationProperty Name="a_Speler1" Relationship="Self.FK_a_Speler_a_Speler" FromRole="a_Speler" ToRole="a_Speler1" />
           <NavigationProperty Name="a_Speler2" Relationship="Self.FK_a_Speler_a_Speler" FromRole="a_Speler1" ToRole="a_Speler" />

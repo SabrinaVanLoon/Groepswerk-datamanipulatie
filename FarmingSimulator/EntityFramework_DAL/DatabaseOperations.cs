@@ -40,7 +40,9 @@ namespace EntityFramework_DAL
         {
             using (MyFarmEntities entities = new MyFarmEntities())
             {
-                var query = entities.Gereedschap
+
+                var query = entities.a_Gereedschap
+
                     .Where(x => x.naam.Contains(naam));
                 return query.ToList();
             }
@@ -51,20 +53,24 @@ namespace EntityFramework_DAL
         {
             using (MyFarmEntities entities = new MyFarmEntities())
             {
-                var query = entities.Gereedschap
+
+                var query = entities.a_Gereedschap
+
                 .Where(x => x.type.Contains(type));
                 return query.ToList();
             }
         }
       
+
         public static List<a_GehuurdGereedschap> OphalenGehuurdGereedschap()
         {
             using (MyFarmEntities entities = new MyFarmEntities())
             {
-                var query = entities.GehuurdGereedschap;
+                var query = entities.a_GehuurdGereedschap;
                 return query.ToList();
             }
         }
+
 
     }
 }

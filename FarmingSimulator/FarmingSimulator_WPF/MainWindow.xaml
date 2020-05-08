@@ -29,7 +29,7 @@
         <Image Source="FarmingSimulator.jpg" Stretch="Fill" Grid.ColumnSpan="3" Grid.RowSpan="4"/>
         <ComboBox Margin="5" BorderThickness="1"  Background="White" VerticalAlignment="Bottom"/>
         <Button Content="Nieuwe speler ingeven" Grid.Row="1" Margin="5" Width="180" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Button Content="Spel starten" Margin="5" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="180"/>
+        <Button x:Name="btnStart" Content="Spel starten" Margin="5" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="180" Click="btnStart_Click"/>
         <Button Content="Afsluiten" Margin="5" Grid.Row="3" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="180"/>
     </Grid>
 </Window>

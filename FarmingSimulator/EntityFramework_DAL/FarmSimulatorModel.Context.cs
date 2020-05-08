@@ -27,14 +27,16 @@ namespace EntityFramework_DAL
     
         public virtual DbSet<a_Compatibiliteit> a_Compatibiliteit { get; set; }
         public virtual DbSet<a_Dier> a_Dier { get; set; }
-        public virtual DbSet<a_GehuurdGereedschap> GehuurdGereedschap { get; set; }
-        public virtual DbSet<a_GehuurdVoertuig> GehuurdVoertuig { get; set; }
-        public virtual DbSet<a_GekochtGereedschap> GekochtGereedschap { get; set; }
+
+        public virtual DbSet<a_GehuurdGereedschap> a_GehuurdGereedschap { get; set; }
+        public virtual DbSet<a_GehuurdVoertuig> a_GehuurdVoertuig { get; set; }
+        public virtual DbSet<a_GekochtGereedschap> a_GekochtGereedschap { get; set; }
         public virtual DbSet<a_GekochtVoertuig> a_GekochtVoertuig { get; set; }
-        public virtual DbSet<a_Gereedschap> Gereedschap { get; set; }
+        public virtual DbSet<a_Gereedschap> a_Gereedschap { get; set; }
         public virtual DbSet<a_Graanprijs> a_Graanprijs { get; set; }
         public virtual DbSet<a_Graansoort> a_Graansoort { get; set; }
-        public virtual DbSet<a_Huurlijst> Huurlijst { get; set; }
+        public virtual DbSet<a_Huurlijst> a_Huurlijst { get; set; }
+
         public virtual DbSet<a_Opdracht> a_Opdracht { get; set; }
         public virtual DbSet<a_Speler> a_Speler { get; set; }
         public virtual DbSet<a_Veld> a_Veld { get; set; }

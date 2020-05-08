@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityFramework_DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,12 +27,36 @@ namespace FarmingSimulator_WPF
 
         private void btnZoekVoertuigOpType_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(txtZoekOpType.Text))
+            {
+                List<a_Voertuig> lijstTypeVoertuig = DatabaseOperations.OphalenVoertuigenOpType(txtZoekOpType.Text);
+                DataGridVoertuig.ItemsSource = lijstTypeVoertuig;
+            }
+            else
+            {
+                MessageBox.Show("Gelieve eerst een type van het voertuig op te geven!" + Environment.NewLine + "Bijvoorbeeld:" + Environment.NewLine +
+                    "\t-auto" + Environment.NewLine +
+                    "\t-oogstmachines" + Environment.NewLine +
+                    "\t-tractoren" + Environment.NewLine +
+                    "\t-katoentechnologie", "Opgelet", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnZoekVoertuigOpNaam_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(txtZoekOpNaam.Text))
+            {
+                List<a_Voertuig> lijstNamenVoertuig = DatabaseOperations.OphalenVoertuigenOpNaam(txtZoekOpNaam.Text);
+                DataGridVoertuig.ItemsSource = lijstNamenVoertuig;
+            }
+            else
+            {
+                MessageBox.Show("Gelieve eerst een naam van het voertuig op te geven!" + Environment.NewLine + "Bijvoorbeeld:" + Environment.NewLine +
+                    "\t-MF 5600" + Environment.NewLine +
+                    "\t-500 Favorit" + Environment.NewLine +
+                    "\t-Series" + Environment.NewLine +
+                    "\t-Pickup", "Opgelet", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnKopen_Click(object sender, RoutedEventArgs e)

@@ -18,7 +18,9 @@ namespace EntityFramework_DAL
         public int speler_Id { get; set; }
         public Nullable<int> gereedschap_Id { get; set; }
     
-        public virtual a_Gereedschap Gereedschap { get; set; }
-        public virtual a_Speler Speler { get; set; }
+
+        public virtual a_Gereedschap a_Gereedschap { get; set; }
+        public virtual a_Speler a_Speler { get; set; }
+
     }
 }
