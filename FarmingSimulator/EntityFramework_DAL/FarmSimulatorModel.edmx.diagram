@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="87a3ee311bcf402980ae06b5c11fcee1" Name="Diagram1">
         <EntityTypeShape EntityType="FarmSimulatorModel.a_Compatibiliteit" Width="1.5" PointX="19.5" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FarmSimulatorModel.a_Dier" Width="1.5" PointX="6.375" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_Dier" Width="1.5" PointX="7.875" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FarmSimulatorModel.a_GehuurdGereedschap" Width="1.5" PointX="14.375" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FarmSimulatorModel.a_GehuurdVoertuig" Width="1.5" PointX="14.375" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FarmSimulatorModel.a_GekochtGereedschap" Width="1.5" PointX="14.375" PointY="2.375" IsExpanded="true" />
@@ -31,7 +31,7 @@
         <AssociationConnector Association="FarmSimulatorModel.FK_a_GekochtGereedschap_a_Gereedschap" ManuallyRouted="false" />
         <AssociationConnector Association="FarmSimulatorModel.FK_a_GekochtGereedschap_a_Speler" ManuallyRouted="false" />
         <AssociationConnector Association="FarmSimulatorModel.FK_a_GekochtVoertuig_a_Speler" ManuallyRouted="true" >
-          <ConnectorPoint PointX="11.649432152065931" PointY="9.5956022135416656" />
+          <ConnectorPoint PointX="11.649432152065931" PointY="9.4033007812500014" />
           <ConnectorPoint PointX="11.649432152065931" PointY="10.628208789062501" />
           <ConnectorPoint PointX="11.66406125" PointY="10.628208789062501" />
           <ConnectorPoint PointX="11.66406125" PointY="13.115143229166666" />
@@ -45,7 +45,7 @@
         <AssociationConnector Association="FarmSimulatorModel.FK_a_Huurlijst_a_Speler" ManuallyRouted="false" />
         <AssociationConnector Association="FarmSimulatorModel.FK_a_Huurlijst_a_Voertuig" ManuallyRouted="false" />
         <AssociationConnector Association="FarmSimulatorModel.FK_a_Opdracht_a_Speler" ManuallyRouted="true" >
-          <ConnectorPoint PointX="11.24014571640496" PointY="9.5956022135416656" />
+          <ConnectorPoint PointX="11.24014571640496" PointY="9.4033007812500014" />
           <ConnectorPoint PointX="11.24014571640496" PointY="11.374746093750002" />
           <ConnectorPoint PointX="9.375" PointY="11.374746093750002" />
         </AssociationConnector>
@@ -53,9 +53,6 @@
         <AssociationConnector Association="FarmSimulatorModel.FK_a_Speler_a_Speler" ManuallyRouted="false" />
         <AssociationConnector Association="FarmSimulatorModel.FK_a_Veld_a_Speler" ManuallyRouted="false" />
         <AssociationConnector Association="FarmSimulatorModel.FK_a_Weerseffect_a_Weersomstandigheid" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="FarmSimulatorModel.a_Gekocht_dier" Width="1.5" PointX="9" PointY="2.25" />
-        <AssociationConnector Association="FarmSimulatorModel.FK_a_Gekocht_dier_a_Dier" />
-        <AssociationConnector Association="FarmSimulatorModel.FK_a_Gekocht_dier_a_Speler" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

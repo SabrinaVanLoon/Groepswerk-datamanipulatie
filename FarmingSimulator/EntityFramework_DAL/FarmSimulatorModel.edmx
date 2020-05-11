@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="FarmSimulatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="FarmSimulatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="a_Compatibiliteit">
           <Key>
             <PropertyRef Name="Id" />
@@ -38,18 +38,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="speler_Id" Type="int" Nullable="false" />
           <Property Name="voertuig_Id" Type="int" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_r0794089.dbo.a_Gekocht_dier' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="a_Gekocht_dier">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="speler_id" />
-            <PropertyRef Name="dier_id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="speler_id" Type="int" Nullable="false" />
-          <Property Name="dier_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="a_GekochtGereedschap">
           <Key>
@@ -177,6 +165,15 @@ warning 6002: The table/view 'DB_r0794089.dbo.a_Gekocht_dier' does not have a pr
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="status" Type="varchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_r0794089.dbo.f_shift_assignments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'DB_r0794089.dbo.job_grades' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="job_grades">
+          <Property Name="grade_level" Type="varchar" MaxLength="3" />
+          <Property Name="lowest_sal" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="highest_sal" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>-->
         <Association Name="FK_a_Dier_a_Speler">
           <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
           <End Role="a_Dier" Type="Self.a_Dier" Multiplicity="*" />
@@ -258,30 +255,6 @@ warning 6002: The table/view 'DB_r0794089.dbo.a_Gekocht_dier' does not have a pr
             </Principal>
             <Dependent Role="a_GehuurdVoertuig">
               <PropertyRef Name="voertuig_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_a_Gekocht_dier_a_Dier">
-          <End Role="a_Dier" Type="Self.a_Dier" Multiplicity="1" />
-          <End Role="a_Gekocht_dier" Type="Self.a_Gekocht_dier" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="a_Dier">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="a_Gekocht_dier">
-              <PropertyRef Name="dier_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_a_Gekocht_dier_a_Speler">
-          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
-          <End Role="a_Gekocht_dier" Type="Self.a_Gekocht_dier" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="a_Speler">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="a_Gekocht_dier">
-              <PropertyRef Name="speler_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -482,13 +455,6 @@ warning 6002: The table/view 'DB_r0794089.dbo.a_Gekocht_dier' does not have a pr
           <EntitySet Name="a_Voertuig" EntityType="Self.a_Voertuig" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="a_Weerseffect" EntityType="Self.a_Weerseffect" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="a_Weersomstandigheid" EntityType="Self.a_Weersomstandigheid" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="a_Gekocht_dier" EntityType="Self.a_Gekocht_dier" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [a_Gekocht_dier].[id] AS [id], 
-    [a_Gekocht_dier].[speler_id] AS [speler_id], 
-    [a_Gekocht_dier].[dier_id] AS [dier_id]
-    FROM [dbo].[a_Gekocht_dier] AS [a_Gekocht_dier]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_a_Dier_a_Speler" Association="Self.FK_a_Dier_a_Speler">
             <End Role="a_Speler" EntitySet="a_Speler" />
             <End Role="a_Dier" EntitySet="a_Dier" />
@@ -516,14 +482,6 @@ warning 6002: The table/view 'DB_r0794089.dbo.a_Gekocht_dier' does not have a pr
           <AssociationSet Name="FK_a_GehuurdVoertuig_a_Voertuig" Association="Self.FK_a_GehuurdVoertuig_a_Voertuig">
             <End Role="a_Voertuig" EntitySet="a_Voertuig" />
             <End Role="a_GehuurdVoertuig" EntitySet="a_GehuurdVoertuig" />
-          </AssociationSet>
-          <AssociationSet Name="FK_a_Gekocht_dier_a_Dier" Association="Self.FK_a_Gekocht_dier_a_Dier">
-            <End Role="a_Dier" EntitySet="a_Dier" />
-            <End Role="a_Gekocht_dier" EntitySet="a_Gekocht_dier" />
-          </AssociationSet>
-          <AssociationSet Name="FK_a_Gekocht_dier_a_Speler" Association="Self.FK_a_Gekocht_dier_a_Speler">
-            <End Role="a_Speler" EntitySet="a_Speler" />
-            <End Role="a_Gekocht_dier" EntitySet="a_Gekocht_dier" />
           </AssociationSet>
           <AssociationSet Name="FK_a_GekochtGereedschap_a_Gereedschap" Association="Self.FK_a_GekochtGereedschap_a_Gereedschap">
             <End Role="a_Gereedschap" EntitySet="a_Gereedschap" />
@@ -585,8 +543,9 @@ warning 6002: The table/view 'DB_r0794089.dbo.a_Gekocht_dier' does not have a pr
             <End Role="a_Weersomstandigheid" EntitySet="a_Weersomstandigheid" />
             <End Role="a_Weerseffect" EntitySet="a_Weerseffect" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+          </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FarmSimulatorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -610,7 +569,6 @@ warning 6002: The table/view 'DB_r0794089.dbo.a_Gekocht_dier' does not have a pr
           <Property Name="basisprijs" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="aantal" Type="Int32" />
           <NavigationProperty Name="a_Speler" Relationship="Self.FK_a_Dier_a_Speler" FromRole="a_Dier" ToRole="a_Speler" />
-          <NavigationProperty Name="a_GekochteDieren" Relationship="FarmSimulatorModel.FK_a_Gekocht_dier_a_Dier" FromRole="a_Dier" ToRole="a_Gekocht_dier" />
         </EntityType>
         <EntityType Name="a_GehuurdGereedschap">
           <Key>
@@ -751,7 +709,6 @@ warning 6002: The table/view 'DB_r0794089.dbo.a_Gekocht_dier' does not have a pr
           <NavigationProperty Name="a_Speler1" Relationship="Self.FK_a_Speler_a_Speler" FromRole="a_Speler" ToRole="a_Speler1" />
           <NavigationProperty Name="a_Speler2" Relationship="Self.FK_a_Speler_a_Speler" FromRole="a_Speler1" ToRole="a_Speler" />
           <NavigationProperty Name="a_Velden" Relationship="Self.FK_a_Veld_a_Speler" FromRole="a_Speler" ToRole="a_Veld" />
-          <NavigationProperty Name="a_GekochteDieren" Relationship="FarmSimulatorModel.FK_a_Gekocht_dier_a_Speler" FromRole="a_Speler" ToRole="a_Gekocht_dier" />
         </EntityType>
         <EntityType Name="a_Veld">
           <Key>
@@ -1175,52 +1132,7 @@ warning 6002: The table/view 'DB_r0794089.dbo.a_Gekocht_dier' does not have a pr
             <End Role="a_Weersomstandigheid" EntitySet="a_Weersomstandigheid" />
             <End Role="a_Weerseffect" EntitySet="a_Weerseffect" />
           </AssociationSet>
-          <EntitySet Name="a_Gekocht_dier" EntityType="FarmSimulatorModel.a_Gekocht_dier" />
-          <AssociationSet Name="FK_a_Gekocht_dier_a_Dier" Association="FarmSimulatorModel.FK_a_Gekocht_dier_a_Dier">
-            <End Role="a_Dier" EntitySet="a_Dier" />
-            <End Role="a_Gekocht_dier" EntitySet="a_Gekocht_dier" />
-          </AssociationSet>
-          <AssociationSet Name="FK_a_Gekocht_dier_a_Speler" Association="FarmSimulatorModel.FK_a_Gekocht_dier_a_Speler">
-            <End Role="a_Speler" EntitySet="a_Speler" />
-            <End Role="a_Gekocht_dier" EntitySet="a_Gekocht_dier" />
-          </AssociationSet>
           </EntityContainer>
-        <EntityType Name="a_Gekocht_dier">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="speler_id" />
-            <PropertyRef Name="dier_id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="speler_id" Type="Int32" Nullable="false" />
-          <Property Name="dier_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="a_Dier" Relationship="FarmSimulatorModel.FK_a_Gekocht_dier_a_Dier" FromRole="a_Gekocht_dier" ToRole="a_Dier" />
-          <NavigationProperty Name="a_Speler" Relationship="FarmSimulatorModel.FK_a_Gekocht_dier_a_Speler" FromRole="a_Gekocht_dier" ToRole="a_Speler" />
-        </EntityType>
-        <Association Name="FK_a_Gekocht_dier_a_Dier">
-          <End Type="FarmSimulatorModel.a_Dier" Role="a_Dier" Multiplicity="1" />
-          <End Type="FarmSimulatorModel.a_Gekocht_dier" Role="a_Gekocht_dier" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="a_Dier">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="a_Gekocht_dier">
-              <PropertyRef Name="dier_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_a_Gekocht_dier_a_Speler">
-          <End Type="FarmSimulatorModel.a_Speler" Role="a_Speler" Multiplicity="1" />
-          <End Type="FarmSimulatorModel.a_Gekocht_dier" Role="a_Gekocht_dier" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="a_Speler">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="a_Gekocht_dier">
-              <PropertyRef Name="speler_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1400,15 +1312,6 @@ warning 6002: The table/view 'DB_r0794089.dbo.a_Gekocht_dier' does not have a pr
               <MappingFragment StoreEntitySet="a_Weersomstandigheid">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="status" ColumnName="status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="a_Gekocht_dier">
-            <EntityTypeMapping TypeName="FarmSimulatorModel.a_Gekocht_dier">
-              <MappingFragment StoreEntitySet="a_Gekocht_dier">
-                <ScalarProperty Name="dier_id" ColumnName="dier_id" />
-                <ScalarProperty Name="speler_id" ColumnName="speler_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

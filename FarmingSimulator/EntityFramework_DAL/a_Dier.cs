@@ -14,12 +14,6 @@ namespace EntityFramework_DAL
     
     public partial class a_Dier
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public a_Dier()
-        {
-            this.a_GekochteDieren = new HashSet<a_Gekocht_dier>();
-        }
-    
         public int Id { get; set; }
         public int eigenaar_Id { get; set; }
         public string type { get; set; }
@@ -27,7 +21,5 @@ namespace EntityFramework_DAL
         public Nullable<int> aantal { get; set; }
     
         public virtual a_Speler a_Speler { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<a_Gekocht_dier> a_GekochteDieren { get; set; }
     }
 }
