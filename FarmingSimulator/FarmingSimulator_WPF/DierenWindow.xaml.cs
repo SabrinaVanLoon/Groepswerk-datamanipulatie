@@ -25,9 +25,6 @@ namespace FarmingSimulator_WPF
         {
             InitializeComponent();
         }
-<<<<<<< Updated upstream
-=======
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             List<a_Dier> LijstDieren = DatabaseOperations.OphalenDieren();
@@ -44,6 +41,10 @@ namespace FarmingSimulator_WPF
             Menu menu = new Menu();
             menu.ShowDialog();
         }
->>>>>>> Stashed changes
+        
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
