@@ -26,15 +26,11 @@
         </Grid.RowDefinitions>
         <DataGrid x:Name="datagridDieren" Margin="10" BorderThickness="1" Grid.RowSpan="3">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="200" Header="Soort" Binding="{Binding type}"></DataGridTextColumn>
-                <DataGridTextColumn Width="100" Header="Prijs" Binding="{Binding basisprijs}"></DataGridTextColumn>
-                <DataGridTextColumn Width="200" Header="Aantal beschikbaar" Binding="{Binding aantal}"></DataGridTextColumn>
+                <DataGridTextColumn Width="200" Header="Soort"/>
+                <DataGridTextColumn Width="100" Header="Prijs"/>
+                <DataGridTextColumn Width="200" Header="Aantal beschikbaar"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Terug naar menu" Margin="10" Width="200" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2"/>
-        <Button Content="Dier kopen" Margin="10" Width="200" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"/>
-        <Button x:Name="btnMenu" Content="Terug naar menu" Margin="10" Width="200" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2" Click="btnMenu_Click" />
-        <Button x:Name="btnKopen" Content="Dier kopen" Margin="10" Width="200" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Click="btnKopen_Click" />
         <Button x:Name="btnMenu" Content="Terug naar menu" Margin="10" Width="200" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2" />
         <Button x:Name="btnKopen" Content="Dier kopen" Margin="10" Width="200" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" />
         <Grid Grid.Column="1">

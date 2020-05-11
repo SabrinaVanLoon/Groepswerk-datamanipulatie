@@ -80,15 +80,6 @@ namespace EntityFramework_DAL
             }
         }
 
-        public static List<a_Dier> OphalenDieren()
-        {
-            using (MyFarmEntities entities = new MyFarmEntities())
-            {
-                var query = entities.a_Dier;
-                return query.ToList();
-            }
-        }
-
         public static int ToevoegenSpeler(a_Speler speler)
         {
             using (MyFarmEntities farmSimulatorEntities = new MyFarmEntities())
