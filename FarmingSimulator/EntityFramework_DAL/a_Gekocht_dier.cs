@@ -12,13 +12,13 @@ namespace EntityFramework_DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class a_GekochtGereedschap
+    public partial class a_Gekocht_dier
     {
-        public int Id { get; set; }
-        public int speler_Id { get; set; }
-        public Nullable<int> gereedschap_Id { get; set; }
+        public int id { get; set; }
+        public int speler_id { get; set; }
+        public int dier_id { get; set; }
     
-        public virtual a_Gereedschap a_Gereedschap { get; set; }
+        public virtual a_Dier a_Dier { get; set; }
         public virtual a_Speler a_Speler { get; set; }
     }
 }
