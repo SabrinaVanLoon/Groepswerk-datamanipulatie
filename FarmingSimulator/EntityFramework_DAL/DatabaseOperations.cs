@@ -71,6 +71,22 @@ namespace EntityFramework_DAL
             }
         }
 
+        public static List<a_Speler> OphalenSpelers()
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                var query = entities.a_Speler;
+                return query.ToList();
+            }
+        }
 
+        public static int ToevoegenSpeler(a_Speler speler)
+        {
+            using (MyFarmEntities farmSimulatorEntities = new MyFarmEntities())
+            {
+                farmSimulatorEntities.a_Speler.Add(speler);
+                return farmSimulatorEntities.SaveChanges();
+            }
+        }
     }
 }
