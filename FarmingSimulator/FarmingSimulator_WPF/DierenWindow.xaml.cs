@@ -23,11 +23,5 @@ namespace FarmingSimulator_WPF
         {
             InitializeComponent();
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
     }
 }

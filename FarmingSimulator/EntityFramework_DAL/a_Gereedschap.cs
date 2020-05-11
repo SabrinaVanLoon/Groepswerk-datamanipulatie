@@ -17,10 +17,12 @@ namespace EntityFramework_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public a_Gereedschap()
         {
+
             this.a_Compatibiliteiten = new HashSet<a_Compatibiliteit>();
             this.a_GehuurdGereedschappen = new HashSet<a_GehuurdGereedschap>();
             this.a_GekochtGereedschappen = new HashSet<a_GekochtGereedschap>();
             this.a_Huurlijsten = new HashSet<a_Huurlijst>();
+
         }
     
         public int Id { get; set; }
@@ -38,6 +40,7 @@ namespace EntityFramework_DAL
         public string merk { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
         public virtual ICollection<a_Compatibiliteit> a_Compatibiliteiten { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<a_GehuurdGereedschap> a_GehuurdGereedschappen { get; set; }
@@ -45,5 +48,6 @@ namespace EntityFramework_DAL
         public virtual ICollection<a_GekochtGereedschap> a_GekochtGereedschappen { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<a_Huurlijst> a_Huurlijsten { get; set; }
+
     }
 }

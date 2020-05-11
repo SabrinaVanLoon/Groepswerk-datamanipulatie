@@ -22,10 +22,11 @@ namespace EntityFramework_DAL
             this.a_GehuurdVoertuigen = new HashSet<a_GehuurdVoertuig>();
             this.a_GekochtGereedschappen = new HashSet<a_GekochtGereedschap>();
             this.a_GekochtVoertuigen = new HashSet<a_GekochtVoertuig>();
+
             this.a_Huurlijsten = new HashSet<a_Huurlijst>();
+
             this.a_Opdrachten = new HashSet<a_Opdracht>();
             this.a_Velden = new HashSet<a_Veld>();
-            this.a_GekochteDieren = new HashSet<a_Gekocht_dier>();
         }
     
         public int Id { get; set; }
@@ -45,14 +46,14 @@ namespace EntityFramework_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<a_GekochtVoertuig> a_GekochtVoertuigen { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
         public virtual ICollection<a_Huurlijst> a_Huurlijsten { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<a_Opdracht> a_Opdrachten { get; set; }
         public virtual a_Speler a_Speler1 { get; set; }
         public virtual a_Speler a_Speler2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<a_Veld> a_Velden { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<a_Gekocht_dier> a_GekochteDieren { get; set; }
     }
 }
