@@ -1,0 +1,1341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FarmSimulatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="a_Compatibiliteit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gereedschap_Id" Type="int" Nullable="false" />
+          <Property Name="voertuig_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="a_Dier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eigenaar_Id" Type="int" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="basisprijs" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="aantal" Type="int" />
+        </EntityType>
+        <EntityType Name="a_GehuurdGereedschap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="speler_Id" Type="int" Nullable="false" />
+          <Property Name="gereedschap_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="a_GehuurdVoertuig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="speler_Id" Type="int" Nullable="false" />
+          <Property Name="voertuig_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="a_GekochtGereedschap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="speler_Id" Type="int" Nullable="false" />
+          <Property Name="gereedschap_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="a_GekochtVoertuig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="speler_Id" Type="int" Nullable="false" />
+          <Property Name="voertuig_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="a_Gereedschap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="naam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="inhoud" Type="varchar" MaxLength="50" />
+          <Property Name="Kw_nodig" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Hp_nodig" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="breedte" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="max_Snelheid" Type="int" />
+          <Property Name="basisprijs" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="basiskost" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="kost/uur" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="kost/dag" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="merk" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="a_Graanprijs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="graansoort_Id" Type="int" Nullable="false" />
+          <Property Name="begintijd" Type="datetime" />
+          <Property Name="eindtijd" Type="datetime" />
+          <Property Name="aankoopprijs" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="verkoopprijs" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="a_Graansoort">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="a_Huurlijst">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="speler_Id" Type="int" Nullable="false" />
+          <Property Name="gereedschap_Id" Type="int" Nullable="false" />
+          <Property Name="voertuig_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="a_Opdracht">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="veld_Id" Type="int" Nullable="false" />
+          <Property Name="graansoort_Id" Type="int" Nullable="false" />
+          <Property Name="eigenaar_Id" Type="int" />
+          <Property Name="beloning" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="taakomschrijving" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="a_Speler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naam" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="geslacht" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="level" Type="int" />
+          <Property Name="kapitaal" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="a_Veld">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eigenaar_Id" Type="int" />
+          <Property Name="nummer" Type="int" Nullable="false" />
+          <Property Name="oppervlakte" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="a_Voertuig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="merk" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="naam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="max_Snelheid" Type="int" />
+          <Property Name="benzine_Inhoud" Type="int" />
+          <Property Name="Kw" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Ph" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="basisprijs" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="basiskost_huur" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="kost/u_huur" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="kost/dag_huur" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="inhoud" Type="varchar" MaxLength="50" />
+          <Property Name="breedte" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="a_Weerseffect">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="graansoort_Id" Type="int" Nullable="false" />
+          <Property Name="weersomstandigheid_Id" Type="int" Nullable="false" />
+          <Property Name="effect" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="a_Weersomstandigheid">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_r0794089.dbo.f_shift_assignments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'DB_r0794089.dbo.job_grades' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="job_grades">
+          <Property Name="grade_level" Type="varchar" MaxLength="3" />
+          <Property Name="lowest_sal" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="highest_sal" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>-->
+        <Association Name="FK_a_Dier_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
+          <End Role="a_Dier" Type="Self.a_Dier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Dier">
+              <PropertyRef Name="eigenaar_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Compatibiliteit_a_Compatibiliteit">
+          <End Role="a_Gereedschap" Type="Self.a_Gereedschap" Multiplicity="1" />
+          <End Role="a_Compatibiliteit" Type="Self.a_Compatibiliteit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Gereedschap">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Compatibiliteit">
+              <PropertyRef Name="gereedschap_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Compatibiliteit_a_Voertuig">
+          <End Role="a_Voertuig" Type="Self.a_Voertuig" Multiplicity="1" />
+          <End Role="a_Compatibiliteit" Type="Self.a_Compatibiliteit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Voertuig">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Compatibiliteit">
+              <PropertyRef Name="voertuig_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GehuurdGereedschap_a_Gereedschap">
+          <End Role="a_Gereedschap" Type="Self.a_Gereedschap" Multiplicity="0..1" />
+          <End Role="a_GehuurdGereedschap" Type="Self.a_GehuurdGereedschap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Gereedschap">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GehuurdGereedschap">
+              <PropertyRef Name="gereedschap_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GehuurdGereedschap_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
+          <End Role="a_GehuurdGereedschap" Type="Self.a_GehuurdGereedschap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GehuurdGereedschap">
+              <PropertyRef Name="speler_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GehuurdVoertuig_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
+          <End Role="a_GehuurdVoertuig" Type="Self.a_GehuurdVoertuig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GehuurdVoertuig">
+              <PropertyRef Name="speler_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GehuurdVoertuig_a_Voertuig">
+          <End Role="a_Voertuig" Type="Self.a_Voertuig" Multiplicity="0..1" />
+          <End Role="a_GehuurdVoertuig" Type="Self.a_GehuurdVoertuig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Voertuig">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GehuurdVoertuig">
+              <PropertyRef Name="voertuig_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GekochtGereedschap_a_Gereedschap">
+          <End Role="a_Gereedschap" Type="Self.a_Gereedschap" Multiplicity="0..1" />
+          <End Role="a_GekochtGereedschap" Type="Self.a_GekochtGereedschap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Gereedschap">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GekochtGereedschap">
+              <PropertyRef Name="gereedschap_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GekochtGereedschap_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
+          <End Role="a_GekochtGereedschap" Type="Self.a_GekochtGereedschap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GekochtGereedschap">
+              <PropertyRef Name="speler_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GekochtVoertuig_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
+          <End Role="a_GekochtVoertuig" Type="Self.a_GekochtVoertuig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GekochtVoertuig">
+              <PropertyRef Name="speler_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GekochtVoertuig_a_Voertuig">
+          <End Role="a_Voertuig" Type="Self.a_Voertuig" Multiplicity="0..1" />
+          <End Role="a_GekochtVoertuig" Type="Self.a_GekochtVoertuig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Voertuig">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GekochtVoertuig">
+              <PropertyRef Name="voertuig_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Graanprijs_a_Graansoort">
+          <End Role="a_Graansoort" Type="Self.a_Graansoort" Multiplicity="1" />
+          <End Role="a_Graanprijs" Type="Self.a_Graanprijs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Graansoort">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Graanprijs">
+              <PropertyRef Name="graansoort_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Huurlijst_a_Gereedschap">
+          <End Role="a_Gereedschap" Type="Self.a_Gereedschap" Multiplicity="1" />
+          <End Role="a_Huurlijst" Type="Self.a_Huurlijst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Gereedschap">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Huurlijst">
+              <PropertyRef Name="gereedschap_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Huurlijst_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
+          <End Role="a_Huurlijst" Type="Self.a_Huurlijst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Huurlijst">
+              <PropertyRef Name="speler_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Huurlijst_a_Voertuig">
+          <End Role="a_Voertuig" Type="Self.a_Voertuig" Multiplicity="1" />
+          <End Role="a_Huurlijst" Type="Self.a_Huurlijst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Voertuig">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Huurlijst">
+              <PropertyRef Name="voertuig_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Opdracht_a_Graansoort">
+          <End Role="a_Graansoort" Type="Self.a_Graansoort" Multiplicity="1" />
+          <End Role="a_Opdracht" Type="Self.a_Opdracht" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Graansoort">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Opdracht">
+              <PropertyRef Name="graansoort_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Opdracht_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="0..1" />
+          <End Role="a_Opdracht" Type="Self.a_Opdracht" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Opdracht">
+              <PropertyRef Name="eigenaar_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Opdracht_a_Veld">
+          <End Role="a_Veld" Type="Self.a_Veld" Multiplicity="1" />
+          <End Role="a_Opdracht" Type="Self.a_Opdracht" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Veld">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Opdracht">
+              <PropertyRef Name="veld_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Speler_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
+          <End Role="a_Speler1" Type="Self.a_Speler" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Speler1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Veld_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="0..1" />
+          <End Role="a_Veld" Type="Self.a_Veld" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Veld">
+              <PropertyRef Name="eigenaar_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Weerseffect_a_Graansoort">
+          <End Role="a_Graansoort" Type="Self.a_Graansoort" Multiplicity="1" />
+          <End Role="a_Weerseffect" Type="Self.a_Weerseffect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Graansoort">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Weerseffect">
+              <PropertyRef Name="graansoort_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Weerseffect_a_Weersomstandigheid">
+          <End Role="a_Weersomstandigheid" Type="Self.a_Weersomstandigheid" Multiplicity="1" />
+          <End Role="a_Weerseffect" Type="Self.a_Weerseffect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Weersomstandigheid">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Weerseffect">
+              <PropertyRef Name="weersomstandigheid_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FarmSimulatorModelStoreContainer">
+          <EntitySet Name="a_Compatibiliteit" EntityType="Self.a_Compatibiliteit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_Dier" EntityType="Self.a_Dier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_GehuurdGereedschap" EntityType="Self.a_GehuurdGereedschap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_GehuurdVoertuig" EntityType="Self.a_GehuurdVoertuig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_GekochtGereedschap" EntityType="Self.a_GekochtGereedschap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_GekochtVoertuig" EntityType="Self.a_GekochtVoertuig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_Gereedschap" EntityType="Self.a_Gereedschap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_Graanprijs" EntityType="Self.a_Graanprijs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_Graansoort" EntityType="Self.a_Graansoort" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_Huurlijst" EntityType="Self.a_Huurlijst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_Opdracht" EntityType="Self.a_Opdracht" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_Speler" EntityType="Self.a_Speler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_Veld" EntityType="Self.a_Veld" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_Voertuig" EntityType="Self.a_Voertuig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_Weerseffect" EntityType="Self.a_Weerseffect" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_Weersomstandigheid" EntityType="Self.a_Weersomstandigheid" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_a_Dier_a_Speler" Association="Self.FK_a_Dier_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_Dier" EntitySet="a_Dier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Compatibiliteit_a_Compatibiliteit" Association="Self.FK_a_Compatibiliteit_a_Compatibiliteit">
+            <End Role="a_Gereedschap" EntitySet="a_Gereedschap" />
+            <End Role="a_Compatibiliteit" EntitySet="a_Compatibiliteit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Compatibiliteit_a_Voertuig" Association="Self.FK_a_Compatibiliteit_a_Voertuig">
+            <End Role="a_Voertuig" EntitySet="a_Voertuig" />
+            <End Role="a_Compatibiliteit" EntitySet="a_Compatibiliteit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GehuurdGereedschap_a_Gereedschap" Association="Self.FK_a_GehuurdGereedschap_a_Gereedschap">
+            <End Role="a_Gereedschap" EntitySet="a_Gereedschap" />
+            <End Role="a_GehuurdGereedschap" EntitySet="a_GehuurdGereedschap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GehuurdGereedschap_a_Speler" Association="Self.FK_a_GehuurdGereedschap_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_GehuurdGereedschap" EntitySet="a_GehuurdGereedschap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GehuurdVoertuig_a_Speler" Association="Self.FK_a_GehuurdVoertuig_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_GehuurdVoertuig" EntitySet="a_GehuurdVoertuig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GehuurdVoertuig_a_Voertuig" Association="Self.FK_a_GehuurdVoertuig_a_Voertuig">
+            <End Role="a_Voertuig" EntitySet="a_Voertuig" />
+            <End Role="a_GehuurdVoertuig" EntitySet="a_GehuurdVoertuig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GekochtGereedschap_a_Gereedschap" Association="Self.FK_a_GekochtGereedschap_a_Gereedschap">
+            <End Role="a_Gereedschap" EntitySet="a_Gereedschap" />
+            <End Role="a_GekochtGereedschap" EntitySet="a_GekochtGereedschap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GekochtGereedschap_a_Speler" Association="Self.FK_a_GekochtGereedschap_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_GekochtGereedschap" EntitySet="a_GekochtGereedschap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GekochtVoertuig_a_Speler" Association="Self.FK_a_GekochtVoertuig_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_GekochtVoertuig" EntitySet="a_GekochtVoertuig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GekochtVoertuig_a_Voertuig" Association="Self.FK_a_GekochtVoertuig_a_Voertuig">
+            <End Role="a_Voertuig" EntitySet="a_Voertuig" />
+            <End Role="a_GekochtVoertuig" EntitySet="a_GekochtVoertuig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Graanprijs_a_Graansoort" Association="Self.FK_a_Graanprijs_a_Graansoort">
+            <End Role="a_Graansoort" EntitySet="a_Graansoort" />
+            <End Role="a_Graanprijs" EntitySet="a_Graanprijs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Huurlijst_a_Gereedschap" Association="Self.FK_a_Huurlijst_a_Gereedschap">
+            <End Role="a_Gereedschap" EntitySet="a_Gereedschap" />
+            <End Role="a_Huurlijst" EntitySet="a_Huurlijst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Huurlijst_a_Speler" Association="Self.FK_a_Huurlijst_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_Huurlijst" EntitySet="a_Huurlijst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Huurlijst_a_Voertuig" Association="Self.FK_a_Huurlijst_a_Voertuig">
+            <End Role="a_Voertuig" EntitySet="a_Voertuig" />
+            <End Role="a_Huurlijst" EntitySet="a_Huurlijst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Opdracht_a_Graansoort" Association="Self.FK_a_Opdracht_a_Graansoort">
+            <End Role="a_Graansoort" EntitySet="a_Graansoort" />
+            <End Role="a_Opdracht" EntitySet="a_Opdracht" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Opdracht_a_Speler" Association="Self.FK_a_Opdracht_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_Opdracht" EntitySet="a_Opdracht" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Opdracht_a_Veld" Association="Self.FK_a_Opdracht_a_Veld">
+            <End Role="a_Veld" EntitySet="a_Veld" />
+            <End Role="a_Opdracht" EntitySet="a_Opdracht" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Speler_a_Speler" Association="Self.FK_a_Speler_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_Speler1" EntitySet="a_Speler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Veld_a_Speler" Association="Self.FK_a_Veld_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_Veld" EntitySet="a_Veld" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Weerseffect_a_Graansoort" Association="Self.FK_a_Weerseffect_a_Graansoort">
+            <End Role="a_Graansoort" EntitySet="a_Graansoort" />
+            <End Role="a_Weerseffect" EntitySet="a_Weerseffect" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Weerseffect_a_Weersomstandigheid" Association="Self.FK_a_Weerseffect_a_Weersomstandigheid">
+            <End Role="a_Weersomstandigheid" EntitySet="a_Weersomstandigheid" />
+            <End Role="a_Weerseffect" EntitySet="a_Weerseffect" />
+          </AssociationSet>
+          </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FarmSimulatorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="a_Compatibiliteit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gereedschap_Id" Type="Int32" Nullable="false" />
+          <Property Name="voertuig_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="a_Gereedschap" Relationship="Self.FK_a_Compatibiliteit_a_Compatibiliteit" FromRole="a_Compatibiliteit" ToRole="a_Gereedschap" />
+          <NavigationProperty Name="a_Voertuig" Relationship="Self.FK_a_Compatibiliteit_a_Voertuig" FromRole="a_Compatibiliteit" ToRole="a_Voertuig" />
+        </EntityType>
+        <EntityType Name="a_Dier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eigenaar_Id" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="basisprijs" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="aantal" Type="Int32" />
+          <NavigationProperty Name="a_Speler" Relationship="Self.FK_a_Dier_a_Speler" FromRole="a_Dier" ToRole="a_Speler" />
+        </EntityType>
+        <EntityType Name="a_GehuurdGereedschap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="speler_Id" Type="Int32" Nullable="false" />
+          <Property Name="gereedschap_Id" Type="Int32" />
+
+          <NavigationProperty Name="a_Gereedschap" Relationship="Self.FK_a_GehuurdGereedschap_a_Gereedschap" FromRole="a_GehuurdGereedschap" ToRole="a_Gereedschap" />
+          <NavigationProperty Name="a_Speler" Relationship="Self.FK_a_GehuurdGereedschap_a_Speler" FromRole="a_GehuurdGereedschap" ToRole="a_Speler" />
+
+        </EntityType>
+        <EntityType Name="a_GehuurdVoertuig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="speler_Id" Type="Int32" Nullable="false" />
+          <Property Name="voertuig_Id" Type="Int32" />
+          <NavigationProperty Name="a_Speler" Relationship="Self.FK_a_GehuurdVoertuig_a_Speler" FromRole="a_GehuurdVoertuig" ToRole="a_Speler" />
+          <NavigationProperty Name="a_Voertuig" Relationship="Self.FK_a_GehuurdVoertuig_a_Voertuig" FromRole="a_GehuurdVoertuig" ToRole="a_Voertuig" />
+        </EntityType>
+        <EntityType Name="a_GekochtGereedschap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="speler_Id" Type="Int32" Nullable="false" />
+          <Property Name="gereedschap_Id" Type="Int32" />
+
+          <NavigationProperty Name="a_Gereedschap" Relationship="Self.FK_a_GekochtGereedschap_a_Gereedschap" FromRole="a_GekochtGereedschap" ToRole="a_Gereedschap" />
+          <NavigationProperty Name="a_Speler" Relationship="Self.FK_a_GekochtGereedschap_a_Speler" FromRole="a_GekochtGereedschap" ToRole="a_Speler" />
+
+        </EntityType>
+        <EntityType Name="a_GekochtVoertuig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="speler_Id" Type="Int32" Nullable="false" />
+          <Property Name="voertuig_Id" Type="Int32" />
+          <NavigationProperty Name="a_Speler" Relationship="Self.FK_a_GekochtVoertuig_a_Speler" FromRole="a_GekochtVoertuig" ToRole="a_Speler" />
+          <NavigationProperty Name="a_Voertuig" Relationship="Self.FK_a_GekochtVoertuig_a_Voertuig" FromRole="a_GekochtVoertuig" ToRole="a_Voertuig" />
+        </EntityType>
+        <EntityType Name="a_Gereedschap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="naam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="inhoud" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Kw_nodig" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Hp_nodig" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="breedte" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="max_Snelheid" Type="Int32" />
+          <Property Name="basisprijs" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="basiskost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="kost_uur" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="kost_dag" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="merk" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+
+          <NavigationProperty Name="a_Compatibiliteiten" Relationship="Self.FK_a_Compatibiliteit_a_Compatibiliteit" FromRole="a_Gereedschap" ToRole="a_Compatibiliteit" />
+          <NavigationProperty Name="a_GehuurdGereedschappen" Relationship="Self.FK_a_GehuurdGereedschap_a_Gereedschap" FromRole="a_Gereedschap" ToRole="a_GehuurdGereedschap" />
+          <NavigationProperty Name="a_GekochtGereedschappen" Relationship="Self.FK_a_GekochtGereedschap_a_Gereedschap" FromRole="a_Gereedschap" ToRole="a_GekochtGereedschap" />
+          <NavigationProperty Name="a_Huurlijsten" Relationship="Self.FK_a_Huurlijst_a_Gereedschap" FromRole="a_Gereedschap" ToRole="a_Huurlijst" />
+
+        </EntityType>
+        <EntityType Name="a_Graanprijs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="graansoort_Id" Type="Int32" Nullable="false" />
+          <Property Name="begintijd" Type="DateTime" Precision="3" />
+          <Property Name="eindtijd" Type="DateTime" Precision="3" />
+          <Property Name="aankoopprijs" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="verkoopprijs" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="a_Graansoort" Relationship="Self.FK_a_Graanprijs_a_Graansoort" FromRole="a_Graanprijs" ToRole="a_Graansoort" />
+        </EntityType>
+        <EntityType Name="a_Graansoort">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="a_Graanprijzen" Relationship="Self.FK_a_Graanprijs_a_Graansoort" FromRole="a_Graansoort" ToRole="a_Graanprijs" />
+          <NavigationProperty Name="a_Opdrachten" Relationship="Self.FK_a_Opdracht_a_Graansoort" FromRole="a_Graansoort" ToRole="a_Opdracht" />
+          <NavigationProperty Name="a_Weerseffectten" Relationship="Self.FK_a_Weerseffect_a_Graansoort" FromRole="a_Graansoort" ToRole="a_Weerseffect" />
+        </EntityType>
+        <EntityType Name="a_Huurlijst">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="speler_Id" Type="Int32" Nullable="false" />
+          <Property Name="gereedschap_Id" Type="Int32" Nullable="false" />
+          <Property Name="voertuig_Id" Type="Int32" Nullable="false" />
+
+          <NavigationProperty Name="a_Gereedschap" Relationship="Self.FK_a_Huurlijst_a_Gereedschap" FromRole="a_Huurlijst" ToRole="a_Gereedschap" />
+          <NavigationProperty Name="a_Speler" Relationship="Self.FK_a_Huurlijst_a_Speler" FromRole="a_Huurlijst" ToRole="a_Speler" />
+          <NavigationProperty Name="a_Voertuig" Relationship="Self.FK_a_Huurlijst_a_Voertuig" FromRole="a_Huurlijst" ToRole="a_Voertuig" />
+
+        </EntityType>
+        <EntityType Name="a_Opdracht">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="veld_Id" Type="Int32" Nullable="false" />
+          <Property Name="graansoort_Id" Type="Int32" Nullable="false" />
+          <Property Name="eigenaar_Id" Type="Int32" />
+          <Property Name="beloning" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="taakomschrijving" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="a_Graansoort" Relationship="Self.FK_a_Opdracht_a_Graansoort" FromRole="a_Opdracht" ToRole="a_Graansoort" />
+          <NavigationProperty Name="a_Speler" Relationship="Self.FK_a_Opdracht_a_Speler" FromRole="a_Opdracht" ToRole="a_Speler" />
+          <NavigationProperty Name="a_Veld" Relationship="Self.FK_a_Opdracht_a_Veld" FromRole="a_Opdracht" ToRole="a_Veld" />
+        </EntityType>
+        <EntityType Name="a_Speler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="geslacht" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="level" Type="Int32" />
+          <Property Name="kapitaal" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="a_Dieren" Relationship="Self.FK_a_Dier_a_Speler" FromRole="a_Speler" ToRole="a_Dier" />
+          <NavigationProperty Name="a_GehuurdGereedschappen" Relationship="Self.FK_a_GehuurdGereedschap_a_Speler" FromRole="a_Speler" ToRole="a_GehuurdGereedschap" />
+          <NavigationProperty Name="a_GehuurdVoertuigen" Relationship="Self.FK_a_GehuurdVoertuig_a_Speler" FromRole="a_Speler" ToRole="a_GehuurdVoertuig" />
+          <NavigationProperty Name="a_GekochtGereedschappen" Relationship="Self.FK_a_GekochtGereedschap_a_Speler" FromRole="a_Speler" ToRole="a_GekochtGereedschap" />
+          <NavigationProperty Name="a_GekochtVoertuigen" Relationship="Self.FK_a_GekochtVoertuig_a_Speler" FromRole="a_Speler" ToRole="a_GekochtVoertuig" />
+
+          <NavigationProperty Name="a_Huurlijsten" Relationship="Self.FK_a_Huurlijst_a_Speler" FromRole="a_Speler" ToRole="a_Huurlijst" />
+
+          <NavigationProperty Name="a_Opdrachten" Relationship="Self.FK_a_Opdracht_a_Speler" FromRole="a_Speler" ToRole="a_Opdracht" />
+          <NavigationProperty Name="a_Speler1" Relationship="Self.FK_a_Speler_a_Speler" FromRole="a_Speler" ToRole="a_Speler1" />
+          <NavigationProperty Name="a_Speler2" Relationship="Self.FK_a_Speler_a_Speler" FromRole="a_Speler1" ToRole="a_Speler" />
+          <NavigationProperty Name="a_Velden" Relationship="Self.FK_a_Veld_a_Speler" FromRole="a_Speler" ToRole="a_Veld" />
+        </EntityType>
+        <EntityType Name="a_Veld">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eigenaar_Id" Type="Int32" />
+          <Property Name="nummer" Type="Int32" Nullable="false" />
+          <Property Name="oppervlakte" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="a_Opdrachten" Relationship="Self.FK_a_Opdracht_a_Veld" FromRole="a_Veld" ToRole="a_Opdracht" />
+          <NavigationProperty Name="a_Speler" Relationship="Self.FK_a_Veld_a_Speler" FromRole="a_Veld" ToRole="a_Speler" />
+        </EntityType>
+        <EntityType Name="a_Voertuig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="merk" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="naam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="max_Snelheid" Type="Int32" />
+          <Property Name="benzine_Inhoud" Type="Int32" />
+          <Property Name="Kw" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Ph" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="basisprijs" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="basiskost_huur" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="kost_u_huur" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="kost_dag_huur" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="inhoud" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="breedte" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="a_Compatibiliteiten" Relationship="Self.FK_a_Compatibiliteit_a_Voertuig" FromRole="a_Voertuig" ToRole="a_Compatibiliteit" />
+          <NavigationProperty Name="a_GehuurdVoertuigen" Relationship="Self.FK_a_GehuurdVoertuig_a_Voertuig" FromRole="a_Voertuig" ToRole="a_GehuurdVoertuig" />
+          <NavigationProperty Name="a_GekochtVoertuigen" Relationship="Self.FK_a_GekochtVoertuig_a_Voertuig" FromRole="a_Voertuig" ToRole="a_GekochtVoertuig" />
+          <NavigationProperty Name="a_Huurlijsten" Relationship="Self.FK_a_Huurlijst_a_Voertuig" FromRole="a_Voertuig" ToRole="a_Huurlijst" />
+        </EntityType>
+        <EntityType Name="a_Weerseffect">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="graansoort_Id" Type="Int32" Nullable="false" />
+          <Property Name="weersomstandigheid_Id" Type="Int32" Nullable="false" />
+          <Property Name="effect" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="a_Graansoort" Relationship="Self.FK_a_Weerseffect_a_Graansoort" FromRole="a_Weerseffect" ToRole="a_Graansoort" />
+          <NavigationProperty Name="a_Weersomstandigheid" Relationship="Self.FK_a_Weerseffect_a_Weersomstandigheid" FromRole="a_Weerseffect" ToRole="a_Weersomstandigheid" />
+        </EntityType>
+        <EntityType Name="a_Weersomstandigheid">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="a_Weerseffectten" Relationship="Self.FK_a_Weerseffect_a_Weersomstandigheid" FromRole="a_Weersomstandigheid" ToRole="a_Weerseffect" />
+        </EntityType>
+        <Association Name="FK_a_Compatibiliteit_a_Compatibiliteit">
+          <End Role="a_Gereedschap" Type="Self.a_Gereedschap" Multiplicity="1" />
+          <End Role="a_Compatibiliteit" Type="Self.a_Compatibiliteit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Gereedschap">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Compatibiliteit">
+              <PropertyRef Name="gereedschap_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Compatibiliteit_a_Voertuig">
+          <End Role="a_Voertuig" Type="Self.a_Voertuig" Multiplicity="1" />
+          <End Role="a_Compatibiliteit" Type="Self.a_Compatibiliteit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Voertuig">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Compatibiliteit">
+              <PropertyRef Name="voertuig_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Dier_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
+          <End Role="a_Dier" Type="Self.a_Dier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Dier">
+              <PropertyRef Name="eigenaar_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GehuurdGereedschap_a_Gereedschap">
+          <End Role="a_Gereedschap" Type="Self.a_Gereedschap" Multiplicity="0..1" />
+          <End Role="a_GehuurdGereedschap" Type="Self.a_GehuurdGereedschap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Gereedschap">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GehuurdGereedschap">
+              <PropertyRef Name="gereedschap_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GehuurdGereedschap_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
+          <End Role="a_GehuurdGereedschap" Type="Self.a_GehuurdGereedschap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GehuurdGereedschap">
+              <PropertyRef Name="speler_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GehuurdVoertuig_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
+          <End Role="a_GehuurdVoertuig" Type="Self.a_GehuurdVoertuig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GehuurdVoertuig">
+              <PropertyRef Name="speler_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GehuurdVoertuig_a_Voertuig">
+          <End Role="a_Voertuig" Type="Self.a_Voertuig" Multiplicity="0..1" />
+          <End Role="a_GehuurdVoertuig" Type="Self.a_GehuurdVoertuig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Voertuig">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GehuurdVoertuig">
+              <PropertyRef Name="voertuig_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GekochtGereedschap_a_Gereedschap">
+          <End Role="a_Gereedschap" Type="Self.a_Gereedschap" Multiplicity="0..1" />
+          <End Role="a_GekochtGereedschap" Type="Self.a_GekochtGereedschap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Gereedschap">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GekochtGereedschap">
+              <PropertyRef Name="gereedschap_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GekochtGereedschap_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
+          <End Role="a_GekochtGereedschap" Type="Self.a_GekochtGereedschap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GekochtGereedschap">
+              <PropertyRef Name="speler_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GekochtVoertuig_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
+          <End Role="a_GekochtVoertuig" Type="Self.a_GekochtVoertuig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GekochtVoertuig">
+              <PropertyRef Name="speler_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_GekochtVoertuig_a_Voertuig">
+          <End Role="a_Voertuig" Type="Self.a_Voertuig" Multiplicity="0..1" />
+          <End Role="a_GekochtVoertuig" Type="Self.a_GekochtVoertuig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Voertuig">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_GekochtVoertuig">
+              <PropertyRef Name="voertuig_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Huurlijst_a_Gereedschap">
+          <End Role="a_Gereedschap" Type="Self.a_Gereedschap" Multiplicity="1" />
+          <End Role="a_Huurlijst" Type="Self.a_Huurlijst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Gereedschap">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Huurlijst">
+              <PropertyRef Name="gereedschap_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Graanprijs_a_Graansoort">
+          <End Role="a_Graansoort" Type="Self.a_Graansoort" Multiplicity="1" />
+          <End Role="a_Graanprijs" Type="Self.a_Graanprijs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Graansoort">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Graanprijs">
+              <PropertyRef Name="graansoort_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Opdracht_a_Graansoort">
+          <End Role="a_Graansoort" Type="Self.a_Graansoort" Multiplicity="1" />
+          <End Role="a_Opdracht" Type="Self.a_Opdracht" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Graansoort">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Opdracht">
+              <PropertyRef Name="graansoort_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Weerseffect_a_Graansoort">
+          <End Role="a_Graansoort" Type="Self.a_Graansoort" Multiplicity="1" />
+          <End Role="a_Weerseffect" Type="Self.a_Weerseffect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Graansoort">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Weerseffect">
+              <PropertyRef Name="graansoort_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Huurlijst_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
+          <End Role="a_Huurlijst" Type="Self.a_Huurlijst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Huurlijst">
+              <PropertyRef Name="speler_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Huurlijst_a_Voertuig">
+          <End Role="a_Voertuig" Type="Self.a_Voertuig" Multiplicity="1" />
+          <End Role="a_Huurlijst" Type="Self.a_Huurlijst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Voertuig">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Huurlijst">
+              <PropertyRef Name="voertuig_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Opdracht_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="0..1" />
+          <End Role="a_Opdracht" Type="Self.a_Opdracht" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Opdracht">
+              <PropertyRef Name="eigenaar_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Opdracht_a_Veld">
+          <End Role="a_Veld" Type="Self.a_Veld" Multiplicity="1" />
+          <End Role="a_Opdracht" Type="Self.a_Opdracht" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Veld">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Opdracht">
+              <PropertyRef Name="veld_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Speler_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="1" />
+          <End Role="a_Speler1" Type="Self.a_Speler" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Speler1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Veld_a_Speler">
+          <End Role="a_Speler" Type="Self.a_Speler" Multiplicity="0..1" />
+          <End Role="a_Veld" Type="Self.a_Veld" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Speler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Veld">
+              <PropertyRef Name="eigenaar_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_a_Weerseffect_a_Weersomstandigheid">
+          <End Role="a_Weersomstandigheid" Type="Self.a_Weersomstandigheid" Multiplicity="1" />
+          <End Role="a_Weerseffect" Type="Self.a_Weerseffect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="a_Weersomstandigheid">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="a_Weerseffect">
+              <PropertyRef Name="weersomstandigheid_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyFarmEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="a_Compatibiliteit" EntityType="Self.a_Compatibiliteit" />
+          <EntitySet Name="a_Dier" EntityType="Self.a_Dier" />
+          <EntitySet Name="a_GehuurdGereedschap" EntityType="Self.a_GehuurdGereedschap" />
+          <EntitySet Name="a_GehuurdVoertuig" EntityType="Self.a_GehuurdVoertuig" />
+          <EntitySet Name="a_GekochtGereedschap" EntityType="Self.a_GekochtGereedschap" />
+          <EntitySet Name="a_GekochtVoertuig" EntityType="Self.a_GekochtVoertuig" />
+          <EntitySet Name="a_Gereedschap" EntityType="Self.a_Gereedschap" />
+          <EntitySet Name="a_Graanprijs" EntityType="Self.a_Graanprijs" />
+          <EntitySet Name="a_Graansoort" EntityType="Self.a_Graansoort" />
+          <EntitySet Name="a_Huurlijst" EntityType="Self.a_Huurlijst" />
+          <EntitySet Name="a_Opdracht" EntityType="Self.a_Opdracht" />
+          <EntitySet Name="a_Speler" EntityType="Self.a_Speler" />
+          <EntitySet Name="a_Veld" EntityType="Self.a_Veld" />
+          <EntitySet Name="a_Voertuig" EntityType="Self.a_Voertuig" />
+          <EntitySet Name="a_Weerseffect" EntityType="Self.a_Weerseffect" />
+          <EntitySet Name="a_Weersomstandigheid" EntityType="Self.a_Weersomstandigheid" />
+          <AssociationSet Name="FK_a_Compatibiliteit_a_Compatibiliteit" Association="Self.FK_a_Compatibiliteit_a_Compatibiliteit">
+            <End Role="a_Gereedschap" EntitySet="a_Gereedschap" />
+            <End Role="a_Compatibiliteit" EntitySet="a_Compatibiliteit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Compatibiliteit_a_Voertuig" Association="Self.FK_a_Compatibiliteit_a_Voertuig">
+            <End Role="a_Voertuig" EntitySet="a_Voertuig" />
+            <End Role="a_Compatibiliteit" EntitySet="a_Compatibiliteit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Dier_a_Speler" Association="Self.FK_a_Dier_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_Dier" EntitySet="a_Dier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GehuurdGereedschap_a_Gereedschap" Association="Self.FK_a_GehuurdGereedschap_a_Gereedschap">
+            <End Role="a_Gereedschap" EntitySet="a_Gereedschap" />
+            <End Role="a_GehuurdGereedschap" EntitySet="a_GehuurdGereedschap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GehuurdGereedschap_a_Speler" Association="Self.FK_a_GehuurdGereedschap_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_GehuurdGereedschap" EntitySet="a_GehuurdGereedschap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GehuurdVoertuig_a_Speler" Association="Self.FK_a_GehuurdVoertuig_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_GehuurdVoertuig" EntitySet="a_GehuurdVoertuig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GehuurdVoertuig_a_Voertuig" Association="Self.FK_a_GehuurdVoertuig_a_Voertuig">
+            <End Role="a_Voertuig" EntitySet="a_Voertuig" />
+            <End Role="a_GehuurdVoertuig" EntitySet="a_GehuurdVoertuig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GekochtGereedschap_a_Gereedschap" Association="Self.FK_a_GekochtGereedschap_a_Gereedschap">
+            <End Role="a_Gereedschap" EntitySet="a_Gereedschap" />
+            <End Role="a_GekochtGereedschap" EntitySet="a_GekochtGereedschap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GekochtGereedschap_a_Speler" Association="Self.FK_a_GekochtGereedschap_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_GekochtGereedschap" EntitySet="a_GekochtGereedschap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GekochtVoertuig_a_Speler" Association="Self.FK_a_GekochtVoertuig_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_GekochtVoertuig" EntitySet="a_GekochtVoertuig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_GekochtVoertuig_a_Voertuig" Association="Self.FK_a_GekochtVoertuig_a_Voertuig">
+            <End Role="a_Voertuig" EntitySet="a_Voertuig" />
+            <End Role="a_GekochtVoertuig" EntitySet="a_GekochtVoertuig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Huurlijst_a_Gereedschap" Association="Self.FK_a_Huurlijst_a_Gereedschap">
+            <End Role="a_Gereedschap" EntitySet="a_Gereedschap" />
+            <End Role="a_Huurlijst" EntitySet="a_Huurlijst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Graanprijs_a_Graansoort" Association="Self.FK_a_Graanprijs_a_Graansoort">
+            <End Role="a_Graansoort" EntitySet="a_Graansoort" />
+            <End Role="a_Graanprijs" EntitySet="a_Graanprijs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Opdracht_a_Graansoort" Association="Self.FK_a_Opdracht_a_Graansoort">
+            <End Role="a_Graansoort" EntitySet="a_Graansoort" />
+            <End Role="a_Opdracht" EntitySet="a_Opdracht" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Weerseffect_a_Graansoort" Association="Self.FK_a_Weerseffect_a_Graansoort">
+            <End Role="a_Graansoort" EntitySet="a_Graansoort" />
+            <End Role="a_Weerseffect" EntitySet="a_Weerseffect" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Huurlijst_a_Speler" Association="Self.FK_a_Huurlijst_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_Huurlijst" EntitySet="a_Huurlijst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Huurlijst_a_Voertuig" Association="Self.FK_a_Huurlijst_a_Voertuig">
+            <End Role="a_Voertuig" EntitySet="a_Voertuig" />
+            <End Role="a_Huurlijst" EntitySet="a_Huurlijst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Opdracht_a_Speler" Association="Self.FK_a_Opdracht_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_Opdracht" EntitySet="a_Opdracht" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Opdracht_a_Veld" Association="Self.FK_a_Opdracht_a_Veld">
+            <End Role="a_Veld" EntitySet="a_Veld" />
+            <End Role="a_Opdracht" EntitySet="a_Opdracht" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Speler_a_Speler" Association="Self.FK_a_Speler_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_Speler1" EntitySet="a_Speler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Veld_a_Speler" Association="Self.FK_a_Veld_a_Speler">
+            <End Role="a_Speler" EntitySet="a_Speler" />
+            <End Role="a_Veld" EntitySet="a_Veld" />
+          </AssociationSet>
+          <AssociationSet Name="FK_a_Weerseffect_a_Weersomstandigheid" Association="Self.FK_a_Weerseffect_a_Weersomstandigheid">
+            <End Role="a_Weersomstandigheid" EntitySet="a_Weersomstandigheid" />
+            <End Role="a_Weerseffect" EntitySet="a_Weerseffect" />
+          </AssociationSet>
+          </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FarmSimulatorModelStoreContainer" CdmEntityContainer="MyFarmEntities">
+          <EntitySetMapping Name="a_Compatibiliteit">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_Compatibiliteit">
+              <MappingFragment StoreEntitySet="a_Compatibiliteit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="gereedschap_Id" ColumnName="gereedschap_Id" />
+                <ScalarProperty Name="voertuig_Id" ColumnName="voertuig_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="a_Dier">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_Dier">
+              <MappingFragment StoreEntitySet="a_Dier">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="eigenaar_Id" ColumnName="eigenaar_Id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="basisprijs" ColumnName="basisprijs" />
+                <ScalarProperty Name="aantal" ColumnName="aantal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="a_GehuurdGereedschap">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_GehuurdGereedschap">
+              <MappingFragment StoreEntitySet="a_GehuurdGereedschap">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="speler_Id" ColumnName="speler_Id" />
+                <ScalarProperty Name="gereedschap_Id" ColumnName="gereedschap_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="a_GehuurdVoertuig">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_GehuurdVoertuig">
+              <MappingFragment StoreEntitySet="a_GehuurdVoertuig">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="speler_Id" ColumnName="speler_Id" />
+                <ScalarProperty Name="voertuig_Id" ColumnName="voertuig_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="a_GekochtGereedschap">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_GekochtGereedschap">
+              <MappingFragment StoreEntitySet="a_GekochtGereedschap">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="speler_Id" ColumnName="speler_Id" />
+                <ScalarProperty Name="gereedschap_Id" ColumnName="gereedschap_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="a_GekochtVoertuig">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_GekochtVoertuig">
+              <MappingFragment StoreEntitySet="a_GekochtVoertuig">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="speler_Id" ColumnName="speler_Id" />
+                <ScalarProperty Name="voertuig_Id" ColumnName="voertuig_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="a_Gereedschap">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_Gereedschap">
+              <MappingFragment StoreEntitySet="a_Gereedschap">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="naam" ColumnName="naam" />
+                <ScalarProperty Name="inhoud" ColumnName="inhoud" />
+                <ScalarProperty Name="Kw_nodig" ColumnName="Kw_nodig" />
+                <ScalarProperty Name="Hp_nodig" ColumnName="Hp_nodig" />
+                <ScalarProperty Name="breedte" ColumnName="breedte" />
+                <ScalarProperty Name="max_Snelheid" ColumnName="max_Snelheid" />
+                <ScalarProperty Name="basisprijs" ColumnName="basisprijs" />
+                <ScalarProperty Name="basiskost" ColumnName="basiskost" />
+                <ScalarProperty Name="kost_uur" ColumnName="kost/uur" />
+                <ScalarProperty Name="kost_dag" ColumnName="kost/dag" />
+                <ScalarProperty Name="merk" ColumnName="merk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="a_Graanprijs">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_Graanprijs">
+              <MappingFragment StoreEntitySet="a_Graanprijs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="graansoort_Id" ColumnName="graansoort_Id" />
+                <ScalarProperty Name="begintijd" ColumnName="begintijd" />
+                <ScalarProperty Name="eindtijd" ColumnName="eindtijd" />
+                <ScalarProperty Name="aankoopprijs" ColumnName="aankoopprijs" />
+                <ScalarProperty Name="verkoopprijs" ColumnName="verkoopprijs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="a_Graansoort">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_Graansoort">
+              <MappingFragment StoreEntitySet="a_Graansoort">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="a_Huurlijst">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_Huurlijst">
+              <MappingFragment StoreEntitySet="a_Huurlijst">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="speler_Id" ColumnName="speler_Id" />
+                <ScalarProperty Name="gereedschap_Id" ColumnName="gereedschap_Id" />
+                <ScalarProperty Name="voertuig_Id" ColumnName="voertuig_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="a_Opdracht">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_Opdracht">
+              <MappingFragment StoreEntitySet="a_Opdracht">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="veld_Id" ColumnName="veld_Id" />
+                <ScalarProperty Name="graansoort_Id" ColumnName="graansoort_Id" />
+                <ScalarProperty Name="eigenaar_Id" ColumnName="eigenaar_Id" />
+                <ScalarProperty Name="beloning" ColumnName="beloning" />
+                <ScalarProperty Name="taakomschrijving" ColumnName="taakomschrijving" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="a_Speler">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_Speler">
+              <MappingFragment StoreEntitySet="a_Speler">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="naam" ColumnName="naam" />
+                <ScalarProperty Name="geslacht" ColumnName="geslacht" />
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="kapitaal" ColumnName="kapitaal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="a_Veld">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_Veld">
+              <MappingFragment StoreEntitySet="a_Veld">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="eigenaar_Id" ColumnName="eigenaar_Id" />
+                <ScalarProperty Name="nummer" ColumnName="nummer" />
+                <ScalarProperty Name="oppervlakte" ColumnName="oppervlakte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="a_Voertuig">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_Voertuig">
+              <MappingFragment StoreEntitySet="a_Voertuig">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="merk" ColumnName="merk" />
+                <ScalarProperty Name="naam" ColumnName="naam" />
+                <ScalarProperty Name="max_Snelheid" ColumnName="max_Snelheid" />
+                <ScalarProperty Name="benzine_Inhoud" ColumnName="benzine_Inhoud" />
+                <ScalarProperty Name="Kw" ColumnName="Kw" />
+                <ScalarProperty Name="Ph" ColumnName="Ph" />
+                <ScalarProperty Name="basisprijs" ColumnName="basisprijs" />
+                <ScalarProperty Name="basiskost_huur" ColumnName="basiskost_huur" />
+                <ScalarProperty Name="kost_u_huur" ColumnName="kost/u_huur" />
+                <ScalarProperty Name="kost_dag_huur" ColumnName="kost/dag_huur" />
+                <ScalarProperty Name="inhoud" ColumnName="inhoud" />
+                <ScalarProperty Name="breedte" ColumnName="breedte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="a_Weerseffect">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_Weerseffect">
+              <MappingFragment StoreEntitySet="a_Weerseffect">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="graansoort_Id" ColumnName="graansoort_Id" />
+                <ScalarProperty Name="weersomstandigheid_Id" ColumnName="weersomstandigheid_Id" />
+                <ScalarProperty Name="effect" ColumnName="effect" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="a_Weersomstandigheid">
+            <EntityTypeMapping TypeName="FarmSimulatorModel.a_Weersomstandigheid">
+              <MappingFragment StoreEntitySet="a_Weersomstandigheid">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

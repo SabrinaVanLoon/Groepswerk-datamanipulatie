@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="87a3ee311bcf402980ae06b5c11fcee1" Name="Diagram1">
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_Compatibiliteit" Width="1.5" PointX="19.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_Dier" Width="1.5" PointX="7.875" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_GehuurdGereedschap" Width="1.5" PointX="14.375" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_GehuurdVoertuig" Width="1.5" PointX="14.375" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_GekochtGereedschap" Width="1.5" PointX="14.375" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_GekochtVoertuig" Width="1.5" PointX="14.375" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_Gereedschap" Width="1.5" PointX="17.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_Graanprijs" Width="1.5" PointX="5.5" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_Graansoort" Width="1.5" PointX="5.625" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_Huurlijst" Width="1.5" PointX="14.375" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_Opdracht" Width="1.5" PointX="7.875" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_Speler" Width="1.5" PointX="10.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_Veld" Width="1.5" PointX="7.875" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_Voertuig" Width="1.5" PointX="17.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_Weerseffect" Width="1.5" PointX="2.875" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_Weersomstandigheid" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_Compatibiliteit_a_Compatibiliteit" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_Compatibiliteit_a_Voertuig" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_Dier_a_Speler" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_GehuurdGereedschap_a_Gereedschap" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_GehuurdGereedschap_a_Speler" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_GehuurdVoertuig_a_Speler" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_GehuurdVoertuig_a_Voertuig" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_GekochtGereedschap_a_Gereedschap" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_GekochtGereedschap_a_Speler" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_GekochtVoertuig_a_Speler" ManuallyRouted="true" >
+          <ConnectorPoint PointX="11.649432152065931" PointY="9.4033007812500014" />
+          <ConnectorPoint PointX="11.649432152065931" PointY="10.628208789062501" />
+          <ConnectorPoint PointX="11.66406125" PointY="10.628208789062501" />
+          <ConnectorPoint PointX="11.66406125" PointY="13.115143229166666" />
+          <ConnectorPoint PointX="14.375" PointY="13.115143229166666" />
+        </AssociationConnector>
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_GekochtVoertuig_a_Voertuig" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_Huurlijst_a_Gereedschap" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_Graanprijs_a_Graansoort" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_Opdracht_a_Graansoort" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_Weerseffect_a_Graansoort" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_Huurlijst_a_Speler" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_Huurlijst_a_Voertuig" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_Opdracht_a_Speler" ManuallyRouted="true" >
+          <ConnectorPoint PointX="11.24014571640496" PointY="9.4033007812500014" />
+          <ConnectorPoint PointX="11.24014571640496" PointY="11.374746093750002" />
+          <ConnectorPoint PointX="9.375" PointY="11.374746093750002" />
+        </AssociationConnector>
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_Opdracht_a_Veld" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_Speler_a_Speler" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_Veld_a_Speler" ManuallyRouted="false" />
+        <AssociationConnector Association="FarmSimulatorModel.FK_a_Weerseffect_a_Weersomstandigheid" ManuallyRouted="false" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
