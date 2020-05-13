@@ -34,8 +34,19 @@ namespace FarmingSimulator_WPF
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            Menu menu = new Menu();
-            menu.ShowDialog();
+            if (cmbSpelers.SelectedItem is a_Speler speler)
+            {
+                InlogGegevens.ID = speler.Id;
+                InlogGegevens.Naam = speler.naam;
+                this.Hide();
+                Menu menu = new Menu();
+                menu.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Gelieve een speler te kiezen", "Spel starten", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
 
         private void btnNieuweSpeler_Click(object sender, RoutedEventArgs e)
