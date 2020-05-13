@@ -1,6 +1,4 @@
-
-// T4 code generation is enabled for model 'C:\Users\nuana\OneDrive\Desktop\amanipulatie_Github\Groepswerk-datamanipulatie\FarmingSimulator\EntityFramework_DAL\FarmSimulatorModel.edmx'. 
-
+﻿// T4 code generation is enabled for model 'C:\Users\Danny\source\repos\temp\Groepswerk-datamanipulatie\FarmingSimulator\EntityFramework_DAL\FarmSimulatorModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -27,7 +27,7 @@
             <RowDefinition/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <DataGrid x:Name="DataGridVoertuig" AutoGenerateColumns="True" Grid.RowSpan="4">
+        <DataGrid x:Name="DataGridVoertuig" AutoGenerateColumns="False" Grid.RowSpan="4">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Naam" Binding="{Binding naam}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Merk" Binding="{Binding merk}"></DataGridTextColumn>
