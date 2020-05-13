@@ -51,7 +51,7 @@
         <AssociationConnector Association="FarmSimulatorModel.FK_a_Speler_a_Speler" ManuallyRouted="false" />
         <AssociationConnector Association="FarmSimulatorModel.FK_a_Veld_a_Speler" ManuallyRouted="false" />
         <AssociationConnector Association="FarmSimulatorModel.FK_a_Weerseffect_a_Weersomstandigheid" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="FarmSimulatorModel.a_Gekocht_dier" Width="1.5" PointX="9.5" PointY="1.75" />
+        <EntityTypeShape EntityType="FarmSimulatorModel.a_Gekocht_dier" Width="1.5" PointX="9.875" PointY="2" />
         <AssociationConnector Association="FarmSimulatorModel.FK_a_Gekocht_dier_a_Dier" />
         <AssociationConnector Association="FarmSimulatorModel.FK_a_Gekocht_dier_a_Speler" />
         </Diagram>
