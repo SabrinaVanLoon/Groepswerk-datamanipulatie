@@ -88,5 +88,22 @@ namespace EntityFramework_DAL
                 return farmSimulatorEntities.SaveChanges();
             }
         }
+        public static int ToevoegenGekochtVoertuig(a_GekochtVoertuig gekochtvoertuig)
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                entities.a_GekochtVoertuig.Add(gekochtvoertuig);
+
+                return entities.SaveChanges();
+            }
+        }
+        public static int ToevoegenGehuurdVoertuig(a_GehuurdVoertuig gehuurdVoertuig)
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                entities.a_GehuurdVoertuig.Add(gehuurdVoertuig);
+                return entities.SaveChanges();
+            }
+        }
     }
 }
