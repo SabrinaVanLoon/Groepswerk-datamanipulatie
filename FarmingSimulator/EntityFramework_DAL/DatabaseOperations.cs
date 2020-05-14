@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace EntityFramework_DAL
 {
@@ -93,7 +94,6 @@ namespace EntityFramework_DAL
             using (MyFarmEntities entities = new MyFarmEntities())
             {
                 entities.a_GekochtVoertuig.Add(gekochtvoertuig);
-
                 return entities.SaveChanges();
             }
         }
@@ -103,6 +103,16 @@ namespace EntityFramework_DAL
             {
                 entities.a_GehuurdVoertuig.Add(gehuurdVoertuig);
                 return entities.SaveChanges();
+            }
+        }
+        public static List<a_GekochtVoertuig> OphalenGekochteVoertuigen()
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                var query = entities.a_GekochtVoertuig
+                .Include(x => x.a_Voertuig)
+                .Include(x => x.a_Speler);
+                return query.ToList();
             }
         }
     }

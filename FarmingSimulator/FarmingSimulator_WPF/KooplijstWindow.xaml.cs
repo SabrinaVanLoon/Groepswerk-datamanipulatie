@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityFramework_DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,12 @@ namespace FarmingSimulator_WPF
         public KooplijstWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<a_GekochtVoertuig> gekochtVoertuig = DatabaseOperations.OphalenGekochteVoertuigen();
+            DataGridKooplijst.ItemsSource = gekochtVoertuig;
         }
     }
 }
