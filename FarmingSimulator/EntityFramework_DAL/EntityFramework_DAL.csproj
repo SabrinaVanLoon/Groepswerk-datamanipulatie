@@ -118,6 +118,8 @@
       <DependentUpon>FarmSimulatorModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="FileOperations.cs" />
+    <Compile Include="partials\a_GehuurdGereedschap.cs" />
+    <Compile Include="partials\a_GekochtGereedschap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

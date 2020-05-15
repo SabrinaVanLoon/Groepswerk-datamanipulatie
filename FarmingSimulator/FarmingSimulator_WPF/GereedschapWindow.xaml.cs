@@ -67,9 +67,34 @@ namespace FarmingSimulator_WPF
         //is er niets geselecteerd, en je klikt op de button, dan komt er een messagebox dat je eerst iets moet selecteren
         private void btnKopen_Click(object sender, RoutedEventArgs e)
         {
-           
-          MessageBox.Show("Selecteer eerst een gereedschap!","Opgelet", MessageBoxButton.OK, MessageBoxImage.Error);
-           
+
+            string foutmeldingen = Valideer("Gereedschap");
+
+            a_Gereedschap gereedschap = DataGridGereedschap.SelectedItem as a_Gereedschap;
+
+            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            {
+                MessageBoxResult antwoord = MessageBox.Show($"Wil je dit gereedschap kopen?  {Environment.NewLine} {gereedschap.naam} {gereedschap.merk} {gereedschap.type}", "Winkelwagen", MessageBoxButton.YesNo);
+                if (antwoord == MessageBoxResult.Yes)
+                {
+                    a_GekochtGereedschap gekochtGereedschap = new a_GekochtGereedschap();
+                    gekochtGereedschap.gereedschap_Id = gereedschap.Id;//hier moet nog iets anders komen te staan
+                    gekochtGereedschap.speler_Id = 1;
+
+
+
+                    int yes = DatabaseOperations.ToevoegenGekochtGereedschap(gekochtGereedschap);
+
+                    if (yes > 0)
+                    {
+                        KooplijstWindow garage = new KooplijstWindow();
+                        garage.ShowDialog();
+
+
+                    }
+                }
+            }
+
 
 
 
@@ -81,11 +106,37 @@ namespace FarmingSimulator_WPF
         // als er iets geselecteerd is en je drukt op de knop, dan komt er een messagebox of je zeker bent dat je dit item wil huren
         //wil je dit huren dan komt deze in een lijst van gehuurde items(huurlijst)
         //is er niets geselecteerd, en je klikt op de button, dan komt er een messagebox dat je eerst iets moet selecteren
-        private void btnHuren_Click(object sender, RoutedEventArgs e)
+        private void btnHuren_Click(object sender, RoutedEventArgs e) //werkt enkel moet er het naam, merk enzo verschijnen van het gereedschap
         {
-            
+            string foutmeldingen = Valideer("Gereedschap");
 
-          MessageBox.Show("Selecteer eerst een gereedschap!","Opgelet", MessageBoxButton.OK, MessageBoxImage.Error);
+            a_Gereedschap gereedschap = DataGridGereedschap.SelectedItem as a_Gereedschap;
+
+            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            {
+                MessageBoxResult antwoord = MessageBox.Show($"Wil je dit gereedschap huren?  {Environment.NewLine} {gereedschap.naam} {gereedschap.merk} {gereedschap.type}", "Winkelwagen", MessageBoxButton.YesNo);
+                if (antwoord == MessageBoxResult.Yes)
+                {
+                    a_GehuurdGereedschap gehuurdGereedschap = new a_GehuurdGereedschap();
+                    gehuurdGereedschap.gereedschap_Id = gereedschap.Id;//hier moet nog iets anders komen te staan
+                    gehuurdGereedschap.speler_Id = 1;
+                    gereedschap.ToString();
+
+
+
+                    int yes = DatabaseOperations.ToevoegenGehuurdGereedschap(gehuurdGereedschap);
+
+                    if (yes > 0)
+                    {
+                        HuurlijstWindow gehuurdGereedschapwindow = new HuurlijstWindow();
+                        gehuurdGereedschapwindow.ShowDialog();
+
+
+                    }
+                }
+            }
+
+
         }
 
         // //bij het klikken op deze button dan ga je terug naar het scherm menu
@@ -106,5 +157,15 @@ namespace FarmingSimulator_WPF
             menu.Show();
             this.Close();
         }
+
+        private string Valideer(string columnName)
+        {
+            if (columnName == "Gereedschap" && DataGridGereedschap.SelectedItem == null)
+            {
+                return "Selecteer eerst een gereedschap!";
+            }
+            return "";
+        }
+
     }
 }

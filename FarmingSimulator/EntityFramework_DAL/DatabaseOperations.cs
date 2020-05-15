@@ -61,16 +61,52 @@ namespace EntityFramework_DAL
                 return query.ToList();
             }
         }
-      
+
 
         public static List<a_GehuurdGereedschap> OphalenGehuurdGereedschap()
         {
             using (MyFarmEntities entities = new MyFarmEntities())
             {
-                var query = entities.a_GehuurdGereedschap;
+                var query = entities.a_GehuurdGereedschap
+                .Include(x => x.a_Gereedschap)
+                .Include(x => x.a_Speler);
                 return query.ToList();
             }
         }
+
+        public static int ToevoegenGehuurdGereedschap(a_GehuurdGereedschap gehuurdgereedschap)
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                entities.a_GehuurdGereedschap.Add(gehuurdgereedschap); //meervoud gaat niet
+
+
+                return entities.SaveChanges();
+            }
+        }
+
+        public static int VerwijderGehuurdGereedschapHuurlijst(a_GehuurdGereedschap gehuurdgereedschap)
+        {
+
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                entities.Entry(gehuurdgereedschap).State = EntityState.Deleted;
+                return entities.SaveChanges();
+            }
+
+        }
+
+        public static int ToevoegenGekochtGereedschap(a_GekochtGereedschap gekochtgereedschap)
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                entities.a_GekochtGereedschap.Add(gekochtgereedschap); //meervoud gaat niet
+
+
+                return entities.SaveChanges();
+            }
+        }
+
 
         public static List<a_Speler> OphalenSpelers()
         {
@@ -89,6 +125,7 @@ namespace EntityFramework_DAL
                 return farmSimulatorEntities.SaveChanges();
             }
         }
+    
         public static int ToevoegenGekochtVoertuig(a_GekochtVoertuig gekochtvoertuig)
         {
             using (MyFarmEntities entities = new MyFarmEntities())
@@ -115,5 +152,6 @@ namespace EntityFramework_DAL
                 return query.ToList();
             }
         }
+
     }
 }

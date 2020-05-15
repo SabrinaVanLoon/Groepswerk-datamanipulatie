@@ -34,8 +34,35 @@ namespace FarmingSimulator_WPF
         }
 
         //verwijderen uit de lijst van gehuurdGereedschap
-        private void btn_hurenStopzetten_Click(object sender, RoutedEventArgs e) 
+        private void btn_hurenStopzetten_Click(object sender, RoutedEventArgs e)
         {
+            string foutmeldingen = Valideer("Gereedschap");
+
+
+
+            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            {
+                a_GehuurdGereedschap gehuurdgereedschap = DataGridHuurlijst.SelectedItem as a_GehuurdGereedschap;
+
+                MessageBoxResult antwoord = MessageBox.Show($"Wil je huren opzeggen?", "Winkelwagen", MessageBoxButton.YesNo);
+
+                int yes = DatabaseOperations.VerwijderGehuurdGereedschapHuurlijst(gehuurdgereedschap);
+                if (antwoord == MessageBoxResult.Yes)
+                {
+                    DataGridHuurlijst.ItemsSource = DatabaseOperations.OphalenGehuurdGereedschap();
+                    Resetten();
+                }
+                else
+                {
+                    MessageBox.Show("Geselecteerd item is niet verwijderd.");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show(foutmeldingen);
+            }
+
 
         }
 
@@ -62,10 +89,10 @@ namespace FarmingSimulator_WPF
             this.Hide();
             Menu menu = new Menu();
             menu.Show();
-            
+
         }
 
-       
+
         //deze methode zorgt ervoor dat het window verdwijnt als je deze verlaat(door op button TerugMenu te drukken)
         private void Window_Closed(object sender, EventArgs e)
         {
@@ -74,5 +101,21 @@ namespace FarmingSimulator_WPF
             menu.Show();
             this.Close();
         }
+
+        private string Valideer(string columnName)
+        {
+            if (columnName == "Gereedschap" && DataGridHuurlijst.SelectedItem == null)
+            {
+                return "Selecteer eerst een item!";
+            }
+            return "";
+        }
+
+        private void Resetten()
+        {
+            DataGridHuurlijst.SelectedIndex = -1;
+
+        }
+
     }
 }
