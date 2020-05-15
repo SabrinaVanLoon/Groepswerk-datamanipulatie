@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Garage" Height="450" Width="800">
+        Title="Garage" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"/>
@@ -26,11 +26,11 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid Margin="10" BorderThickness="1" Grid.RowSpan="5">
+        <DataGrid x:Name="DataGridKooplijst" AutoGenerateColumns="False" Margin="10" BorderThickness="1" Grid.RowSpan="5">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Type" Width="100"/>
-                <DataGridTextColumn Header="Naam" Width="200"/>
-                <DataGridTextColumn Header="Prijs" Width="70"/>
+                <DataGridTextColumn Header="Speler" Width="100" Binding="{Binding a_Speler.naam}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Voertuig" Width="200" Binding="{Binding a_Voertuig.naam }"></DataGridTextColumn>
+                <DataGridTextColumn Header="Prijs" Width="70" Binding="{Binding a_Voertuig.basisprijs}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Aantal" Width="70"/>
             </DataGrid.Columns>
         </DataGrid>
