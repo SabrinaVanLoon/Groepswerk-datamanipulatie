@@ -122,7 +122,7 @@ namespace FarmingSimulator_WPF
                     gehuurdGereedschap.speler_Id = 1;
                     gereedschap.ToString();
 
-                    
+
 
                     int yes = DatabaseOperations.ToevoegenGehuurdGereedschap(gehuurdGereedschap);
 
@@ -130,13 +130,13 @@ namespace FarmingSimulator_WPF
                     {
                         HuurlijstWindow gehuurdGereedschapwindow = new HuurlijstWindow();
                         gehuurdGereedschapwindow.ShowDialog();
-                       
-                        
+
+
                     }
                 }
             }
 
-          
+
         }
 
         // //bij het klikken op deze button dan ga je terug naar het scherm menu
@@ -167,6 +167,5 @@ namespace FarmingSimulator_WPF
             return "";
         }
 
-        
     }
 }

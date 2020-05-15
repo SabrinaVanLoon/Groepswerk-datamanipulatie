@@ -56,7 +56,7 @@ namespace FarmingSimulator_WPF
                 {
                     MessageBox.Show("Geselecteerd item is niet verwijderd.");
                 }
-               
+
             }
             else
             {
@@ -116,5 +116,6 @@ namespace FarmingSimulator_WPF
             DataGridHuurlijst.SelectedIndex = -1;
 
         }
+
     }
 }
