@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FarmingSimulator_MODELS;
 
 namespace FarmingSimulator_WPF
 {
@@ -34,7 +35,12 @@ namespace FarmingSimulator_WPF
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                VoorwaardenOpdrachtWindow voorwaardenVoorOpdracht = new VoorwaardenOpdrachtWindow();
+                Voorwaarden.taakomschrijving = opdracht.taakomschrijving;
+                Voorwaarden.beloning = opdracht.beloning;
+                Voorwaarden.eigenaar_Id = opdracht.eigenaar_Id;
+                Voorwaarden.graansoort_Id = opdracht.graansoort_Id;
+                Voorwaarden.veld_Id = opdracht.veld_Id;
+                VoorwaardenOpdrachtWindow voorwaardenVoorOpdracht = new VoorwaardenOpdrachtWindow();               
                 voorwaardenVoorOpdracht.ShowDialog();
                 this.Close();
             }
