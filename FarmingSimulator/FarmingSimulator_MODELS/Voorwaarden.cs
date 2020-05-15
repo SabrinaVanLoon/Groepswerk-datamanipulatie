@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace FarmingSimulator_MODELS
 {
-    public class Gereedschap
+    class Voorwaarden
     {
-
     }
 }

@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="VoorwaardenOpdrachtWindow" Height="450" Width="800">
+        Title="Voorwaarden Opdracht" Height="450" Width="800" Closed="Window_Closed" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -24,11 +24,9 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <GroupBox Header="Voorwaarden opdracht" Margin="16" Grid.ColumnSpan="2">
-            <TextBlock>
-  My Content
-            </TextBlock>
-        </GroupBox>
+        <DataGrid x:Name="DataGridVoorwaarden"  Margin="16" Grid.ColumnSpan="2">
+           
+        </DataGrid>
         <Button x:Name="btn_TerugOpdrachten" Content="Terug naar opdrachten" Grid.Column="1" Grid.Row="1" Margin="10,0,0,22" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="371" Click="btn_TerugOpdrachten_Click"/>
         <Button x:Name="btn_Accepteren" Content="Accepteren" Grid.Row="1" Margin="16,0,0,22" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="371" Click="btn_Accepteren_Click"/>
     </Grid>

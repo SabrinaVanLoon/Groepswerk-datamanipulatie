@@ -42,10 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Basisklasse.cs" />
+
     <Compile Include="Gereedschap.cs" />
     <Compile Include="InlogGegevens.cs" />
+
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VoorwaardenOpdracht.cs" />
+    <Compile Include="Voorwaarden.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
