@@ -1,4 +1,5 @@
 ﻿using EntityFramework_DAL;
+using FarmingSimulator_MODELS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,7 +59,7 @@ namespace FarmingSimulator_WPF
             string foutmeldingen = Valideer("Voertuig");
 
             a_Voertuig voertuig = (a_Voertuig)DataGridVoertuig.SelectedItem;
-
+           
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 MessageBoxResult antwoord = MessageBox.Show($"Dit voertuig kopen? {Environment.NewLine} {voertuig.naam} {voertuig.merk} {voertuig.type}", "IN WINKELWAGEN", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -66,7 +67,7 @@ namespace FarmingSimulator_WPF
                 {
                     a_GekochtVoertuig gekochtvoertuig = new a_GekochtVoertuig();
                     gekochtvoertuig.voertuig_Id = voertuig.Id;
-                    gekochtvoertuig.speler_Id = 1;
+                    gekochtvoertuig.speler_Id = InlogGegevens.ID;
 
                     int yes = DatabaseOperations.ToevoegenGekochtVoertuig(gekochtvoertuig);
 
@@ -91,7 +92,7 @@ namespace FarmingSimulator_WPF
                 {
                     a_GehuurdVoertuig gehuurdVoertuig = new a_GehuurdVoertuig();
                     gehuurdVoertuig.voertuig_Id = voertuig.Id;
-                    gehuurdVoertuig.speler_Id = 1;
+                    gehuurdVoertuig.speler_Id = InlogGegevens.ID;
 
 
                     int yes = DatabaseOperations.ToevoegenGehuurdVoertuig(gehuurdVoertuig);
