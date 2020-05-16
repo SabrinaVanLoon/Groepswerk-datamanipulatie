@@ -75,6 +75,7 @@ namespace FarmingSimulator_WPF
                     {
                         KooplijstWindow gekocht = new KooplijstWindow();
                         gekocht.ShowDialog();
+                        this.Close();
                     }
                 }
             }
@@ -101,6 +102,7 @@ namespace FarmingSimulator_WPF
                     {
                         HuurlijstWindow gekocht = new HuurlijstWindow();
                         gekocht.ShowDialog();
+                        this.Close();
                     }
                 }
             }

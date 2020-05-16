@@ -17,10 +17,10 @@ namespace FarmingSimulator_MODELS
 
 
         //public Voorwaarden(int Id, int veld_Id, int graansoort_Id, int eigenaar_Id, decimal beloning, string taakomschrijving) : this(veld_Id, graansoort_Id, eigenaar_Id, beloning, taakomschrijving) { }
-        
-        
 
-     
-	
+
+
+
+
     }
 }

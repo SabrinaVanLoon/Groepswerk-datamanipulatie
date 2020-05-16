@@ -59,7 +59,7 @@ namespace FarmingSimulator_WPF
             //txbVoorwaarden.Text = Voorwaarden.beloning.ToString() + Environment.NewLine;
 
             txbVoorwaarden.Text = Voorwaarden.taakomschrijving + Environment.NewLine + Voorwaarden.veld_Id.ToString() + Environment.NewLine +
-                Voorwaarden.graansoort_Id.ToString() +  Environment.NewLine +  Voorwaarden.eigenaar_Id.ToString() + Environment.NewLine +  Voorwaarden.beloning.ToString() +  Environment.NewLine;
+                Voorwaarden.graansoort_Id.ToString() + Environment.NewLine + Voorwaarden.eigenaar_Id.ToString() + Environment.NewLine + Voorwaarden.beloning.ToString() + Environment.NewLine;
 
         }
 
