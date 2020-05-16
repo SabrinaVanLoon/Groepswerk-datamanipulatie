@@ -24,7 +24,7 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="DataGridOpdrachten" AutoGenerateColumns="False" Grid.ColumnSpan="3">
+        <DataGrid x:Name="DataGridOpdrachten" AutoGenerateColumns="False" Grid.RowSpan="3">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Beschikbare opdrachten" Binding="{Binding taakomschrijving}"></DataGridTextColumn>
             </DataGrid.Columns>
