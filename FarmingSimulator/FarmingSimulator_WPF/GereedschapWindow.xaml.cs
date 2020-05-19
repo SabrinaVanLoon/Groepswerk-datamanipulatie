@@ -79,7 +79,7 @@ namespace FarmingSimulator_WPF
                 {
                     a_GekochtGereedschap gekochtGereedschap = new a_GekochtGereedschap();
                     gekochtGereedschap.gereedschap_Id = gereedschap.Id;//hier moet nog iets anders komen te staan
-                    gekochtGereedschap.speler_Id = 1;
+                    gekochtGereedschap.speler_Id = InlogGegevens.ID;
 
 
 
@@ -119,7 +119,7 @@ namespace FarmingSimulator_WPF
                 {
                     a_GehuurdGereedschap gehuurdGereedschap = new a_GehuurdGereedschap();
                     gehuurdGereedschap.gereedschap_Id = gereedschap.Id;//hier moet nog iets anders komen te staan
-                    gehuurdGereedschap.speler_Id = 1;
+                    gehuurdGereedschap.speler_Id = InlogGegevens.ID;
                     gereedschap.ToString();
 
 

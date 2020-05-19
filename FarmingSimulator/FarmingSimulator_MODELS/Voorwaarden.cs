@@ -11,7 +11,7 @@ namespace FarmingSimulator_MODELS
         public static int Id { get; set; }
         public static int veld_Id { get; set; }
         public static int graansoort_Id { get; set; }
-        public static Nullable<int> eigenaar_Id { get; set; }
+        public static int eigenaar_Id { get; set; }
         public static decimal beloning { get; set; }
         public static string taakomschrijving { get; set; }
 

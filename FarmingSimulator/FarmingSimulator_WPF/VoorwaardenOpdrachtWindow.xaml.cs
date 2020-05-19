@@ -52,14 +52,13 @@ namespace FarmingSimulator_WPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            //txbVoorwaarden.Text = Voorwaarden.taakomschrijving + Environment.NewLine;
-            //txbVoorwaarden.Text = Voorwaarden.veld_Id.ToString() + Environment.NewLine;
-            //txbVoorwaarden.Text = Voorwaarden.graansoort_Id.ToString() + Environment.NewLine;
-            //txbVoorwaarden.Text = Voorwaarden.eigenaar_Id.ToString() + Environment.NewLine;
-            //txbVoorwaarden.Text = Voorwaarden.beloning.ToString() + Environment.NewLine;
-
-            txbVoorwaarden.Text = Voorwaarden.taakomschrijving + Environment.NewLine + Voorwaarden.veld_Id.ToString() + Environment.NewLine +
-                Voorwaarden.graansoort_Id.ToString() +  Environment.NewLine +  Voorwaarden.eigenaar_Id.ToString() + Environment.NewLine +  Voorwaarden.beloning.ToString() +  Environment.NewLine;
+            DataGridVoorwaarden.ItemsSource = DatabaseOperations.OphalenGegevensOpdracht();
+            
+            txbVoorwaarden.Text = Voorwaarden.taakomschrijving + Environment.NewLine + 
+                                  Voorwaarden.veld_Id.ToString() + Environment.NewLine +
+                                  Voorwaarden.graansoort_Id.ToString() +  Environment.NewLine + 
+                                  Voorwaarden.eigenaar_Id.ToString() + Environment.NewLine +  
+                                  Voorwaarden.beloning.ToString() +  Environment.NewLine;
 
         }
 
