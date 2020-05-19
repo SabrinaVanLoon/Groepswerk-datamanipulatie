@@ -29,9 +29,10 @@
         <DataGrid x:Name="DataGridKooplijst" AutoGenerateColumns="False" Margin="10" BorderThickness="1" Grid.RowSpan="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Speler" Width="100" Binding="{Binding a_Speler.naam}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Voertuig" Width="200" Binding="{Binding a_Voertuig.naam }"></DataGridTextColumn>
+                <DataGridTextColumn Header="Voertuig" Width="200" Binding="{Binding a_Voertuig.naam}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Prijs" Width="70" Binding="{Binding a_Voertuig.basisprijs}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Aantal" Width="70"/>
+                <DataGridTextColumn Header="Aantal" Width="70" />
+
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Verkopen" Grid.Column="1" Margin="5" Width="200" HorizontalAlignment="Right"/>
