@@ -12,26 +12,42 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="43.2"/>
+            <RowDefinition Height="56.8"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="63*"/>
+            <RowDefinition Height="24*"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="DataGridHuurlijst" AutoGenerateColumns="True" AlternatingRowBackground="LightSteelBlue" Margin="10" BorderThickness="1" Grid.RowSpan="5">
-            <!--<DataGrid.Columns>
-                <DataGridTextColumn Header="Naam" Binding="{Binding naam}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Merk" Binding="{Binding merk}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Type" Binding="{Binding type}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Kostprijs" Binding="{Binding basisprijs}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Huurprijs/uur" Binding="{Binding kost_u_huur}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Huurprijs/dag" Binding="{Binding kost_dag_huur}"></DataGridTextColumn>
-            </DataGrid.Columns>-->
+        <Label Content="Gehuurde gereedschappen:" Margin="0,10,0,9.2" HorizontalAlignment="Left" VerticalAlignment="Center" Height="22" Width="151"></Label>
+        <DataGrid x:Name="DataGridHuurlijstGereedschap"  AutoGenerateColumns="False" AlternatingRowBackground="LightSteelBlue" Margin="10,9.8,10,10.2" BorderThickness="1" Grid.Row="1" Grid.RowSpan="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Speler" Binding="{Binding a_Speler.naam}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Naam" Binding="{Binding a_Gereedschap.naam}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Merk" Binding="{Binding a_Gereedschap.merk}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Type" Binding="{Binding a_Gereedschap.type}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Basis huurprijs" Binding="{Binding a_Gereedschap.basiskost}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Huurprijs/uur" Binding="{Binding a_Gereedschap.kost_u_huur}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Huurprijs/dag" Binding="{Binding a_Gereedschap.kost_dag_huur}"></DataGridTextColumn>
+            </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btn_hurenStopzetten" Content="Huurcontract opzeggen" Grid.Column="1" Margin="5" Width="200" HorizontalAlignment="Right" Click="btn_hurenStopzetten_Click"/>
-        <Button x:Name="btn_WinkelVoertuigen" Content="Winkel voertuigen" Grid.Column="1" Grid.Row="1" Margin="5" Width="200" HorizontalAlignment="Right" Click="btn_WinkelVoertuigen_Click"/>
-        <Button x:Name="btn_WinkelGereedschap" Content="Winkel gereedschappen" Grid.Column="1" Grid.Row="2" Margin="5" Width="200" HorizontalAlignment="Right" Click="btn_WinkelGereedschap_Click"/>
-    
-        <Button x:Name="btn_TerugMenu" Content="Terug naar menu" Grid.Column="1" Grid.Row="4" Margin="5" Width="200" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="btn_TerugMenu_Click"/>
+        <Label Content="Gehuurde Voertuigen:" Grid.Row="3" Margin="10,44.4,283.6,20.6" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <DataGrid x:Name="DataGridHuurlijstVoertuig" AutoGenerateColumns="False" AlternatingRowBackground="LightSteelBlue" Margin="10,25.8,0,10" BorderThickness="1" Grid.RowSpan="3" Grid.Row="4" HorizontalAlignment="Left" Width="480">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Speler" Binding="{Binding a_Speler.naam}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Naam" Binding="{Binding a_Voertuig.naam}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Merk" Binding="{Binding a_Voertuig.merk}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Type" Binding="{Binding a_Voertuig.type}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Basis huurprijs" Binding="{Binding a_Voertuig.basiskost}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Huurprijs/uur" Binding="{Binding a_Voertuig.kost_u_huur}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Huurprijs/dag" Binding="{Binding a_Voertuig.kost_dag_huur}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btn_hurenStopzetten" Content="Huurcontract opzeggen" Grid.Column="1" Margin="0,6,4.6,5.2" Width="200" HorizontalAlignment="Right" Click="btn_hurenStopzetten_Click" Height="Auto"/>
+        <Button x:Name="btn_WinkelVoertuigen" Content="Winkel voertuigen" Grid.Column="1" Grid.Row="1" Margin="0,12.8,4.6,12" Width="200" HorizontalAlignment="Right" Click="btn_WinkelVoertuigen_Click" Height="Auto"/>
+        <Button x:Name="btn_WinkelGereedschap" Content="Winkel gereedschappen" Grid.Column="1" Grid.Row="2" Margin="0,9,4.6,8.6" Width="200" HorizontalAlignment="Right" Click="btn_WinkelGereedschap_Click" Height="Auto"/>
+
+        <Button x:Name="btn_TerugMenu" Content="Terug naar menu" Grid.Column="1" Grid.Row="7" Margin="0,0,4.6,3.6" Width="200" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="btn_TerugMenu_Click"/>
     </Grid>
 </Window>

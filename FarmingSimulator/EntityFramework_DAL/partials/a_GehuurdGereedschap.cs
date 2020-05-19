@@ -12,5 +12,10 @@ namespace EntityFramework_DAL
         {
             return base.ToString();
         }
+
+        //public virtual a_Gereedschap a_Gereedschap { get; set; }
+        //public virtual a_Speler a_Speler { get; set; }
+
+        public static string naam { get; set; }
     }
 }

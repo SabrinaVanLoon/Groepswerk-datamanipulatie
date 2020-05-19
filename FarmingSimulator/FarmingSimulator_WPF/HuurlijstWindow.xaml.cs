@@ -28,12 +28,12 @@ namespace FarmingSimulator_WPF
         // bij het laden van deze window wordt meteen de lijst getoond van alles wat gehuurd is
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            DataGridHuurlijst.ItemsSource = DatabaseOperations.OphalenGehuurdGereedschap();
-
+            DataGridHuurlijstGereedschap.ItemsSource = DatabaseOperations.OphalenGehuurdGereedschap();
+            DataGridHuurlijstVoertuig.ItemsSource = DatabaseOperations.OphalenGehuurdVoertuig();
 
         }
 
-        //verwijderen uit de lijst van gehuurdGereedschap
+        //verwijderen uit de lijst van gehuurdGereedschap of gehuurdVoertuig
         private void btn_hurenStopzetten_Click(object sender, RoutedEventArgs e)
         {
             string foutmeldingen = Valideer("Gereedschap");
@@ -42,14 +42,18 @@ namespace FarmingSimulator_WPF
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                a_GehuurdGereedschap gehuurdgereedschap = DataGridHuurlijst.SelectedItem as a_GehuurdGereedschap;
+                a_GehuurdGereedschap gehuurdgereedschap = DataGridHuurlijstGereedschap.SelectedItem as a_GehuurdGereedschap;
+                a_GehuurdVoertuig gehuurdvoertuig = DataGridHuurlijstVoertuig.SelectedItem as a_GehuurdVoertuig;
 
                 MessageBoxResult antwoord = MessageBox.Show($"Wil je huren opzeggen?", "Winkelwagen", MessageBoxButton.YesNo);
 
                 int yes = DatabaseOperations.VerwijderGehuurdGereedschapHuurlijst(gehuurdgereedschap);
+               //|| yes = DatabaseOperations.VerwijderGehuurdVoertuigHuurlijst(gehuurdvoertuig);    //NOG OP TE LOSSEN
+
                 if (antwoord == MessageBoxResult.Yes)
                 {
-                    DataGridHuurlijst.ItemsSource = DatabaseOperations.OphalenGehuurdGereedschap();
+                    DataGridHuurlijstGereedschap.ItemsSource = DatabaseOperations.OphalenGehuurdGereedschap();
+                    DataGridHuurlijstVoertuig.ItemsSource = DatabaseOperations.OphalenGehuurdVoertuig();
                     Resetten();
                 }
                 else
@@ -104,7 +108,7 @@ namespace FarmingSimulator_WPF
 
         private string Valideer(string columnName)
         {
-            if (columnName == "Gereedschap" && DataGridHuurlijst.SelectedItem == null)
+            if ((columnName == "(Gereedschap" && DataGridHuurlijstGereedschap.SelectedItem == null) || (columnName == "Voertuig" && DataGridHuurlijstGereedschap.SelectedItem == null))
             {
                 return "Selecteer eerst een item!";
             }
@@ -113,8 +117,8 @@ namespace FarmingSimulator_WPF
 
         private void Resetten()
         {
-            DataGridHuurlijst.SelectedIndex = -1;
-
+            DataGridHuurlijstGereedschap.SelectedIndex = -1;
+            DataGridHuurlijstVoertuig.SelectedIndex = -1;
         }
 
     }

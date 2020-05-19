@@ -25,15 +25,18 @@
         </Grid.RowDefinitions>
         <TextBox x:Name="txbVoorwaarden" Grid.ColumnSpan="2" Margin="50"/>
 
-        <!--<DataGrid x:Name="DataGridVoorwaarden" AutoGenerateColumns="False" Margin="16" Grid.ColumnSpan="2">
-            --><!--<DataGrid.Columns>
-                <DataGridTextColumn Header="Veld Id" Binding="{Binding veld_Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Speler Id" Binding="{Binding eigenaar_Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Beloning" Binding="{Binding beloning}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Taakomschrijving" Binding="{Binding taakomschrijving}"></DataGridTextColumn>
-                
-            </DataGrid.Columns>--><!--
-        </DataGrid>-->
+        <DataGrid x:Name="DataGridVoorwaarden" AutoGenerateColumns="False" Margin="16" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Veld Id" Binding="{Binding a_Veld.veld_Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Speler Id" Binding="{Binding a_Speler.eigenaar_Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Beloning" Binding="{Binding a_Opdracht.beloning}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Taakomschrijving" Binding="{Binding a_Opdracht.taakomschrijving}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Graansoort" Binding="{Binding a_Graansoort.type}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Weersomstandigheid" Binding="{Binding a_Weersomstandigheid.status}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Weerseffect" Binding="{Binding a_Graansoort.a_Weerseffecten}"></DataGridTextColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="btn_TerugOpdrachten" Content="Terug naar opdrachten" Grid.Column="1" Grid.Row="1" Margin="10,0,0,22" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="371" Click="btn_TerugOpdrachten_Click"/>
         <Button x:Name="btn_Accepteren" Content="Accepteren" Grid.Row="1" Margin="16,0,0,22" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="371" Click="btn_Accepteren_Click"/>
     </Grid>
