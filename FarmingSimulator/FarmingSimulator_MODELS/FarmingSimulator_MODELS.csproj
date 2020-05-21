@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Basisklasse.cs" />
     <Compile Include="GehuurdGereedschap.cs" />
-    <Compile Include="Gereedschap.cs" />
     <Compile Include="InlogGegevens.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Voorwaarden.cs" />
