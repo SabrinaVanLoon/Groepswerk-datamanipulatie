@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Garage" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="Garage" Height="650" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"/>
@@ -24,20 +24,37 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="200"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="DataGridKooplijst" AutoGenerateColumns="False" Margin="10" BorderThickness="1" Grid.RowSpan="5">
+        <DataGrid x:Name="DataGridVoertuigen" AutoGenerateColumns="False" Margin="10" BorderThickness="1" Grid.RowSpan="4">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Speler" Width="100" Binding="{Binding a_Speler.naam}"></DataGridTextColumn>
+                <!--<DataGridTextColumn Header="Speler" Width="100" Binding="{Binding a_Speler.naam}"></DataGridTextColumn>-->
                 <DataGridTextColumn Header="Voertuig" Width="200" Binding="{Binding a_Voertuig.naam }"></DataGridTextColumn>
-                <DataGridTextColumn Header="Prijs" Width="70" Binding="{Binding a_Voertuig.basisprijs}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Aantal" Width="70"/>
+                <DataGridTextColumn Header="Waarde" Width="100" Binding="{Binding a_Voertuig.basisprijs}"></DataGridTextColumn>
+                <!--<DataGridTextColumn Header="Aantal" Width="100"/>-->
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Verkopen" Grid.Column="1" Margin="5" Width="200" HorizontalAlignment="Right"/>
-        <Button Content="Winkel voertuigen" Grid.Column="1" Grid.Row="1" Margin="5" Width="200" HorizontalAlignment="Right"/>
-        <Button Content="Winkel gereedschappen" Grid.Column="1" Grid.Row="2" Margin="5" Width="200" HorizontalAlignment="Right"/>
-        <Button Content="Winkel dieren" Grid.Column="1" Grid.Row="3" Margin="5" Width="200" HorizontalAlignment="Right"/>
-        <Button Content="Terug naar menu" Grid.Column="1" Grid.Row="4" Margin="5" Width="200" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <DataGrid x:Name="DataGridGereedschappen" AutoGenerateColumns="False" Margin="10" BorderThickness="1" Grid.Row="4">
+            <DataGrid.Columns>
+                <!--<DataGridTextColumn Header="Speler" Width="100" Binding="{Binding a_Speler.naam}"></DataGridTextColumn>-->
+                <DataGridTextColumn Header="Gereedschap" Width="200" Binding="{Binding a_Gereedschap.naam }"></DataGridTextColumn>
+                <DataGridTextColumn Header="Waarde" Width="100" Binding="{Binding a_Gereedschap.basisprijs}"></DataGridTextColumn>
+                <!--<DataGridTextColumn Header="Aantal" Width="100"/>-->
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="DataGridDieren" AutoGenerateColumns="False" Margin="10" BorderThickness="1" Grid.Row="5">
+            <DataGrid.Columns>
+                <!--<DataGridTextColumn Header="Speler" Width="100" Binding="{Binding a_Speler.naam}"></DataGridTextColumn>-->
+                <DataGridTextColumn Header="Dier" Width="200" Binding="{Binding a_Dier.type }"></DataGridTextColumn>
+                <DataGridTextColumn Header="Waarde" Width="100" Binding="{Binding a_Dier.basisprijs}"></DataGridTextColumn>
+                <!--<DataGridTextColumn Header="Aantal" Width="100"/>-->
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnVerkopen" Content="Verkopen" Grid.Column="1" Margin="5" Width="200" HorizontalAlignment="Right" Click="btnVerkopen_Click"/>
+        <Button x:Name="btnVoertuigwinkel" Content="Winkel voertuigen" Grid.Column="1" Grid.Row="1" Margin="5" Width="200" HorizontalAlignment="Right" Click="btnVoertuigwinkel_Click"/>
+        <Button x:Name="btnGereedschapwinkel" Content="Winkel gereedschappen" Grid.Column="1" Grid.Row="2" Margin="5" Width="200" HorizontalAlignment="Right" Click="btnGereedschapwinkel_Click"/>
+        <Button x:Name="btnDierenwinkel" Content="Winkel dieren" Grid.Column="1" Grid.Row="3" Margin="5" Width="200" HorizontalAlignment="Right" Click="btnDierenwinkel_Click"/>
+        <Button x:Name="btnTerug" Content="Terug naar menu" Grid.Column="1" Grid.Row="5" Margin="5" Width="200" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="btnTerug_Click"/>
     </Grid>
 </Window>

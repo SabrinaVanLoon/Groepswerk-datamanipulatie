@@ -32,13 +32,33 @@ namespace FarmingSimulator_WPF
             datagridDieren.ItemsSource = DatabaseOperations.OphalenDieren();
         }
 
+        //Het gekozen dier wordt het gegeven aantal keer gekocht
+        //de tabel Gekocht_dier wordt opgevuld met de ingelogde speler en het gekozen dier
         private void btnKopen_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(txtAantal.Text) && int.TryParse(txtAantal.Text, out int aantal))
             {
-                if (datagridDieren.SelectedItem != null)
+                if (string.IsNullOrWhiteSpace(Valideer("Dier")))
                 {
+                    a_Dier dier = datagridDieren.SelectedItem as a_Dier;
+                    int yes = 0;
+                    for (int i = 0; i < aantal; i++)
+                    {
+                        a_Gekocht_dier gekocht_Dier = new a_Gekocht_dier();
+                        gekocht_Dier.dier_id = dier.Id;
+                        gekocht_Dier.speler_id = InlogGegevens.ID;
 
+                        yes = DatabaseOperations.ToevoegenGekochtDier(gekocht_Dier);
+                    }
+
+                    if (yes > 0)
+                    {
+                        MessageBox.Show($"Je hebt {txtAantal.Text} dieren van type {dier.type} gekocht.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Je hebt geen dieren gekocht.", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 else
                 {
@@ -53,9 +73,18 @@ namespace FarmingSimulator_WPF
 
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Close();
             Menu menu = new Menu();
             menu.ShowDialog();
+        }
+
+        private string Valideer(string columnName)
+        {
+            if (columnName == "Dier" && datagridDieren.SelectedItem == null)
+            {
+                return "Selecteer eerst een item!";
+            }
+            return "";
         }
     }
 }

@@ -93,7 +93,36 @@ namespace EntityFramework_DAL
                 entities.Entry(gehuurdgereedschap).State = EntityState.Deleted;
                 return entities.SaveChanges();
             }
+        }
 
+        public static int VerwijderGekochtVoertuig(a_GekochtVoertuig gekochtVoertuig)
+        {
+
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                entities.Entry(gekochtVoertuig).State = EntityState.Deleted;
+                return entities.SaveChanges();
+            }
+        }
+
+        public static int VerwijderGekochtGereedschap(a_GekochtGereedschap gekochtGereedschap)
+        {
+
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                entities.Entry(gekochtGereedschap).State = EntityState.Deleted;
+                return entities.SaveChanges();
+            }
+        }
+
+        public static int VerwijderGekochtDier(a_Gekocht_dier gekochtDier)
+        {
+
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                entities.Entry(gekochtDier).State = EntityState.Deleted;
+                return entities.SaveChanges();
+            }
         }
 
         public static int ToevoegenGekochtGereedschap(a_GekochtGereedschap gekochtgereedschap)
@@ -134,7 +163,18 @@ namespace EntityFramework_DAL
                 return farmSimulatorEntities.SaveChanges();
             }
         }
-    
+
+        public static int ToevoegenGekochtDier(a_Gekocht_dier gekochtdier)
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                entities.a_Gekocht_dier.Add(gekochtdier); //meervoud gaat niet
+
+
+                return entities.SaveChanges();
+            }
+        }
+
         public static int ToevoegenGekochtVoertuig(a_GekochtVoertuig gekochtvoertuig)
         {
             using (MyFarmEntities entities = new MyFarmEntities())
@@ -162,5 +202,26 @@ namespace EntityFramework_DAL
             }
         }
 
+        public static List<a_GekochtGereedschap> OphalenGekochteGereedschappen()
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                var query = entities.a_GekochtGereedschap
+                .Include(x => x.a_Gereedschap)
+                .Include(x => x.a_Speler);
+                return query.ToList();
+            }
+        }
+
+        public static List<a_Gekocht_dier> OphalenGekochteDieren()
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                var query = entities.a_Gekocht_dier
+                .Include(x => x.a_Dier)
+                .Include(x => x.a_Speler);
+                return query.ToList();
+            }
+        }
     }
 }
