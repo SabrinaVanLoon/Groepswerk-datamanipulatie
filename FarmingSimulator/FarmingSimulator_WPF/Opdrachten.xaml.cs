@@ -38,11 +38,11 @@ namespace FarmingSimulator_WPF
 
 
 
-                Voorwaarden.taakomschrijving = opdracht.taakomschrijving;
-                Voorwaarden.beloning = opdracht.beloning;
-                Voorwaarden.eigenaar_Id = opdracht.eigenaar_Id;
-                Voorwaarden.graansoort_Id = opdracht.graansoort_Id;
-                Voorwaarden.veld_Id = opdracht.veld_Id;
+                //Voorwaarden.taakomschrijving = opdracht.taakomschrijving;
+                //Voorwaarden.beloning = opdracht.beloning;
+                //Voorwaarden.eigenaar_Id = opdracht.eigenaar_Id;
+                //Voorwaarden.graansoort_Id = opdracht.graansoort_Id;
+                //Voorwaarden.veld_Id = opdracht.veld_Id;
 
 
 

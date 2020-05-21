@@ -74,36 +74,76 @@ namespace EntityFramework_DAL
             }
         }
 
+        public static int AanpassenGereedschap(a_Gereedschap gereedschap)
+        {
+            try
+            {
+                using (MyFarmEntities entities = new MyFarmEntities())
+                {
+                    entities.Entry(gereedschap).State = EntityState.Modified;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+        }
+
         public static int ToevoegenGehuurdGereedschap(a_GehuurdGereedschap gehuurdgereedschap)
         {
-            using (MyFarmEntities entities = new MyFarmEntities())
+            try
             {
-                entities.a_GehuurdGereedschap.Add(gehuurdgereedschap); //meervoud gaat niet
-
-
-                return entities.SaveChanges();
+                using (MyFarmEntities entities = new MyFarmEntities())
+                {
+                    entities.a_GehuurdGereedschap.Add(gehuurdgereedschap); //meervoud gaat niet
+                    return entities.SaveChanges();
+                }
             }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+            
         }
 
         public static int VerwijderGehuurdGereedschapHuurlijst(a_GehuurdGereedschap gehuurdgereedschap)
         {
-
-            using (MyFarmEntities entities = new MyFarmEntities())
+            try
             {
-                entities.Entry(gehuurdgereedschap).State = EntityState.Deleted;
-                return entities.SaveChanges();
+                using (MyFarmEntities entities = new MyFarmEntities())
+                {
+                    entities.Entry(gehuurdgereedschap).State = EntityState.Deleted;
+                    return entities.SaveChanges();
+                }
             }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+
 
         }
 
         public static int VerwijderGehuurdVoertuigHuurlijst(a_GehuurdVoertuig gehuurdvoertuig)
         {
-
-            using (MyFarmEntities entities = new MyFarmEntities())
+            try
             {
-                entities.Entry(gehuurdvoertuig).State = EntityState.Deleted;
-                return entities.SaveChanges();
+                using (MyFarmEntities entities = new MyFarmEntities())
+                {
+                    entities.Entry(gehuurdvoertuig).State = EntityState.Deleted;
+                    return entities.SaveChanges();
+                }
             }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+
 
         }
         public static int ToevoegenGekochtGereedschap(a_GekochtGereedschap gekochtgereedschap)

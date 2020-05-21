@@ -36,37 +36,70 @@ namespace FarmingSimulator_WPF
         //verwijderen uit de lijst van gehuurdGereedschap of gehuurdVoertuig
         private void btn_hurenStopzetten_Click(object sender, RoutedEventArgs e)
         {
-            string foutmeldingen = Valideer("Gereedschap");
+            //string foutmeldingen = Valideer("Gereedschap");
 
 
 
-            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            //if (string.IsNullOrWhiteSpace(foutmeldingen))
+            //{
+            //    a_GehuurdGereedschap gehuurdgereedschap = DataGridHuurlijstGereedschap.SelectedItem as a_GehuurdGereedschap;
+            //    a_GehuurdVoertuig gehuurdvoertuig = DataGridHuurlijstVoertuig.SelectedItem as a_GehuurdVoertuig;
+
+            //    MessageBoxResult antwoord = MessageBox.Show($"Wil je huren opzeggen?", "Winkelwagen", MessageBoxButton.YesNo);
+
+            //    int yes = DatabaseOperations.VerwijderGehuurdGereedschapHuurlijst(gehuurdgereedschap);
+            //   //|| yes = DatabaseOperations.VerwijderGehuurdVoertuigHuurlijst(gehuurdvoertuig);    //NOG OP TE LOSSEN
+
+            //    if (antwoord == MessageBoxResult.Yes)
+            //    {
+            //        DataGridHuurlijstGereedschap.ItemsSource = DatabaseOperations.OphalenGehuurdGereedschap();
+            //        DataGridHuurlijstVoertuig.ItemsSource = DatabaseOperations.OphalenGehuurdVoertuig();
+            //        Resetten();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Geselecteerd item is niet verwijderd.");
+            //    }
+
+            //}
+            //else
+            //{
+            //    MessageBox.Show(foutmeldingen);
+            //}
+            if (string.IsNullOrWhiteSpace(ValideerGereedschap()))
             {
                 a_GehuurdGereedschap gehuurdgereedschap = DataGridHuurlijstGereedschap.SelectedItem as a_GehuurdGereedschap;
-                a_GehuurdVoertuig gehuurdvoertuig = DataGridHuurlijstVoertuig.SelectedItem as a_GehuurdVoertuig;
-
                 MessageBoxResult antwoord = MessageBox.Show($"Wil je huren opzeggen?", "Winkelwagen", MessageBoxButton.YesNo);
-
-                int yes = DatabaseOperations.VerwijderGehuurdGereedschapHuurlijst(gehuurdgereedschap);
-               //|| yes = DatabaseOperations.VerwijderGehuurdVoertuigHuurlijst(gehuurdvoertuig);    //NOG OP TE LOSSEN
 
                 if (antwoord == MessageBoxResult.Yes)
                 {
+
+                    int yes = DatabaseOperations.VerwijderGehuurdGereedschapHuurlijst(gehuurdgereedschap);
+                    //Resetten();
                     DataGridHuurlijstGereedschap.ItemsSource = DatabaseOperations.OphalenGehuurdGereedschap();
-                    DataGridHuurlijstVoertuig.ItemsSource = DatabaseOperations.OphalenGehuurdVoertuig();
-                    Resetten();
+
                 }
                 else
                 {
                     MessageBox.Show("Geselecteerd item is niet verwijderd.");
                 }
-
             }
-            else
+            else if (string.IsNullOrWhiteSpace(Valideervoertuig()))
             {
-                MessageBox.Show(foutmeldingen);
-            }
+                a_GehuurdVoertuig gehuurdvoertuig = DataGridHuurlijstVoertuig.SelectedItem as a_GehuurdVoertuig;
+                MessageBoxResult antwoord = MessageBox.Show($"Wil je huren opzeggen?", "Winkelwagen", MessageBoxButton.YesNo);
+                if (antwoord == MessageBoxResult.Yes)
+                {
 
+                    int yes = DatabaseOperations.VerwijderGehuurdVoertuigHuurlijst(gehuurdvoertuig);
+                    //Resetten();
+                    DataGridHuurlijstVoertuig.ItemsSource = DatabaseOperations.OphalenGehuurdVoertuig();
+                }
+                else
+                {
+                    MessageBox.Show("Geselecteerd item is niet verwijderd.");
+                }
+            }
 
         }
 
@@ -106,20 +139,31 @@ namespace FarmingSimulator_WPF
             this.Close();
         }
 
-        private string Valideer(string columnName)
+        private string ValideerGereedschap()
         {
-            if ((columnName == "(Gereedschap" && DataGridHuurlijstGereedschap.SelectedItem == null) || (columnName == "Voertuig" && DataGridHuurlijstGereedschap.SelectedItem == null))
+            if (DataGridHuurlijstGereedschap.SelectedItem == null)
             {
-                return "Selecteer eerst een item!";
+                return "Selecteer een item";
+
             }
             return "";
         }
 
-        private void Resetten()
+        private string Valideervoertuig()
         {
-            DataGridHuurlijstGereedschap.SelectedIndex = -1;
-            DataGridHuurlijstVoertuig.SelectedIndex = -1;
+            if (DataGridHuurlijstVoertuig.SelectedItem == null)
+            {
+                return "Selecteer een item";
+
+            }
+            return "";
         }
+
+        //private void Resetten()
+        //{
+        //    DataGridHuurlijstGereedschap.SelectedIndex = -1;
+        //    DataGridHuurlijstVoertuig.SelectedIndex = -1;
+        //}
 
     }
 }
