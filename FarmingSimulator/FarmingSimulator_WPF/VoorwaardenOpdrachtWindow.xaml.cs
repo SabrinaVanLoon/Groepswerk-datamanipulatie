@@ -51,23 +51,41 @@ namespace FarmingSimulator_WPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            Random rndNamen = new Random();
+            string[] boer = { "Rufus", "Luc", "Victor", "Fido",
+                          "Sisco"};
+            string[] boerin = { "Maggie", "Penny", "Sophie", "Anita",
+                            "Abby"};
+            int man = rndNamen.Next(boer.Length);
+            int vrouw = rndNamen.Next(boerin.Length);
+            Random rndGetalTotVoltooienOpdracht = new Random();
 
 
-            DataGridVoorwaarden.ItemsSource = DatabaseOperations.OphalenGegevensOpdracht();
-            
-            txbVoorwaarden.Text = Voorwaarden.taakomschrijving + Environment.NewLine + 
-                                  Voorwaarden.veld_Id.ToString() + Environment.NewLine +
-                                  Voorwaarden.graansoort_Id.ToString() +  Environment.NewLine + 
-                                  Voorwaarden.eigenaar_Id.ToString() + Environment.NewLine +  
-                                  Voorwaarden.beloning.ToString() +  Environment.NewLine;
+
+            txbVoorwaarden.Text = "";
+          
+            List<a_Graansoort> graanEnEffect = DatabaseOperations.OphalenGraansoortenEnWeerseffect();
+            foreach (var opdracht in graanEnEffect)
+            {
+                foreach (var taak in opdracht.a_Opdrachten)
+                {
+                    txbVoorwaarden.Text = $"Je koos voor {taak.taakomschrijving}. {Environment.NewLine}" +
+                       $"Deze opdracht vind plaats op veldnummer {taak.veld_Id} bij boer {boer[man]} en boerin {boerin[vrouw]}. {Environment.NewLine}{Environment.NewLine}";
+                    foreach (var hetWeer in opdracht.a_Weerseffectten)
+                    {
+                        txbVoorwaarden.Text += $"bij {hetWeer.a_Weersomstandigheid.status} (weer) mag je {hetWeer.effect}. {Environment.NewLine}{Environment.NewLine}";
+                    }
+                    txbVoorwaarden.Text += $"Bij het accepteren van de opdracht krijg je {rndGetalTotVoltooienOpdracht.Next(5, 15)} dagen tijd om deze te voltooien. {Environment.NewLine}" +
+                        $"Bij het succesvol voltooien van de opdracht verdien je {taak.beloning} €.";
 
 
-            txbVoorwaarden.Text = Voorwaarden.taakomschrijving + Environment.NewLine + Voorwaarden.veld_Id.ToString() + Environment.NewLine +
-                Voorwaarden.graansoort_Id.ToString() + Environment.NewLine + Voorwaarden.eigenaar_Id.ToString() + Environment.NewLine + Voorwaarden.beloning.ToString() + Environment.NewLine;
+                }
+            }
+
 
 
         }
 
-       
+
     }
 }

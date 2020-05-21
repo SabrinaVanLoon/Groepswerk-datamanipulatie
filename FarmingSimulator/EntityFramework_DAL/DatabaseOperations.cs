@@ -184,14 +184,14 @@ namespace EntityFramework_DAL
             }
         }
 
-        public static List<a_Opdracht> OphalenGegevensOpdracht()
+        public static List<a_Graansoort> OphalenGraansoortenEnWeerseffect()
         {
             using (MyFarmEntities entities = new MyFarmEntities())
             {
-                var query = entities.a_Opdracht /*&& entities.a_Weersomstandigheid*/
-                    .Include(x => x.a_Graansoort);
+                var query = entities.a_Graansoort
+                              .Include(x => x.a_Opdrachten)
+                              .Include(x => x.a_Weerseffectten.Select(sub => sub.a_Weersomstandigheid));
                 return query.ToList();
-
             }
         }
 
