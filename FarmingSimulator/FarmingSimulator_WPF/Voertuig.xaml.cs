@@ -146,5 +146,10 @@ namespace FarmingSimulator_WPF
                 txtZoekOpType.Text = voertuig.type;
             }
         }
+
+        private void btnPersonaliseer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
