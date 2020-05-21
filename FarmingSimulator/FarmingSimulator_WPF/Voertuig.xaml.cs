@@ -57,6 +57,7 @@ namespace FarmingSimulator_WPF
         private void btnKopen_Click(object sender, RoutedEventArgs e)
         {
             string foutmeldingen = Valideer("Voertuig");
+            foutmeldingen += Valideer("Hoeveelheid");
 
             a_Voertuig voertuig = (a_Voertuig)DataGridVoertuig.SelectedItem;
            
@@ -84,6 +85,7 @@ namespace FarmingSimulator_WPF
         private void btnHuren_Click(object sender, RoutedEventArgs e)
         {
             string foutmeldingen = Valideer("Voertuig");
+            foutmeldingen += Valideer("Hoeveelheid");
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
@@ -149,7 +151,31 @@ namespace FarmingSimulator_WPF
 
         private void btnPersonaliseer_Click(object sender, RoutedEventArgs e)
         {
+            string foutmeldingen = Valideer("Voertuig");
 
+            a_Voertuig voertuig = (a_Voertuig)DataGridVoertuig.SelectedItem;
+            voertuig.naam = txtZoekOpNaam.Text;
+
+            if (string.IsNullOrWhiteSpace(foutmeldingen) && int.TryParse(txtPersonaliseer.Text, out int hoeveelheid))
+            {
+                if (voertuig.IsGeldig())
+                {
+                    int inOrde = DatabaseOperations.PersonaliseerMijnVoertuig(voertuig);
+                    
+                    if (inOrde > 0)
+                    {
+                        DataGridVoertuig.ItemsSource = DatabaseOperations.OphalenVoertuigenOpNaam(txtZoekOpNaam.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Naam van je voertuig is niet aangepast");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(voertuig.Error);
+                }
+            }
         }
     }
 }

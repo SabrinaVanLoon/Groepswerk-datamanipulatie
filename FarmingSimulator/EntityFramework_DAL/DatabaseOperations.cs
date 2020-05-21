@@ -147,18 +147,34 @@ namespace EntityFramework_DAL
     
         public static int ToevoegenGekochtVoertuig(a_GekochtVoertuig gekochtvoertuig)
         {
-            using (MyFarmEntities entities = new MyFarmEntities())
+            try
             {
-                entities.a_GekochtVoertuig.Add(gekochtvoertuig);
-                return entities.SaveChanges();
+                using (MyFarmEntities entities = new MyFarmEntities())
+                {
+                    entities.a_GekochtVoertuig.Add(gekochtvoertuig);
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
             }
         }
         public static int ToevoegenGehuurdVoertuig(a_GehuurdVoertuig gehuurdVoertuig)
         {
-            using (MyFarmEntities entities = new MyFarmEntities())
+            try
             {
-                entities.a_GehuurdVoertuig.Add(gehuurdVoertuig);
-                return entities.SaveChanges();
+                using (MyFarmEntities entities = new MyFarmEntities())
+                {
+                    entities.a_GehuurdVoertuig.Add(gehuurdVoertuig);
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
             }
         }
         public static List<a_GekochtVoertuig> OphalenGekochteVoertuigen()
@@ -195,6 +211,22 @@ namespace EntityFramework_DAL
             }
         }
 
-
+        public static int PersonaliseerMijnVoertuig(a_Voertuig voertuig)
+        {
+            try
+            {
+                using (MyFarmEntities entities = new MyFarmEntities())
+                {
+                    entities.Entry(voertuig).State = EntityState.Modified;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+        }
+      
     }
 }

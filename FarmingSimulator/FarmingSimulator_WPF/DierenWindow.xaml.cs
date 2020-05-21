@@ -34,11 +34,12 @@ namespace FarmingSimulator_WPF
 
         private void btnKopen_Click(object sender, RoutedEventArgs e)
         {
+           a_Dier dier = (a_Dier)datagridDieren.SelectedItem;
             if (!string.IsNullOrWhiteSpace(txtAantal.Text) && int.TryParse(txtAantal.Text, out int aantal))
             {
                 if (datagridDieren.SelectedItem != null)
                 {
-
+                    
                 }
                 else
                 {

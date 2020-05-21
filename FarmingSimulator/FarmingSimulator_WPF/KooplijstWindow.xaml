@@ -31,7 +31,7 @@
                 <DataGridTextColumn Header="Speler" Width="100" Binding="{Binding a_Speler.naam}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Voertuig" Width="200" Binding="{Binding a_Voertuig.naam}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Prijs" Width="70" Binding="{Binding a_Voertuig.basisprijs}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Aantal" Width="70" />
+                <DataGridTextColumn Header="Aantal" Width="70" Binding="{Binding a_Voertuig.Hoeveelheid}"></DataGridTextColumn>
 
             </DataGrid.Columns>
         </DataGrid>
