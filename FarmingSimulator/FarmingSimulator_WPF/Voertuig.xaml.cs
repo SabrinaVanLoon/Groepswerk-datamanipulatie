@@ -196,7 +196,7 @@ namespace FarmingSimulator_WPF
             a_Voertuig voertuig = (a_Voertuig)DataGridVoertuig.SelectedItem;
             voertuig.naam = txtZoekOpNaam.Text;
 
-            if (string.IsNullOrWhiteSpace(foutmeldingen) && int.TryParse(txtPersonaliseer.Text, out int hoeveelheid))
+            if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 if (voertuig.IsGeldig())
                 {
