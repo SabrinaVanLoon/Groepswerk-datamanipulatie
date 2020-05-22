@@ -39,7 +39,7 @@
                 <DataGridTextColumn Header="Naam" Binding="{Binding a_Voertuig.naam}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Merk" Binding="{Binding a_Voertuig.merk}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Type" Binding="{Binding a_Voertuig.type}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Basis huurprijs" Binding="{Binding a_Voertuig.basiskost}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Basis huurprijs" Binding="{Binding a_Voertuig.basiskost_huur}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Huurprijs/uur" Binding="{Binding a_Voertuig.kost_u_huur}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Huurprijs/dag" Binding="{Binding a_Voertuig.kost_dag_huur}"></DataGridTextColumn>
             </DataGrid.Columns>

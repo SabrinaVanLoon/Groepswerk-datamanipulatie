@@ -87,24 +87,64 @@ namespace FarmingSimulator_WPF
             string foutmeldingen = Valideer("Voertuig");
             foutmeldingen += Valideer("Hoeveelheid");
 
-            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            if (string.IsNullOrWhiteSpace(foutmeldingen) && int.TryParse(txtPersonaliseer.Text, out int hoeveelheid))
             {
                 a_Voertuig voertuig = (a_Voertuig)DataGridVoertuig.SelectedItem;
                 MessageBoxResult antwoord = MessageBox.Show($"Dit voertuig huren? {Environment.NewLine} {voertuig.naam} {voertuig.merk} {voertuig.type}", "IN WINKELWAGEN", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                int yes = 0;
                 if (antwoord == MessageBoxResult.Yes)
                 {
-                    a_GehuurdVoertuig gehuurdVoertuig = new a_GehuurdVoertuig();
-                    gehuurdVoertuig.voertuig_Id = voertuig.Id;
-                    gehuurdVoertuig.speler_Id = InlogGegevens.ID;
+                    //for (int i = 0; i < hoeveelheid; i++)
+                    //{
+                    //    a_GehuurdVoertuig gehuurdVoertuig = new a_GehuurdVoertuig();
+                    //    gehuurdVoertuig.voertuig_Id = voertuig.Id;
+                    //    gehuurdVoertuig.speler_Id = InlogGegevens.ID;
 
 
-                    int yes = DatabaseOperations.ToevoegenGehuurdVoertuig(gehuurdVoertuig);
+                    //    yes = DatabaseOperations.ToevoegenGehuurdVoertuig(gehuurdVoertuig);
+                    //}
 
-                    if (yes > 0)
+                    //if (yes > 0)
+                    //{
+                    //    HuurlijstWindow gekocht = new HuurlijstWindow();
+                    //    gekocht.ShowDialog();
+                    //    this.Close();
+                    //}
+                    if (string.IsNullOrWhiteSpace(foutmeldingen))
                     {
-                        HuurlijstWindow gekocht = new HuurlijstWindow();
-                        gekocht.ShowDialog();
-                        this.Close();
+                        voertuig.Hoeveelheid = int.Parse(txtPersonaliseer.Text);
+
+                        if (voertuig.IsGeldig())
+                        {
+                            for (int i = 0; i < hoeveelheid; i++)
+                            {
+                                a_GehuurdVoertuig gehuurdVoertuig = new a_GehuurdVoertuig();
+                                gehuurdVoertuig.voertuig_Id = voertuig.Id;
+                                gehuurdVoertuig.speler_Id = InlogGegevens.ID;
+
+
+                                yes = DatabaseOperations.ToevoegenGehuurdVoertuig(gehuurdVoertuig);
+                            }
+
+                            if (yes > 0)
+                            {
+                                HuurlijstWindow gekocht = new HuurlijstWindow();
+                                gekocht.ShowDialog();
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Hoeveelheid is niet aangepast");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(voertuig.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(foutmeldingen);
                     }
                 }
             }
