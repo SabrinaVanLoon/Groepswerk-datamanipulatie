@@ -149,7 +149,32 @@ namespace FarmingSimulator_WPF
 
         private void btnPersonaliseer_Click(object sender, RoutedEventArgs e)
         {
+            string foutmeldingen = Valideer("Voertuig");
 
+            a_Voertuig voertuig = (a_Voertuig)DataGridVoertuig.SelectedItem;
+            voertuig.naam = txtZoekOpNaam.Text;
+
+            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            {
+                if (voertuig.IsGeldig())
+                {
+                    int inOrde = DatabaseOperations.PersonaliseerMijnVoertuig(voertuig);
+
+                    if (inOrde > 0)
+                    {
+                        DataGridVoertuig.ItemsSource = DatabaseOperations.OphalenVoertuigenOpNaam(txtZoekOpNaam.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Naam van je voertuig is niet aangepast");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(voertuig.Error);
+                }
+            }
+        
         }
     }
 }

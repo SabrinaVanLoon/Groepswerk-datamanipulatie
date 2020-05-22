@@ -235,6 +235,22 @@ namespace EntityFramework_DAL
             }
         }
 
+        public static int PersonaliseerMijnVoertuig(a_Voertuig voertuig)
+        {
+            try
+            {
+                using (MyFarmEntities entities = new MyFarmEntities())
+                {
+                    entities.Entry(voertuig).State = EntityState.Modified;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+        }
 
     }
 }

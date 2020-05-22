@@ -121,6 +121,7 @@
     <Compile Include="partials\a_GehuurdGereedschap.cs" />
     <Compile Include="partials\a_GekochtGereedschap.cs" />
     <Compile Include="partials\a_Gereedschap.cs" />
+    <Compile Include="partials\a_Voertuig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
