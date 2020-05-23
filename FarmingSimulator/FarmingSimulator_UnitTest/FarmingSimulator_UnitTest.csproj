@@ -47,6 +47,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UnitTest1.cs" />
@@ -59,6 +60,14 @@
     <ProjectReference Include="..\EntityFramework_DAL\EntityFramework_DAL.csproj">
       <Project>{3bcf886a-5d66-4010-af8b-de564e0e2b37}</Project>
       <Name>EntityFramework_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FarmingSimulator_MODELS\FarmingSimulator_MODELS.csproj">
+      <Project>{f97da2fd-fe9d-457e-9395-bcdb850fa834}</Project>
+      <Name>FarmingSimulator_MODELS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FarmingSimulator_WPF\FarmingSimulator_WPF.csproj">
+      <Project>{712d81fb-ef2e-47d4-a93f-ba413f144398}</Project>
+      <Name>FarmingSimulator_WPF</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
