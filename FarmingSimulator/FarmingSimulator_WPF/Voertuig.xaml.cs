@@ -191,6 +191,7 @@ namespace FarmingSimulator_WPF
         private void btnPersonaliseer_Click(object sender, RoutedEventArgs e)
         {
             string foutmeldingen = Valideer("Voertuig");
+            foutmeldingen += Valideer("naam");
 
             a_Voertuig voertuig = (a_Voertuig)DataGridVoertuig.SelectedItem;
             voertuig.naam = txtZoekOpNaam.Text;

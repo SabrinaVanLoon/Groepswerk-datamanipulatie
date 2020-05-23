@@ -15,7 +15,11 @@ namespace EntityFramework_DAL
             {
                 if (columnName == "Hoeveelheid" && Hoeveelheid < 0)
                 {
-                    return "Hoeveelheid moet een positief getal zijn!";
+                    return $"Hoeveelheid moet een positief getal zijn! {Environment.NewLine}" ;
+                }
+                if (columnName == "naam" && naam.Length < 5)
+                {
+                    return "Geef je voertuig een leuke naam van minstens 5 karakters";
                 }
                 return "";
             }

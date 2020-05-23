@@ -35,19 +35,6 @@ namespace FarmingSimulator_WPF
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-
-
-
-
-                Voorwaarden.taakomschrijving = opdracht.taakomschrijving;
-                Voorwaarden.beloning = opdracht.beloning;
-              //  Voorwaarden.eigenaar_Id = opdracht.eigenaar_Id;
-                Voorwaarden.graansoort_Id = opdracht.graansoort_Id;
-                Voorwaarden.veld_Id = opdracht.veld_Id;
-
-
-
-
                 VoorwaardenOpdrachtWindow voorwaardenVoorOpdracht = new VoorwaardenOpdrachtWindow(opdracht);               
                 voorwaardenVoorOpdracht.ShowDialog();
                 this.Close();
