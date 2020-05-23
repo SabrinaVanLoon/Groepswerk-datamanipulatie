@@ -35,6 +35,7 @@ namespace FarmingSimulator_WPF
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
+                this.Hide();
                 VoorwaardenOpdrachtWindow voorwaardenVoorOpdracht = new VoorwaardenOpdrachtWindow(opdracht);               
                 voorwaardenVoorOpdracht.ShowDialog();
                 this.Close();
@@ -47,6 +48,7 @@ namespace FarmingSimulator_WPF
 
         private void btnTerugNaarMenu_Click_1(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             Menu menu = new Menu();
             menu.ShowDialog();
             this.Close();

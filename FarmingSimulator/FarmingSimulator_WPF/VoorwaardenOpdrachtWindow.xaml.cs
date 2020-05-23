@@ -36,23 +36,24 @@ namespace FarmingSimulator_WPF
             this.Hide();
             Opdrachten opdrachten = new Opdrachten();
             opdrachten.Show();
+            this.Close();
         }
 
         private void btn_Accepteren_Click(object sender, RoutedEventArgs e)
         {
             
-            MessageBox.Show($"Je hebt deze opdracht geaccepteerd", "Geaccepteerd");
+            MessageBox.Show($"Je hebt deze opdracht geaccepteerd!", "Status", MessageBoxButton.OK, MessageBoxImage.Information);
  
         }
 
-        //deze methode zorgt ervoor dat het window verdwijnt als je deze verlaat(door op button TerugMenu te drukken)
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            this.Hide();
-            Menu menu = new Menu();
-            menu.Show();
-            this.Close();
-        }
+        ////deze methode zorgt ervoor dat het window verdwijnt als je deze verlaat(door op button TerugMenu te drukken)
+        //private void Window_Closed(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    Menu menu = new Menu();
+        //    menu.Show();
+        //    this.Close();
+        //}
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

@@ -146,6 +146,7 @@ namespace FarmingSimulator_WPF
 
         private void btnTerugNaarMenu_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             Menu menu = new Menu();
             menu.ShowDialog();
             this.Close();
