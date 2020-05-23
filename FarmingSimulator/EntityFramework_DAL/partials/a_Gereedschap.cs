@@ -13,7 +13,7 @@ namespace EntityFramework_DAL
         {
             get
             {
-                if (columnName  == "naam" && naam.Length <= 2)
+                if (columnName == "naam" && naam.Length <= 2)
                 {
                     return "Naam is niet lang genoeg!";
                 }
@@ -21,8 +21,15 @@ namespace EntityFramework_DAL
                 {
                     return "type is niet lang genoeg!";
                 }
+                if (columnName == "hoeveelheid" && Hoeveelheid < 0)
+                {
+                    return "Hoeveelheid moet een positief getal zijn!";
+                }
                 return "";
+
             }
         }
+             public int Hoeveelheid { get; set; }
+    
     }
 }
