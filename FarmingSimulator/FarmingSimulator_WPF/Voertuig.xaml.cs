@@ -38,6 +38,7 @@ namespace FarmingSimulator_WPF
             {
                 MessageBox.Show(foutmeldingen, "Opgelet", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            txtZoekOpType.IsEnabled = false;
         }
 
         private void btnZoekVoertuigOpNaam_Click(object sender, RoutedEventArgs e)
@@ -196,7 +197,7 @@ namespace FarmingSimulator_WPF
 
             a_Voertuig voertuig = (a_Voertuig)DataGridVoertuig.SelectedItem;
             voertuig.naam = txtZoekOpNaam.Text;
-
+           
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 if (voertuig.IsGeldig())

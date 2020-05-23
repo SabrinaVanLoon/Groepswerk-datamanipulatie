@@ -13,11 +13,11 @@ namespace EntityFramework_DAL
         {
             get
             {
-                if (columnName == "naam" && naam.Length <= 2)
+                if (columnName == "naam" && naam.Length < 3)
                 {
                     return "Naam is niet lang genoeg!";
                 }
-                if (columnName == "type" && type.Length <= 2)
+                if (columnName == "type" && type.Length < 3)
                 {
                     return "type is niet lang genoeg!";
                 }

@@ -12,12 +12,13 @@ namespace UnitTestGereedschap.cs
         {
             //arrange
             a_Gereedschap gereedschap = new a_Gereedschap();
-
+            
             //Act
             gereedschap.Hoeveelheid = 5;
-
+            gereedschap.naam = "abc";
+            gereedschap.type = "abc";
             //assert
-            Assert.AreEqual(5, gereedschap.Hoeveelheid);
+            Assert.IsTrue(gereedschap.IsGeldig());
         }
 
         [TestMethod]
