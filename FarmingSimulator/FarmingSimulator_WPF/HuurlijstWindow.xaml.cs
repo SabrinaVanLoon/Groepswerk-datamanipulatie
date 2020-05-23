@@ -35,46 +35,16 @@ namespace FarmingSimulator_WPF
 
         //verwijderen uit de lijst van gehuurdGereedschap of gehuurdVoertuig
         private void btn_hurenStopzetten_Click(object sender, RoutedEventArgs e)
-        {
-            //string foutmeldingen = Valideer("Gereedschap");
-
-
-
-            //if (string.IsNullOrWhiteSpace(foutmeldingen))
-            //{
-            //    a_GehuurdGereedschap gehuurdgereedschap = DataGridHuurlijstGereedschap.SelectedItem as a_GehuurdGereedschap;
-            //    a_GehuurdVoertuig gehuurdvoertuig = DataGridHuurlijstVoertuig.SelectedItem as a_GehuurdVoertuig;
-
-            //    MessageBoxResult antwoord = MessageBox.Show($"Wil je huren opzeggen?", "Winkelwagen", MessageBoxButton.YesNo);
-
-            //    int yes = DatabaseOperations.VerwijderGehuurdGereedschapHuurlijst(gehuurdgereedschap);
-            //   //|| yes = DatabaseOperations.VerwijderGehuurdVoertuigHuurlijst(gehuurdvoertuig);    //NOG OP TE LOSSEN
-
-            //    if (antwoord == MessageBoxResult.Yes)
-            //    {
-            //        DataGridHuurlijstGereedschap.ItemsSource = DatabaseOperations.OphalenGehuurdGereedschap();
-            //        DataGridHuurlijstVoertuig.ItemsSource = DatabaseOperations.OphalenGehuurdVoertuig();
-            //        Resetten();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Geselecteerd item is niet verwijderd.");
-            //    }
-
-            //}
-            //else
-            //{
-            //    MessageBox.Show(foutmeldingen);
-            //}
+        {           
             if (string.IsNullOrWhiteSpace(ValideerGereedschap()))
             {
                 a_GehuurdGereedschap gehuurdgereedschap = DataGridHuurlijstGereedschap.SelectedItem as a_GehuurdGereedschap;
-                MessageBoxResult antwoord = MessageBox.Show($"Wil je huren opzeggen?", "Winkelwagen", MessageBoxButton.YesNo);
+                MessageBoxResult antwoord = MessageBox.Show($"Wil je huren opzeggen?", "Huurlijst", MessageBoxButton.YesNo);
 
                 if (antwoord == MessageBoxResult.Yes)
                 {
 
-                    int yes = DatabaseOperations.VerwijderGehuurdGereedschapHuurlijst(gehuurdgereedschap);
+                    DatabaseOperations.VerwijderGehuurdGereedschapHuurlijst(gehuurdgereedschap);
                     //Resetten();
                     DataGridHuurlijstGereedschap.ItemsSource = DatabaseOperations.OphalenGehuurdGereedschap();
 
@@ -87,11 +57,11 @@ namespace FarmingSimulator_WPF
             else if (string.IsNullOrWhiteSpace(Valideervoertuig()))
             {
                 a_GehuurdVoertuig gehuurdvoertuig = DataGridHuurlijstVoertuig.SelectedItem as a_GehuurdVoertuig;
-                MessageBoxResult antwoord = MessageBox.Show($"Wil je huren opzeggen?", "Winkelwagen", MessageBoxButton.YesNo);
+                MessageBoxResult antwoord = MessageBox.Show($"Wil je huren opzeggen?", "Huurlijst", MessageBoxButton.YesNo);
                 if (antwoord == MessageBoxResult.Yes)
                 {
 
-                    int yes = DatabaseOperations.VerwijderGehuurdVoertuigHuurlijst(gehuurdvoertuig);
+                    DatabaseOperations.VerwijderGehuurdVoertuigHuurlijst(gehuurdvoertuig);
                     //Resetten();
                     DataGridHuurlijstVoertuig.ItemsSource = DatabaseOperations.OphalenGehuurdVoertuig();
                 }

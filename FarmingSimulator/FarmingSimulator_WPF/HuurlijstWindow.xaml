@@ -21,7 +21,7 @@
             <RowDefinition Height="82*"/>
         </Grid.RowDefinitions>
         <Label Content="Gehuurde gereedschappen:" Margin="0,11,0,5.2" HorizontalAlignment="Left" VerticalAlignment="Center" Height="27" Width="151"></Label>
-        <DataGrid x:Name="DataGridHuurlijstGereedschap"  AutoGenerateColumns="False" CanUserAddRows="False" AlternatingRowBackground="LightSteelBlue" Margin="10,9.8,10,6" BorderThickness="1" Grid.Row="1" Grid.RowSpan="3">
+        <DataGrid x:Name="DataGridHuurlijstGereedschap"  AutoGenerateColumns="False"  CanUserAddRows="False" AlternatingRowBackground="LightSteelBlue" Margin="10,9.8,10,6" BorderThickness="1" Grid.Row="1" Grid.RowSpan="3">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Speler" Binding="{Binding a_Speler.naam}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Naam" Binding="{Binding a_Gereedschap.naam}"></DataGridTextColumn>

@@ -123,7 +123,9 @@ namespace FarmingSimulator_WPF
                         yes = DatabaseOperations.ToevoegenGehuurdGereedschap(gehuurdGereedschap);
                     }
                     if (yes > 0)
+
                     {
+                        
                         MessageBox.Show($"Je hebt {txtAantal.Text} {gereedschap.naam} van het type {gereedschap.type} gehuurd", "Opgelet", MessageBoxButton.OK);
                         HuurlijstWindow gehuurdGereedschapwindow = new HuurlijstWindow();
                         gehuurdGereedschapwindow.ShowDialog();
