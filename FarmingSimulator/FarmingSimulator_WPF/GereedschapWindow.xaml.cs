@@ -79,36 +79,35 @@ namespace FarmingSimulator_WPF
                     }
                     if (yes > 0)
                     {
-                        MessageBox.Show($"Je hebt {txtAantal.Text} {gereedschap.naam} van het type {gereedschap.type} gekocht", "Opgelet", MessageBoxButton.OK);
+                        MessageBox.Show($"Je hebt {txtAantal.Text} maal {gereedschap.naam} van het type {gereedschap.type} gekocht.", "Winkelwagen", MessageBoxButton.OK);
                         KooplijstWindow garage = new KooplijstWindow();
                         garage.ShowDialog();
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Je hebt geen gereedschap gekocht.", "fout", MessageBoxButton.OK);
+                        MessageBox.Show("Je hebt geen gereedschap gekocht.", "Status", MessageBoxButton.OK, MessageBoxImage.Information);
                     }                   
                 }
                 else
                 {
-                    MessageBox.Show("Gelieve een item te selecteren", "Opgelet", MessageBoxButton.OK);
+                    MessageBox.Show("Gelieve een item te selecteren!", "Opgelet", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Gelieve een aantal in te geven", "Opgelet", MessageBoxButton.OK);
+                MessageBox.Show("Gelieve een aantal in te geven!", "Opgelet", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
        
 
 
         // bij het klikken op deze button(gereedschap huren) wordt er eerst nagekeken of er iets in de datagrid geselecteerd is,
-        // als er iets geselecteerd is en je drukt op de knop, dan komt er een messagebox of je zeker bent dat je dit item wil huren
         //wil je dit huren dan komt deze in een lijst van gehuurde items(huurlijst)
         //is er niets geselecteerd, en je klikt op de button, dan komt er een messagebox dat je eerst iets moet selecteren
-        private void btnHuren_Click(object sender, RoutedEventArgs e) //werkt enkel moet er het naam, merk enzo verschijnen van het gereedschap
+        private void btnHuren_Click(object sender, RoutedEventArgs e)
         {           
-            //    MessageBoxResult antwoord = MessageBox.Show($"Wil je dit gereedschap huren?  {Environment.NewLine} {gereedschap.naam} {gereedschap.merk} {gereedschap.type}", "Winkelwagen", MessageBoxButton.YesNo);           
+                      
             if (!string.IsNullOrWhiteSpace(txtAantal.Text) && int.TryParse(txtAantal.Text, out int aantal))
             {               
                 if (string.IsNullOrWhiteSpace(Valideer("Gereedschap")))
@@ -126,25 +125,25 @@ namespace FarmingSimulator_WPF
 
                     {
                         
-                        MessageBox.Show($"Je hebt {txtAantal.Text} {gereedschap.naam} van het type {gereedschap.type} gehuurd", "Opgelet", MessageBoxButton.OK);
+                        MessageBox.Show($"Je hebt {txtAantal.Text} maal {gereedschap.naam} van het type {gereedschap.type} gehuurd.", "Winkelwagen", MessageBoxButton.OK);
                         HuurlijstWindow gehuurdGereedschapwindow = new HuurlijstWindow();
                         gehuurdGereedschapwindow.ShowDialog();
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Je hebt geen gereedschap gehuurd.", "fout", MessageBoxButton.OK);
+                        MessageBox.Show("Je hebt geen gereedschap gehuurd.", "Status", MessageBoxButton.OK, MessageBoxImage.Information);
                         
                     }                   
                 }
                 else
                 {
-                    MessageBox.Show("Gelieve een item te selecteren", "Opgelet", MessageBoxButton.OK);
+                    MessageBox.Show("Gelieve een item te selecteren!", "Opgelet", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Gelieve een aantal in te geven", "Opgelet", MessageBoxButton.OK);
+                MessageBox.Show("Gelieve een aantal in te geven!", "Opgelet", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -221,12 +220,12 @@ namespace FarmingSimulator_WPF
                     }
                     else
                     {
-                        MessageBox.Show("Gereedschap is niet aangepast");
+                        MessageBox.Show("Gereedschap is niet aangepast!", "Status", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
                 else
                 {
-                    MessageBox.Show(foutmeldingen);
+                    MessageBox.Show("Naam is te kort, gelieve langer als 2 letters te maken.", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

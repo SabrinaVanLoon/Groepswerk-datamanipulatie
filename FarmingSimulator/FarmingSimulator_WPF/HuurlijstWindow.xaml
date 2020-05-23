@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FarmingSimulator_WPF"
         mc:Ignorable="d"
-        Title="Huurlijst" Height="650" Width="800" Loaded="Window_Loaded" Closed="Window_Closed">
+        Title="Huurlijst" Height="650" Width="800" Loaded="Window_Loaded" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"/>
@@ -27,6 +27,7 @@
                 <DataGridTextColumn Header="Naam" Binding="{Binding a_Gereedschap.naam}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Merk" Binding="{Binding a_Gereedschap.merk}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Type" Binding="{Binding a_Gereedschap.type}"></DataGridTextColumn>
+                
                 <DataGridTextColumn Header="Basis huurprijs" Binding="{Binding a_Gereedschap.basiskost}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Huurprijs/uur" Binding="{Binding a_Gereedschap.kost_uur}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Huurprijs/dag" Binding="{Binding a_Gereedschap.kost_dag}"></DataGridTextColumn>

@@ -36,10 +36,10 @@ namespace FarmingSimulator_WPF
         //verwijderen uit de lijst van gehuurdGereedschap of gehuurdVoertuig
         private void btn_hurenStopzetten_Click(object sender, RoutedEventArgs e)
         {           
-            if (string.IsNullOrWhiteSpace(ValideerGereedschap()))
+            if (string.IsNullOrWhiteSpace(ValideerGereedschap("Gereedschap")))
             {
                 a_GehuurdGereedschap gehuurdgereedschap = DataGridHuurlijstGereedschap.SelectedItem as a_GehuurdGereedschap;
-                MessageBoxResult antwoord = MessageBox.Show($"Wil je huren opzeggen?", "Huurlijst", MessageBoxButton.YesNo);
+                MessageBoxResult antwoord = MessageBox.Show($"Wil je huren opzeggen?", "Huurlijst", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if (antwoord == MessageBoxResult.Yes)
                 {
@@ -51,13 +51,13 @@ namespace FarmingSimulator_WPF
                 }
                 else
                 {
-                    MessageBox.Show("Geselecteerd item is niet verwijderd.");
+                    MessageBox.Show("Geselecteerd item is niet verwijderd.", "Status", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
-            else if (string.IsNullOrWhiteSpace(Valideervoertuig()))
+            else if (string.IsNullOrWhiteSpace(Valideervoertuig("Voertuig")))
             {
                 a_GehuurdVoertuig gehuurdvoertuig = DataGridHuurlijstVoertuig.SelectedItem as a_GehuurdVoertuig;
-                MessageBoxResult antwoord = MessageBox.Show($"Wil je huren opzeggen?", "Huurlijst", MessageBoxButton.YesNo);
+                MessageBoxResult antwoord = MessageBox.Show($"Wil je huren opzeggen?", "Huurlijst", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (antwoord == MessageBoxResult.Yes)
                 {
 
@@ -67,8 +67,12 @@ namespace FarmingSimulator_WPF
                 }
                 else
                 {
-                    MessageBox.Show("Geselecteerd item is niet verwijderd.");
+                    MessageBox.Show("Geselecteerd item is niet verwijderd.","Status", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Gelieve een item te selecteren!", "Opgelet", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
@@ -79,6 +83,7 @@ namespace FarmingSimulator_WPF
             this.Hide();
             Voertuig voertuigwinkel = new Voertuig();
             voertuigwinkel.Show();
+            this.Close();
         }
 
 
@@ -88,6 +93,7 @@ namespace FarmingSimulator_WPF
             this.Hide();
             GereedschapWindow gereedschapwinkel = new GereedschapWindow();
             gereedschapwinkel.Show();
+            this.Close();
         }
 
         //bij het klikken op deze button dan ga je terug naar het scherm menu
@@ -96,22 +102,13 @@ namespace FarmingSimulator_WPF
             this.Hide();
             Menu menu = new Menu();
             menu.Show();
-
-        }
-
-
-        //deze methode zorgt ervoor dat het window verdwijnt als je deze verlaat(door op button TerugMenu te drukken)
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            this.Hide();
-            Menu menu = new Menu();
-            menu.Show();
             this.Close();
+
         }
 
-        private string ValideerGereedschap()
+        private string ValideerGereedschap(string columnName)
         {
-            if (DataGridHuurlijstGereedschap.SelectedItem == null)
+            if (columnName== "Gereedschap" && DataGridHuurlijstGereedschap.SelectedItem == null)
             {
                 return "Selecteer een item";
 
@@ -119,9 +116,9 @@ namespace FarmingSimulator_WPF
             return "";
         }
 
-        private string Valideervoertuig()
+        private string Valideervoertuig(string columnName)
         {
-            if (DataGridHuurlijstVoertuig.SelectedItem == null)
+            if (columnName == "Voertuig" && DataGridHuurlijstVoertuig.SelectedItem == null)
             {
                 return "Selecteer een item";
 

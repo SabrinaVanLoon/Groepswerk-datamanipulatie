@@ -26,6 +26,7 @@ namespace FarmingSimulator_WPF
 
         private void btnVoertuigen_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             Voertuig voertuig = new Voertuig();
             voertuig.ShowDialog();
             this.Close();
@@ -33,6 +34,7 @@ namespace FarmingSimulator_WPF
 
         private void btnGereedschap_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             GereedschapWindow gereedschap = new GereedschapWindow();
             gereedschap.ShowDialog();
             this.Close();
@@ -40,6 +42,7 @@ namespace FarmingSimulator_WPF
 
         private void btnHuurlijst_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             HuurlijstWindow huurlijst = new HuurlijstWindow();
             huurlijst.ShowDialog();
             this.Close();
@@ -47,6 +50,7 @@ namespace FarmingSimulator_WPF
 
         private void btnKoperslijst_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             KooplijstWindow kopen = new KooplijstWindow();
             kopen.ShowDialog();
             this.Close();
@@ -54,6 +58,7 @@ namespace FarmingSimulator_WPF
 
         private void btnDieren_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             DierenWindow dieren = new DierenWindow();
             dieren.ShowDialog();
             this.Close();
@@ -61,6 +66,7 @@ namespace FarmingSimulator_WPF
 
         private void btnOpdrachten_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             Opdrachten opdrachten = new Opdrachten();
             opdrachten.ShowDialog();
             this.Close();
@@ -68,6 +74,7 @@ namespace FarmingSimulator_WPF
 
         private void btnSpeler_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             MainWindow main = new MainWindow();
             main.ShowDialog();
             this.Close();
