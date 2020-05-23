@@ -48,7 +48,7 @@ namespace FarmingSimulator_WPF
 
 
 
-                VoorwaardenOpdrachtWindow voorwaardenVoorOpdracht = new VoorwaardenOpdrachtWindow();               
+                VoorwaardenOpdrachtWindow voorwaardenVoorOpdracht = new VoorwaardenOpdrachtWindow(opdracht);               
                 voorwaardenVoorOpdracht.ShowDialog();
                 this.Close();
             }

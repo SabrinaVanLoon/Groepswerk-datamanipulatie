@@ -251,6 +251,17 @@ namespace EntityFramework_DAL
                 return 0;
             }
         }
+        public static List<a_Graansoort> OphalenGraansoortenEnWeerseffect(int id)
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                var query = entities.a_Graansoort
+                   .Where(a => a.a_Opdrachten.Any(b => b.Id == id))
+                              .Include(x => x.a_Opdrachten)
+                              .Include(x => x.a_Weerseffectten.Select(sub => sub.a_Weersomstandigheid));
 
+                return query.ToList();
+            }
+        }
     }
 }
