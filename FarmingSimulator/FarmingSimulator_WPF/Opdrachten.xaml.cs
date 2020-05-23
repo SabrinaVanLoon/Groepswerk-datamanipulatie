@@ -35,8 +35,7 @@ namespace FarmingSimulator_WPF
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-               
-                VoorwaardenOpdrachtWindow voorwaardenVoorOpdracht = new VoorwaardenOpdrachtWindow();               
+                VoorwaardenOpdrachtWindow voorwaardenVoorOpdracht = new VoorwaardenOpdrachtWindow(opdracht);
                 voorwaardenVoorOpdracht.ShowDialog();
                 this.Close();
             }
