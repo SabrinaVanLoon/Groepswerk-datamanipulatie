@@ -60,8 +60,8 @@ namespace FarmingSimulator_WPF
             Random rndNamen = new Random();
             string[] boer = { "Rufus", "Luc", "Victor", "Fido", "Sisco" };
             string[] boerin = { "Maggie", "Penny", "Sophie", "Anita", "Abby" };
-            int man = rndNamen.Next(boer.Length);
-            int vrouw = rndNamen.Next(boerin.Length);
+            int man = rndNamen.Next(boer.Length - 1);
+            int vrouw = rndNamen.Next(boerin.Length - 1);
             Random rndGetalTotVoltooienOpdracht = new Random();
 
             txbVoorwaarden.Text = "";
