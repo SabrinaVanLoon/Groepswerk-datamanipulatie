@@ -39,7 +39,7 @@ namespace FarmingSimulator_UnitTest
         }
 
         [TestMethod]
-        public void Aantal_Gereedschap_AantalInvoerGelijk()
+        public void Gereedschap_GeldigIsTrue()
         {
             //arrange
             a_Gereedschap gereedschap = new a_Gereedschap();
@@ -62,7 +62,31 @@ namespace FarmingSimulator_UnitTest
         //    Assert.IsTrue(gereedschap.naam.Length >= 2);
         //}
 
+        [TestMethod]
+        public void ToevoegenEnVerwijderen_Gereedschap_Huurlijst()
+        {
+           //arrange
+            a_GehuurdGereedschap gehuurdgereedschap = new a_GehuurdGereedschap();
+            int speler_Id = 1;
+            int gereedschap_Id = 4;
+            int verwijderen = -1;
+            gehuurdgereedschap.speler_Id = speler_Id;
+            gehuurdgereedschap.gereedschap_Id = gereedschap_Id;
 
+            //act
+            int resultaat = DatabaseOperations.ToevoegenGehuurdGereedschap(gehuurdgereedschap);//gereedschap toegevoegd
+
+            if (resultaat > 0)
+            {
+                verwijderen = DatabaseOperations.VerwijderGehuurdGereedschapHuurlijst(gehuurdgereedschap);//gereedschap verwijderd
+            }
+
+
+            //assert
+            Assert.IsTrue(verwijderen == 1);
+
+
+        }
 
 
     }

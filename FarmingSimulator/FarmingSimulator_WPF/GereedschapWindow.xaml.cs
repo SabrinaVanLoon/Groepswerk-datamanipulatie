@@ -214,7 +214,7 @@ namespace FarmingSimulator_WPF
                     int ok = DatabaseOperations.AanpassenGereedschap(gereedschap);
                     if (ok > 0)
                     {
-                        DataGridGereedschap.ItemsSource = DatabaseOperations.OphalenGereedschapOpNaam(gereedschap.naam);
+                        DataGridGereedschap.ItemsSource = DatabaseOperations.OphalenGereedschapOpNaam(txtZoekOpNaam.Text);
                         
                         Resetten();
                     }
