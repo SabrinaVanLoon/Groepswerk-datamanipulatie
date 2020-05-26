@@ -39,13 +39,9 @@
           <Property Name="speler_Id" Type="int" Nullable="false" />
           <Property Name="voertuig_Id" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'DB_r0794089.dbo.a_Gekocht_dier' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="a_Gekocht_dier">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="speler_id" />
-            <PropertyRef Name="dier_id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="speler_id" Type="int" Nullable="false" />
@@ -470,6 +466,7 @@ warning 6002: The table/view 'DB_r0794089.dbo.a_Gekocht_dier' does not have a pr
           <EntitySet Name="a_Dier" EntityType="Self.a_Dier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="a_GehuurdGereedschap" EntityType="Self.a_GehuurdGereedschap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="a_GehuurdVoertuig" EntityType="Self.a_GehuurdVoertuig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="a_Gekocht_dier" EntityType="Self.a_Gekocht_dier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="a_GekochtGereedschap" EntityType="Self.a_GekochtGereedschap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="a_GekochtVoertuig" EntityType="Self.a_GekochtVoertuig" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="a_Gereedschap" EntityType="Self.a_Gereedschap" Schema="dbo" store:Type="Tables" />
@@ -482,13 +479,6 @@ warning 6002: The table/view 'DB_r0794089.dbo.a_Gekocht_dier' does not have a pr
           <EntitySet Name="a_Voertuig" EntityType="Self.a_Voertuig" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="a_Weerseffect" EntityType="Self.a_Weerseffect" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="a_Weersomstandigheid" EntityType="Self.a_Weersomstandigheid" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="a_Gekocht_dier" EntityType="Self.a_Gekocht_dier" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [a_Gekocht_dier].[id] AS [id], 
-    [a_Gekocht_dier].[speler_id] AS [speler_id], 
-    [a_Gekocht_dier].[dier_id] AS [dier_id]
-    FROM [dbo].[a_Gekocht_dier] AS [a_Gekocht_dier]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_a_Dier_a_Speler" Association="Self.FK_a_Dier_a_Speler">
             <End Role="a_Speler" EntitySet="a_Speler" />
             <End Role="a_Dier" EntitySet="a_Dier" />
@@ -1188,8 +1178,6 @@ warning 6002: The table/view 'DB_r0794089.dbo.a_Gekocht_dier' does not have a pr
         <EntityType Name="a_Gekocht_dier">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="speler_id" />
-            <PropertyRef Name="dier_id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="speler_id" Type="Int32" Nullable="false" />

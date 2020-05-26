@@ -22,8 +22,7 @@ namespace EntityFramework_DAL
             this.a_GekochtGereedschappen = new HashSet<a_GekochtGereedschap>();
             this.a_Huurlijsten = new HashSet<a_Huurlijst>();
         }
-
-        
+    
         public int Id { get; set; }
         public string type { get; set; }
         public string naam { get; set; }

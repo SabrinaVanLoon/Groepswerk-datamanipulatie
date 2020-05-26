@@ -124,7 +124,33 @@ namespace EntityFramework_DAL
                 FileOperations.FoutLoggen(ex);
                 return 0;
             }
+        }
 
+        public static int VerwijderGekochtVoertuig(a_GekochtVoertuig gekochtVoertuig)
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                entities.Entry(gekochtVoertuig).State = EntityState.Deleted;
+                return entities.SaveChanges();
+            }
+        }
+
+        public static int VerwijderGekochtGereedschap(a_GekochtGereedschap gekochtGereedschap)
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                entities.Entry(gekochtGereedschap).State = EntityState.Deleted;
+                return entities.SaveChanges();
+            }
+        }
+
+        public static int VerwijderGekochtDier(a_Gekocht_dier gekochtDier)
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                entities.Entry(gekochtDier).State = EntityState.Deleted;
+                return entities.SaveChanges();
+            }
 
         }
 
@@ -184,7 +210,18 @@ namespace EntityFramework_DAL
                 return farmSimulatorEntities.SaveChanges();
             }
         }
-    
+
+        public static int ToevoegenGekochtDier(a_Gekocht_dier gekochtdier)
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                entities.a_Gekocht_dier.Add(gekochtdier); //meervoud gaat niet
+
+
+                return entities.SaveChanges();
+            }
+        }
+
         public static int ToevoegenGekochtVoertuig(a_GekochtVoertuig gekochtvoertuig)
         {
             using (MyFarmEntities entities = new MyFarmEntities())
@@ -212,6 +249,16 @@ namespace EntityFramework_DAL
             }
         }
 
+        public static List<a_GekochtGereedschap> OphalenGekochteGereedschappen()
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                var query = entities.a_GekochtGereedschap
+                .Include(x => x.a_Gereedschap)
+                .Include(x => x.a_Speler);
+                return query.ToList();
+            }
+        }
 
         public static List<a_GehuurdVoertuig> OphalenGehuurdVoertuig()
         {
@@ -219,6 +266,18 @@ namespace EntityFramework_DAL
             {
                 var query = entities.a_GehuurdVoertuig
                 .Include(x => x.a_Voertuig)
+                .Include(x => x.a_Speler);
+                return query.ToList();
+            }
+        }
+
+
+        public static List<a_Gekocht_dier> OphalenGekochteDieren()
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                var query = entities.a_Gekocht_dier
+                .Include(x => x.a_Dier)
                 .Include(x => x.a_Speler);
                 return query.ToList();
             }
@@ -259,7 +318,6 @@ namespace EntityFramework_DAL
                    .Where(a => a.a_Opdrachten.Any(b => b.Id == id))
                               .Include(x => x.a_Opdrachten)
                               .Include(x => x.a_Weerseffectten.Select(sub => sub.a_Weersomstandigheid));
-
                 return query.ToList();
             }
         }

@@ -28,7 +28,80 @@ namespace FarmingSimulator_WPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             List<a_GekochtVoertuig> gekochtVoertuig = DatabaseOperations.OphalenGekochteVoertuigen();
-            DataGridKooplijst.ItemsSource = gekochtVoertuig;
+            DataGridVoertuigen.ItemsSource = gekochtVoertuig;
+
+            List<a_GekochtGereedschap> gekochtGereeedschap = DatabaseOperations.OphalenGekochteGereedschappen();
+            DataGridGereedschappen.ItemsSource = gekochtGereeedschap;
+
+            List<a_Gekocht_dier> gekochtDier = DatabaseOperations.OphalenGekochteDieren();
+            DataGridDieren.ItemsSource = gekochtDier;
+        }
+
+        private void btnVerkopen_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(Valideer("Voertuig")))
+            {
+                MessageBox.Show("voertuig");
+            }
+            else if (string.IsNullOrWhiteSpace(Valideer("Gereedschap")))
+            {
+                MessageBox.Show("geredschap");
+            }
+            else if (string.IsNullOrWhiteSpace(Valideer("Dier")))
+            {
+                MessageBox.Show("dier");
+            }
+            else
+            {
+                MessageBox.Show("Selecteer eerst een item!", "Verkopen", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void btnVoertuigwinkel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            Voertuig winkel = new Voertuig();
+            winkel.ShowDialog();
+        }
+
+        private void btnGereedschapwinkel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            GereedschapWindow winkel = new GereedschapWindow();
+            winkel.ShowDialog();
+        }
+
+        private void btnDierenwinkel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            DierenWindow winkel = new DierenWindow();
+            winkel.ShowDialog();
+        }
+
+        private void btnTerug_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            Menu menu = new Menu();
+            menu.ShowDialog();
+        }
+
+        private string Valideer(string columnName)
+        {
+            if (columnName == "Voertuig" && DataGridVoertuigen.SelectedItem == null)
+            {
+                return "Selecteer eerst een item!";
+            }
+
+            if (columnName == "Gereedschap" && DataGridGereedschappen.SelectedItem == null)
+            {
+                return "Selecteer eerst een item!";
+            }
+
+            if (columnName == "Dier" && DataGridDieren.SelectedItem == null)
+            {
+                return "Selecteer eerst een item!";
+            }
+            return "";
         }
     }
 }
