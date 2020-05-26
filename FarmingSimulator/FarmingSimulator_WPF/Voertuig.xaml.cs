@@ -38,6 +38,7 @@ namespace FarmingSimulator_WPF
             {
                 MessageBox.Show(foutmeldingen, "Opgelet", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            txtZoekOpType.IsEnabled = false;
         }
 
         private void btnZoekVoertuigOpNaam_Click(object sender, RoutedEventArgs e)
@@ -57,59 +58,99 @@ namespace FarmingSimulator_WPF
         private void btnKopen_Click(object sender, RoutedEventArgs e)
         {
             string foutmeldingen = Valideer("Voertuig");
+            foutmeldingen += Valideer("Hoeveelheid");
 
             a_Voertuig voertuig = (a_Voertuig)DataGridVoertuig.SelectedItem;
            
-            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            if (string.IsNullOrWhiteSpace(foutmeldingen) && int.TryParse(txtHoeveelheid.Text, out int hoeveelheid))
             {
                 MessageBoxResult antwoord = MessageBox.Show($"Dit voertuig kopen? {Environment.NewLine} {voertuig.naam} {voertuig.merk} {voertuig.type}", "IN WINKELWAGEN", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (antwoord == MessageBoxResult.Yes)
                 {
-                    a_GekochtVoertuig gekochtvoertuig = new a_GekochtVoertuig();
-                    gekochtvoertuig.voertuig_Id = voertuig.Id;
-                    gekochtvoertuig.speler_Id = InlogGegevens.ID;
-
-                    int yes = DatabaseOperations.ToevoegenGekochtVoertuig(gekochtvoertuig);
-
-                    if (yes > 0)
+                    voertuig.Hoeveelheid = int.Parse(txtHoeveelheid.Text);
+                    if (voertuig.IsGeldig())
                     {
-                        KooplijstWindow gekocht = new KooplijstWindow();
-                        gekocht.ShowDialog();
+                        int yes = 0;
+                      
+                        for (int i = 0; i < hoeveelheid; i++)
+                        {
+                            a_GekochtVoertuig gekochtvoertuig = new a_GekochtVoertuig();
+                            gekochtvoertuig.voertuig_Id = voertuig.Id;
+                            gekochtvoertuig.speler_Id = InlogGegevens.ID;
+
+                            yes = DatabaseOperations.ToevoegenGekochtVoertuig(gekochtvoertuig);
+                        }
+
+                        if (yes > 0)
+                        {
+                            KooplijstWindow gekocht = new KooplijstWindow();
+                            gekocht.ShowDialog();
+                            this.Close();
+                        }
+                    }
+                    else 
+                    {
+                        MessageBox.Show(voertuig.Error);
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show(foutmeldingen);
             }
         }
 
         private void btnHuren_Click(object sender, RoutedEventArgs e)
         {
             string foutmeldingen = Valideer("Voertuig");
+            foutmeldingen += Valideer("Hoeveelheid");
 
-            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            a_Voertuig voertuig = (a_Voertuig)DataGridVoertuig.SelectedItem;
+
+            if (string.IsNullOrWhiteSpace(foutmeldingen) && int.TryParse(txtHoeveelheid.Text, out int hoeveelheid))
             {
-                a_Voertuig voertuig = (a_Voertuig)DataGridVoertuig.SelectedItem;
                 MessageBoxResult antwoord = MessageBox.Show($"Dit voertuig huren? {Environment.NewLine} {voertuig.naam} {voertuig.merk} {voertuig.type}", "IN WINKELWAGEN", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (antwoord == MessageBoxResult.Yes)
                 {
-                    a_GehuurdVoertuig gehuurdVoertuig = new a_GehuurdVoertuig();
-                    gehuurdVoertuig.voertuig_Id = voertuig.Id;
-                    gehuurdVoertuig.speler_Id = InlogGegevens.ID;
+                    voertuig.Hoeveelheid = int.Parse(txtHoeveelheid.Text);
 
-
-                    int yes = DatabaseOperations.ToevoegenGehuurdVoertuig(gehuurdVoertuig);
-
-                    if (yes > 0)
+                    if (voertuig.IsGeldig())
                     {
-                        HuurlijstWindow gekocht = new HuurlijstWindow();
-                        gekocht.ShowDialog();
+                        int yes = 0;
+
+                        for (int i = 0; i < hoeveelheid; i++)
+                        {
+                            a_GehuurdVoertuig gehuurdVoertuig = new a_GehuurdVoertuig();
+                            gehuurdVoertuig.voertuig_Id = voertuig.Id;
+                            gehuurdVoertuig.speler_Id = InlogGegevens.ID;
+
+                            yes = DatabaseOperations.ToevoegenGehuurdVoertuig(gehuurdVoertuig);
+                        }
+                        if (yes > 0)
+                        {
+                            HuurlijstWindow gekocht = new HuurlijstWindow();
+                            gekocht.ShowDialog();
+                            this.Close();
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show(voertuig.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(foutmeldingen);
                 }
             }
         }
 
         private void btnTerugNaarMenu_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             Menu menu = new Menu();
             menu.ShowDialog();
+            this.Close();
         }
         private string Valideer(string columnName)
         {
@@ -133,6 +174,10 @@ namespace FarmingSimulator_WPF
                     "\t-tractoren" + Environment.NewLine +
                     "\t-katoentechnologie";
             }
+            if (columnName == "Hoeveelheid" && !int.TryParse(txtHoeveelheid.Text, out int hoeveelheid))
+            {
+                return "Vul in hoeveel voertuigen je wil kopen of huren";
+            }
             return "";
         }
 
@@ -143,6 +188,37 @@ namespace FarmingSimulator_WPF
                 txtZoekOpNaam.Text = voertuig.naam;
                 txtZoekOpType.Text = voertuig.type;
             }
+        }
+
+        private void btnPersonaliseer_Click(object sender, RoutedEventArgs e)
+        {
+            string foutmeldingen = Valideer("Voertuig");
+            foutmeldingen += Valideer("naam");
+
+            a_Voertuig voertuig = (a_Voertuig)DataGridVoertuig.SelectedItem;
+            voertuig.naam = txtZoekOpNaam.Text;
+           
+            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            {
+                if (voertuig.IsGeldig())
+                {
+                    int inOrde = DatabaseOperations.PersonaliseerMijnVoertuig(voertuig);
+
+                    if (inOrde > 0)
+                    {
+                        DataGridVoertuig.ItemsSource = DatabaseOperations.OphalenVoertuigenOpNaam(txtZoekOpNaam.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Naam van je voertuig is niet aangepast");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(voertuig.Error);
+                }
+            }
+        
         }
     }
 }

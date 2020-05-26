@@ -29,10 +29,12 @@
         </Grid.RowDefinitions>
         <DataGrid x:Name="DataGridVoertuigen" AutoGenerateColumns="False" Margin="10" BorderThickness="1" Grid.RowSpan="4">
             <DataGrid.Columns>
+
                 <!--<DataGridTextColumn Header="Speler" Width="100" Binding="{Binding a_Speler.naam}"></DataGridTextColumn>-->
                 <DataGridTextColumn Header="Voertuig" Width="200" Binding="{Binding a_Voertuig.naam }"></DataGridTextColumn>
                 <DataGridTextColumn Header="Waarde" Width="100" Binding="{Binding a_Voertuig.basisprijs}"></DataGridTextColumn>
                 <!--<DataGridTextColumn Header="Aantal" Width="100"/>-->
+
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid x:Name="DataGridGereedschappen" AutoGenerateColumns="False" Margin="10" BorderThickness="1" Grid.Row="4">

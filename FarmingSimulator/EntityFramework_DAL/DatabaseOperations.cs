@@ -74,30 +74,60 @@ namespace EntityFramework_DAL
             }
         }
 
+        public static int AanpassenGereedschap(a_Gereedschap gereedschap)
+        {
+            try
+            {
+                using (MyFarmEntities entities = new MyFarmEntities())
+                {
+                    entities.Entry(gereedschap).State = EntityState.Modified;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+        }
+
         public static int ToevoegenGehuurdGereedschap(a_GehuurdGereedschap gehuurdgereedschap)
         {
-            using (MyFarmEntities entities = new MyFarmEntities())
+            try
             {
-                entities.a_GehuurdGereedschap.Add(gehuurdgereedschap); //meervoud gaat niet
-
-
-                return entities.SaveChanges();
+                using (MyFarmEntities entities = new MyFarmEntities())
+                {
+                    entities.a_GehuurdGereedschap.Add(gehuurdgereedschap); //meervoud gaat niet
+                    return entities.SaveChanges();
+                }
             }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+            
         }
 
         public static int VerwijderGehuurdGereedschapHuurlijst(a_GehuurdGereedschap gehuurdgereedschap)
         {
-
-            using (MyFarmEntities entities = new MyFarmEntities())
+            try
             {
-                entities.Entry(gehuurdgereedschap).State = EntityState.Deleted;
-                return entities.SaveChanges();
+                using (MyFarmEntities entities = new MyFarmEntities())
+                {
+                    entities.Entry(gehuurdgereedschap).State = EntityState.Deleted;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
             }
         }
 
         public static int VerwijderGekochtVoertuig(a_GekochtVoertuig gekochtVoertuig)
         {
-
             using (MyFarmEntities entities = new MyFarmEntities())
             {
                 entities.Entry(gekochtVoertuig).State = EntityState.Deleted;
@@ -107,7 +137,6 @@ namespace EntityFramework_DAL
 
         public static int VerwijderGekochtGereedschap(a_GekochtGereedschap gekochtGereedschap)
         {
-
             using (MyFarmEntities entities = new MyFarmEntities())
             {
                 entities.Entry(gekochtGereedschap).State = EntityState.Deleted;
@@ -117,14 +146,32 @@ namespace EntityFramework_DAL
 
         public static int VerwijderGekochtDier(a_Gekocht_dier gekochtDier)
         {
-
             using (MyFarmEntities entities = new MyFarmEntities())
             {
                 entities.Entry(gekochtDier).State = EntityState.Deleted;
                 return entities.SaveChanges();
             }
+
         }
 
+        public static int VerwijderGehuurdVoertuigHuurlijst(a_GehuurdVoertuig gehuurdvoertuig)
+        {
+            try
+            {
+                using (MyFarmEntities entities = new MyFarmEntities())
+                {
+                    entities.Entry(gehuurdvoertuig).State = EntityState.Deleted;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+
+
+        }
         public static int ToevoegenGekochtGereedschap(a_GekochtGereedschap gekochtgereedschap)
         {
             using (MyFarmEntities entities = new MyFarmEntities())
@@ -213,6 +260,18 @@ namespace EntityFramework_DAL
             }
         }
 
+        public static List<a_GehuurdVoertuig> OphalenGehuurdVoertuig()
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                var query = entities.a_GehuurdVoertuig
+                .Include(x => x.a_Voertuig)
+                .Include(x => x.a_Speler);
+                return query.ToList();
+            }
+        }
+
+
         public static List<a_Gekocht_dier> OphalenGekochteDieren()
         {
             using (MyFarmEntities entities = new MyFarmEntities())
@@ -220,6 +279,45 @@ namespace EntityFramework_DAL
                 var query = entities.a_Gekocht_dier
                 .Include(x => x.a_Dier)
                 .Include(x => x.a_Speler);
+                return query.ToList();
+            }
+        }
+
+        public static List<a_Opdracht> OphalenGegevensOpdracht()
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                var query = entities.a_Opdracht /*&& entities.a_Weersomstandigheid*/
+                    .Include(x => x.a_Graansoort);
+                return query.ToList();
+
+            }
+        }
+
+        public static int PersonaliseerMijnVoertuig(a_Voertuig voertuig)
+        {
+            try
+            {
+                using (MyFarmEntities entities = new MyFarmEntities())
+                {
+                    entities.Entry(voertuig).State = EntityState.Modified;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+        }
+        public static List<a_Graansoort> OphalenGraansoortenEnWeerseffect(int id)
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                var query = entities.a_Graansoort
+                   .Where(a => a.a_Opdrachten.Any(b => b.Id == id))
+                              .Include(x => x.a_Opdrachten)
+                              .Include(x => x.a_Weerseffectten.Select(sub => sub.a_Weersomstandigheid));
                 return query.ToList();
             }
         }
