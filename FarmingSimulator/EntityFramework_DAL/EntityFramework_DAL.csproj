@@ -104,7 +104,9 @@
     <Compile Include="a_Weersomstandigheid.cs">
       <DependentUpon>FarmSimulatorModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseOperations.cs" />
+    <Compile Include="DatabaseOperations.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="FarmSimulatorModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -120,7 +122,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FarmSimulatorModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="FileOperations.cs" />
+    <Compile Include="FileOperations.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="partials\a_GehuurdGereedschap.cs" />
     <Compile Include="partials\a_GekochtGereedschap.cs" />
     <Compile Include="partials\a_Gereedschap.cs" />
