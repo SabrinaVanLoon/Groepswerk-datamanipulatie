@@ -296,19 +296,12 @@ namespace EntityFramework_DAL
 
         public static int PersonaliseerMijnVoertuig(a_Voertuig voertuig)
         {
-            try
+            using (MyFarmEntities entities = new MyFarmEntities())
             {
-                using (MyFarmEntities entities = new MyFarmEntities())
-                {
-                    entities.Entry(voertuig).State = EntityState.Modified;
-                    return entities.SaveChanges();
-                }
+                entities.Entry(voertuig).State = EntityState.Modified;
+                return entities.SaveChanges();
             }
-            catch (Exception ex)
-            {
-                FileOperations.FoutLoggen(ex);
-                return 0;
-            }
+
         }
         public static List<a_Graansoort> OphalenGraansoortenEnWeerseffect(int id)
         {
@@ -316,8 +309,8 @@ namespace EntityFramework_DAL
             {
                 var query = entities.a_Graansoort
                    .Where(a => a.a_Opdrachten.Any(b => b.Id == id))
-                              .Include(x => x.a_Opdrachten)
-                              .Include(x => x.a_Weerseffectten.Select(sub => sub.a_Weersomstandigheid));
+                   .Include(x => x.a_Opdrachten)
+                   .Include(x => x.a_Weerseffectten.Select(sub => sub.a_Weersomstandigheid));
                 return query.ToList();
             }
         }
