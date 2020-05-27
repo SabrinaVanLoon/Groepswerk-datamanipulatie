@@ -37,19 +37,53 @@ namespace FarmingSimulator_WPF
             DataGridDieren.ItemsSource = gekochtDier;
         }
 
-        private void btnVerkopen_Click(object sender, RoutedEventArgs e)
+        private void btnVoertuigVerkopen_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(Valideer("Voertuig")))
             {
-                MessageBox.Show("voertuig");
+                a_GekochtVoertuig gekochtVoertuig = DataGridVoertuigen.SelectedItem as a_GekochtVoertuig;
+                MessageBoxResult antwoord = MessageBox.Show($"Wil je dit voertuig verkopen?", "Verkopen", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (antwoord == MessageBoxResult.Yes)
+                {
+                    DatabaseOperations.VerwijderGekochtVoertuig(gekochtVoertuig);
+                    DataGridVoertuigen.ItemsSource = DatabaseOperations.OphalenGekochteVoertuigen();
+                }
             }
-            else if (string.IsNullOrWhiteSpace(Valideer("Gereedschap")))
+            else
             {
-                MessageBox.Show("geredschap");
+                MessageBox.Show("Selecteer eerst een item!", "Verkopen", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else if (string.IsNullOrWhiteSpace(Valideer("Dier")))
+        }
+
+        private void btnGereedschapVerkopen_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(Valideer("Gereedschap")))
             {
-                MessageBox.Show("dier");
+                a_GekochtGereedschap gekochtGereedschap = DataGridGereedschappen.SelectedItem as a_GekochtGereedschap;
+                MessageBoxResult antwoord = MessageBox.Show($"Wil je dit gereedschap verkopen?", "Verkopen", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (antwoord == MessageBoxResult.Yes)
+                {
+                    DatabaseOperations.VerwijderGekochtGereedschap(gekochtGereedschap);
+                    DataGridGereedschappen.ItemsSource = DatabaseOperations.OphalenGekochteGereedschappen();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecteer eerst een item!", "Verkopen", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void btnDierVerkopen_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(Valideer("Dier")))
+            {
+                a_Gekocht_dier gekochtDier = DataGridDieren.SelectedItem as a_Gekocht_dier;
+                MessageBoxResult antwoord = MessageBox.Show($"Wil je dit dier verkopen?", "Verkopen", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (antwoord == MessageBoxResult.Yes)
+                {
+                    DatabaseOperations.VerwijderGekochtDier(gekochtDier);
+                    DataGridDieren.ItemsSource = DatabaseOperations.OphalenGekochteDieren();
+                }
             }
             else
             {
@@ -87,17 +121,17 @@ namespace FarmingSimulator_WPF
 
         private string Valideer(string columnName)
         {
-            if (columnName == "Voertuig" && DataGridVoertuigen.SelectedItem == null)
+            if (columnName == "Voertuig" && DataGridVoertuigen.SelectedItem is a_GekochtVoertuig)
             {
                 return "Selecteer eerst een item!";
             }
 
-            if (columnName == "Gereedschap" && DataGridGereedschappen.SelectedItem == null)
+            if (columnName == "Gereedschap" && DataGridGereedschappen.SelectedItem is a_GekochtGereedschap)
             {
                 return "Selecteer eerst een item!";
             }
 
-            if (columnName == "Dier" && DataGridDieren.SelectedItem == null)
+            if (columnName == "Dier" && DataGridDieren.SelectedItem is a_Gekocht_dier)
             {
                 return "Selecteer eerst een item!";
             }
