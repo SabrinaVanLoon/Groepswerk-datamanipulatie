@@ -109,26 +109,26 @@ namespace FarmingSimulator_WPF
 
             if (string.IsNullOrWhiteSpace(foutmeldingen) && int.TryParse(txtHoeveelheid.Text, out int hoeveelheid))
             {
-                MessageBoxResult antwoord = MessageBox.Show($"Dit voertuig huren? {Environment.NewLine} {voertuig.naam} {voertuig.merk} {voertuig.type}", "IN WINKELWAGEN", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult antwoord = MessageBox.Show($"Dit voertuig huren? {Environment.NewLine} {voertuig.naam} {voertuig.merk} {voertuig.type}", "IN HUURLIJST", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (antwoord == MessageBoxResult.Yes)
                 {
                     voertuig.Hoeveelheid = int.Parse(txtHoeveelheid.Text);
-
                     if (voertuig.IsGeldig())
                     {
                         int yes = 0;
 
                         for (int i = 0; i < hoeveelheid; i++)
                         {
-                            a_GehuurdVoertuig gehuurdVoertuig = new a_GehuurdVoertuig();
-                            gehuurdVoertuig.voertuig_Id = voertuig.Id;
-                            gehuurdVoertuig.speler_Id = InlogGegevens.ID;
+                            a_GehuurdVoertuig gehuurdvoertuig = new a_GehuurdVoertuig();
+                            gehuurdvoertuig.voertuig_Id = voertuig.Id;
+                            gehuurdvoertuig.speler_Id = InlogGegevens.ID;
 
-                            yes = DatabaseOperations.ToevoegenGehuurdVoertuig(gehuurdVoertuig);
+                            yes = DatabaseOperations.ToevoegenGehuurdVoertuig(gehuurdvoertuig);
                         }
+
                         if (yes > 0)
                         {
-                            HuurlijstWindow gekocht = new HuurlijstWindow();
+                            KooplijstWindow gekocht = new KooplijstWindow();
                             gekocht.ShowDialog();
                             this.Close();
                         }
@@ -138,10 +138,10 @@ namespace FarmingSimulator_WPF
                         MessageBox.Show(voertuig.Error);
                     }
                 }
-                else
-                {
-                    MessageBox.Show(foutmeldingen);
-                }
+            }
+            else
+            {
+                MessageBox.Show(foutmeldingen);
             }
         }
 
@@ -160,19 +160,19 @@ namespace FarmingSimulator_WPF
             }
             if (columnName == "naam" && string.IsNullOrWhiteSpace(txtZoekOpNaam.Text))
             {
-                return "Gelieve eerst een naam van het voertuig op te geven!" + Environment.NewLine + "Bijvoorbeeld:" + Environment.NewLine +
-                    "\t-MF 5600" + Environment.NewLine +
-                    "\t-500 Favorit" + Environment.NewLine +
-                    "\t-Series" + Environment.NewLine +
-                    "\t-Pickup";
+                return $"Gelieve eerst een naam van het voertuig op te geven! {Environment.NewLine} Bijvoorbeeld: {Environment.NewLine}" + 
+                    $"\t-MF 5600 {Environment.NewLine}" +
+                    $"\t-500 Favorit{Environment.NewLine}" +
+                    $"\t-Series {Environment.NewLine}" +
+                    $"\t-Pickup {Environment.NewLine} ";
             }
             if (columnName == "type" && string.IsNullOrWhiteSpace(txtZoekOpType.Text))
             {
-                return "Gelieve eerst een type van het voertuig op te geven!" + Environment.NewLine + "Bijvoorbeeld:" + Environment.NewLine +
-                    "\t-auto" + Environment.NewLine +
-                    "\t-oogstmachines" + Environment.NewLine +
-                    "\t-tractoren" + Environment.NewLine +
-                    "\t-katoentechnologie";
+                return $"Gelieve eerst een type van het voertuig op te geven! {Environment.NewLine} Bijvoorbeeld: {Environment.NewLine}" +
+                    $"\t-auto {Environment.NewLine}" +
+                    $"\t-oogstmachines { Environment.NewLine}" +
+                    $"\t-tractoren {Environment.NewLine}" +
+                    $"\t-katoentechnologie {Environment.NewLine}";
             }
             if (columnName == "Hoeveelheid" && !int.TryParse(txtHoeveelheid.Text, out int hoeveelheid))
             {
@@ -195,11 +195,10 @@ namespace FarmingSimulator_WPF
             string foutmeldingen = Valideer("Voertuig");
             foutmeldingen += Valideer("naam");
 
-            a_Voertuig voertuig = (a_Voertuig)DataGridVoertuig.SelectedItem;
-            voertuig.naam = txtZoekOpNaam.Text;
-           
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
+                a_Voertuig voertuig = (a_Voertuig)DataGridVoertuig.SelectedItem;
+                voertuig.naam = txtZoekOpNaam.Text;
                 if (voertuig.IsGeldig())
                 {
                     int inOrde = DatabaseOperations.PersonaliseerMijnVoertuig(voertuig);
@@ -218,7 +217,10 @@ namespace FarmingSimulator_WPF
                     MessageBox.Show(voertuig.Error);
                 }
             }
-        
+            else
+            {
+                MessageBox.Show(foutmeldingen);
+            }
         }
     }
 }
