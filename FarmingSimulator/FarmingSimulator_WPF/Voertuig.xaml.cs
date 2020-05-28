@@ -128,8 +128,8 @@ namespace FarmingSimulator_WPF
 
                         if (yes > 0)
                         {
-                            KooplijstWindow gekocht = new KooplijstWindow();
-                            gekocht.ShowDialog();
+                            HuurlijstWindow gehuurd = new HuurlijstWindow();
+                            gehuurd.ShowDialog();
                             this.Close();
                         }
                     }
