@@ -19,10 +19,8 @@ namespace EntityFramework_DAL
         public int gereedschap_Id { get; set; }
         public int voertuig_Id { get; set; }
     
-
         public virtual a_Gereedschap a_Gereedschap { get; set; }
         public virtual a_Speler a_Speler { get; set; }
         public virtual a_Voertuig a_Voertuig { get; set; }
-
     }
 }

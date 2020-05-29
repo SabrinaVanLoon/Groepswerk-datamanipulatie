@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FarmingSimulator_MODELS;
 
 namespace FarmingSimulator_WPF
 {
@@ -25,15 +26,32 @@ namespace FarmingSimulator_WPF
             InitializeComponent();
         }
 
-      
+
         private void btnBekijk_Click(object sender, RoutedEventArgs e)
         {
+            string foutmeldingen = Valideer("Opdrachten");
 
+            a_Opdracht opdracht = (a_Opdracht)DataGridOpdrachten.SelectedItem;
+
+            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            {
+                this.Hide();
+                VoorwaardenOpdrachtWindow voorwaardenVoorOpdracht = new VoorwaardenOpdrachtWindow(opdracht);               
+                voorwaardenVoorOpdracht.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(foutmeldingen, "fout", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnTerugNaarMenu_Click_1(object sender, RoutedEventArgs e)
         {
-
+            this.Hide();
+            Menu menu = new Menu();
+            menu.ShowDialog();
+            this.Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -42,6 +60,13 @@ namespace FarmingSimulator_WPF
             DataGridOpdrachten.ItemsSource = lijstVanOpdrachten;
         }
 
-
+        private string Valideer(string columnName)
+        {
+            if (columnName == "Opdrachten" && DataGridOpdrachten.SelectedItem == null)
+            {
+                return "Selecteer een opdracht om deze te bekijken aub!";
+            }
+            return "";
+        }
     }
 }
