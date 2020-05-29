@@ -154,6 +154,16 @@ namespace EntityFramework_DAL
 
         }
 
+        public static int VerwijderSpeler(a_Speler speler)
+        {
+            using (MyFarmEntities entities = new MyFarmEntities())
+            {
+                entities.Entry(speler).State = EntityState.Deleted;
+                return entities.SaveChanges();
+            }
+
+        }
+
         public static int VerwijderGehuurdVoertuigHuurlijst(a_GehuurdVoertuig gehuurdvoertuig)
         {
             try

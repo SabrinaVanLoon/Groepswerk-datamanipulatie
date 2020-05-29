@@ -41,6 +41,7 @@ namespace FarmingSimulator_WPF
                 this.Hide();
                 Menu menu = new Menu();
                 menu.ShowDialog();
+                this.Close();
             }
             else
             {
@@ -56,23 +57,30 @@ namespace FarmingSimulator_WPF
                 a_Speler speler = new a_Speler();
                 speler.naam = txtNieuweSpeler.Text;
                 MessageBoxResult antwoord = MessageBox.Show($"Deze speler toevoegen? {Environment.NewLine} {speler.naam}", "Speler toevoegen", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (antwoord == MessageBoxResult.Yes)
+                if (speler.IsGeldig())
                 {
-                    speler.level = 0;
-                    speler.kapitaal = 10000;
-
-                    MessageBoxResult Geslacht = MessageBox.Show("Is de speler een man?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (Geslacht == MessageBoxResult.Yes)
+                    if (antwoord == MessageBoxResult.Yes)
                     {
-                        speler.geslacht = "man";
-                    }
-                    else
-                    {
-                        speler.geslacht = "vrouw";
-                    }
+                        speler.level = 0;
+                        speler.kapitaal = 10000;
 
-                    DatabaseOperations.ToevoegenSpeler(speler);
-                    cmbSpelers.Items.Refresh();
+                        MessageBoxResult Geslacht = MessageBox.Show("Is de speler een man?", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        if (Geslacht == MessageBoxResult.Yes)
+                        {
+                            speler.geslacht = "man";
+                        }
+                        else
+                        {
+                            speler.geslacht = "vrouw";
+                        }
+
+                        DatabaseOperations.ToevoegenSpeler(speler);
+                        cmbSpelers.ItemsSource = DatabaseOperations.OphalenSpelers();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(speler.Error, "Foutmelding");
                 }
             }
             else

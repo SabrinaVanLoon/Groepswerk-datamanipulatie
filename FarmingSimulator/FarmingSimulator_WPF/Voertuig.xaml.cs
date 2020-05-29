@@ -96,7 +96,7 @@ namespace FarmingSimulator_WPF
             }
             else
             {
-                MessageBox.Show(foutmeldingen);
+                MessageBox.Show(foutmeldingen, "foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -141,7 +141,7 @@ namespace FarmingSimulator_WPF
             }
             else
             {
-                MessageBox.Show(foutmeldingen);
+                MessageBox.Show(foutmeldingen, "foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

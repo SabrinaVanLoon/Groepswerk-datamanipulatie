@@ -1,5 +1,4 @@
-﻿using System;
-using EntityFramework_DAL;
+﻿using EntityFramework_DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
@@ -24,7 +23,7 @@ namespace FarmingSimulator_UnitTest
         
         [TestMethod]
       //  [DataSource("System.Data.SqlClient", "Data Source = edudb.thomasmore.be, 3000;Initial Catalog = DB_r0794089;Persist Security Info = True;User ID = sql_r0794089;Password = sql4you" , "a_Opdracht", DataAccessMethod.Sequential)]
-        public void DataDrivenOpdrachtTest_KrijgLijst()
+        public void Voertuig_LijstOphalen()
         {
             //Arrange
             List<a_Voertuig> voertuigen = new List<a_Voertuig>();
@@ -48,6 +47,7 @@ namespace FarmingSimulator_UnitTest
             gereedschap.Hoeveelheid = 5;
             gereedschap.naam = "abc";
             gereedschap.type = "abc";
+
             //assert
             Assert.IsTrue(gereedschap.IsGeldig());
         }
@@ -84,10 +84,66 @@ namespace FarmingSimulator_UnitTest
 
             //assert
             Assert.IsTrue(verwijderen == 1);
-
-
         }
 
+        [TestMethod]
+        public void NaamSpeler_IsNull_IsNietGeldig()
+        {
+            //arrange
+            a_Speler nieuweSpeler = new a_Speler();
 
+            //act
+            nieuweSpeler.naam = null;
+
+            //assert
+            Assert.IsFalse(nieuweSpeler.IsGeldig());
+        }
+
+        [TestMethod]
+        public void GekochtDier_NaamDier_ZijnGelijk()
+        {
+            //arrange
+            a_Gekocht_dier nieuwGekochtDier = new a_Gekocht_dier();
+            List<a_Dier> LijstDieren = DatabaseOperations.OphalenDieren();
+            a_Dier vergelijkDier = null;
+
+            //act
+            string soort = "paard";
+            nieuwGekochtDier.dier_id = 2; //paard
+            foreach (a_Dier dier in LijstDieren)
+            {
+                if (dier.Id == nieuwGekochtDier.dier_id)
+                {
+                    vergelijkDier = dier;
+                }
+            }
+
+            //assert
+            Assert.AreEqual(soort, vergelijkDier.type);
+        }
+
+        //[TestMethod]
+        //public void ToevoegenEnVerwijderen_NieuweSpeler()
+        //{
+        //    //arrange
+        //    a_Speler nieuweSpeler = new a_Speler();
+        //    nieuweSpeler.naam = "testSpeler";
+        //    nieuweSpeler.kapitaal = 10000;
+        //    nieuweSpeler.level = 5;
+        //    nieuweSpeler.geslacht = "man";
+        //    int toegevoegd;
+        //    int verwijderd = 0;
+
+
+        //    //act
+        //    toegevoegd = DatabaseOperations.ToevoegenSpeler(nieuweSpeler);
+        //    if (toegevoegd > 0)
+        //    {
+        //        verwijderd = DatabaseOperations.VerwijderSpeler(nieuweSpeler);
+        //    }
+
+        //    //assert
+        //    Assert.IsTrue(verwijderd == 1);
+        //}
     }
 }

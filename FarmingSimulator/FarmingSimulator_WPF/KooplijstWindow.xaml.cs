@@ -121,17 +121,17 @@ namespace FarmingSimulator_WPF
 
         private string Valideer(string columnName)
         {
-            if (columnName == "Voertuig" && DataGridVoertuigen.SelectedItem is a_GekochtVoertuig)
+            if (columnName == "Voertuig" && DataGridVoertuigen.SelectedItem == null)
             {
                 return "Selecteer eerst een item!";
             }
 
-            if (columnName == "Gereedschap" && DataGridGereedschappen.SelectedItem is a_GekochtGereedschap)
+            if (columnName == "Gereedschap" && DataGridGereedschappen.SelectedItem == null)
             {
                 return "Selecteer eerst een item!";
             }
 
-            if (columnName == "Dier" && DataGridDieren.SelectedItem is a_Gekocht_dier)
+            if (columnName == "Dier" && DataGridDieren.SelectedItem == null)
             {
                 return "Selecteer eerst een item!";
             }

@@ -125,9 +125,8 @@
     <Compile Include="FileOperations.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="partials\a_GehuurdGereedschap.cs" />
-    <Compile Include="partials\a_GekochtGereedschap.cs" />
     <Compile Include="partials\a_Gereedschap.cs" />
+    <Compile Include="partials\a_Speler.cs" />
     <Compile Include="partials\a_Voertuig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
